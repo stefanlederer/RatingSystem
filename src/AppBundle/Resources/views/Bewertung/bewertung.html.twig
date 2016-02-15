@@ -8,21 +8,16 @@
     </div>
     <div id="main">
         <div class="frage">
-            {{question}}
+
         </div>
-        <form action="../PHP/main.php" method="post">
+        <form action="{{ path('bewertungAction') }}" method="post">
             <div id="bewertung">
-                <input type="image" name="sehr-gut" src="../Images/sehr-gut.png" onclick="a()">
-                <input type="image" name="gut" src="../Images/gut.png" onclick="a()">
-                <input type="image" name="befriedigend" src="../Images/befriedigend.png" onclick="a()">
-                <input type="image" name="genuegend" src="../Images/genuegend.png" onclick="a()">
-                <input type="image" name="schlecht" src="../Images/schlecht.png" onclick="a()">
+
             </div>
         </form>
     </div>
     <div id="footer">
-        <img src="../Images/bosch.png" class="logo">
-
+        <img src="{{ asset('images/bosch.png') }}" class="logo">
         <p class="copyrightText">Corporate Design © Robert Bosch GmbH</p>
     </div>
 

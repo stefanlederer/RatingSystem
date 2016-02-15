@@ -8,7 +8,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 class BewertungController extends Controller
 {
     /**
-     * @Route("/bewertung")
+     * @Route("/", name="bewertungAction")
      */
     public function bewertungAction()
     {

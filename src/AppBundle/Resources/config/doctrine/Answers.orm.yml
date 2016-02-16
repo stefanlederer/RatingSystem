@@ -1,0 +1,22 @@
+AppBundle\Entity\Answers:
+    type: entity
+    table: null
+    repositoryClass: AppBundle\Repository\AnswersRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        surveyId:
+            type: integer
+            column: survey_id
+        buttonId:
+            type: integer
+            column: button_id
+        answerOption:
+            type: string
+            length: 255
+            column: answer_option
+    lifecycleCallbacks: {  }

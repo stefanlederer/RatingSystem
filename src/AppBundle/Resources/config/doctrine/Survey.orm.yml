@@ -1,0 +1,30 @@
+AppBundle\Entity\Survey:
+    type: entity
+    table: null
+    repositoryClass: AppBundle\Repository\SurveyRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        question:
+            type: string
+            length: 255
+        buttonQuantity:
+            type: integer
+            column: button_quantity
+        buttonType:
+            type: integer
+            column: button_type
+        surveyStart:
+            type: datetime
+            column: survey_start
+        surveyEnd:
+            type: datetime
+            column: survey_end
+        userId:
+            type: integer
+            column: user_id
+    lifecycleCallbacks: {  }

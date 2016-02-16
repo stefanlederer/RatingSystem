@@ -1,0 +1,15 @@
+AppBundle\Entity\Devices:
+    type: entity
+    table: null
+    repositoryClass: AppBundle\Repository\DevicesRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        conn:
+            type: string
+            length: 255
+    lifecycleCallbacks: {  }

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="84777d70-628d-40b0-8c42-874255ae0ad0" name="Default" comment="[FE] created main.css -&gt; style for bewertung.html.twig">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/AppBundle/Entity/Answers.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/AppBundle/Repository/AnswersRepository.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/AppBundle/Resources/config/doctrine/Answers.orm.yml" />
+    <list default="true" id="84777d70-628d-40b0-8c42-874255ae0ad0" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/AppBundle/Entity/Buttons.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/AppBundle/Repository/ButtonsRepository.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/AppBundle/Resources/config/doctrine/Buttons.orm.yml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Bosch.iws" />
@@ -445,7 +445,13 @@
       <option name="project" value="LOCAL" />
       <updated>1455624211646</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="[BE] created Entity -&gt; AppBundle:Answers">
+      <created>1455624638981</created>
+      <option name="number" value="00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1455624638981</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -488,7 +494,8 @@
     <MESSAGE value="[FE] created main.css -&gt; style for bewertung.html.twig" />
     <MESSAGE value="[FE] added images (logos, buttons)" />
     <MESSAGE value="[BE] created new Entity: AppBundle:Action" />
-    <option name="LAST_COMMIT_MESSAGE" value="[BE] created new Entity: AppBundle:Action" />
+    <MESSAGE value="[BE] created Entity -&gt; AppBundle:Answers" />
+    <option name="LAST_COMMIT_MESSAGE" value="[BE] created Entity -&gt; AppBundle:Answers" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />

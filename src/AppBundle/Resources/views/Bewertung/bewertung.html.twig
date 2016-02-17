@@ -10,14 +10,17 @@
         <div class="frage">
 
         </div>
-        <form action="{{ path('bewertungAction') }}" method="post">
-            <div id="bewertung">
-
-            </div>
-        </form>
+        <div id="bewertung">
+            {% for source in buttonsources %}
+                <a href="{{ path('abgabeBewertung', ({'id': newOne.id})) }}">
+                    <input type="image" src="{{ asset(source) }}" name={{ loop.index }}/>
+                </a>
+            {% endfor %}
+        </div>
     </div>
     <div id="footer">
         <img src="{{ asset('images/bosch.png') }}" class="logo">
+
         <p class="copyrightText">Corporate Design © Robert Bosch GmbH</p>
     </div>
 

@@ -10,4 +10,17 @@ namespace AppBundle\Repository;
  */
 class Survey_ActiveRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function getQuestion($conn, $time) {
+        $em = $this->getEntityManager();
+        $query = $em->createQueryBuilder()
+            ->select('sa', 's.buttonQuantity as buttonQuantity')
+            ->from('AppBundle:Survey_Active', 'sa')
+            ->leftJoin('AppBundle:Survey', 's', 'WITH', 'sa.surveyId = s.id')
+            ->leftJoin('AppBundle:Devices', 'd', 'WITH', 'sa.devicesId = d.id')
+            ->where('d.conn = :conn', 's.surveyStart <= :time', 's.surveyEnd > :time')
+            ->setParameter('device' , $conn)
+            ->setParameter('time', $time);
+
+        return $query->getQuery()->getResult();
+    }
 }

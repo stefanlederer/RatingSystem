@@ -16,16 +16,17 @@ class BewertungController extends Controller
 
         $time = $this->getTime();
 
-//        $em = $this->getDoctrine()->getManager();
-//        $question = $em->getRepository('AppBundle:Survey_Active')
-//            ->getQuestion($conn, $time);
-        $question = "fjklsf";
+        $em = $this->getDoctrine()->getManager();
+        $question = $em->getRepository('AppBundle:Survey_Active')
+            ->getQuestion($conn, $time);
 
-        $buttonsource = "5"; //$this->images($question['buttonQuantity']);
+        print_r($question);
+
+        $buttonsource = $this->images(5);//$question['buttonQuantity']);
 
         return $this->render('AppBundle:Bewertung:bewertung.html.twig', array(
             // the question of the survey
-            'question' => $question,
+            'survey' => $question,
             'buttonsources' => $buttonsource
         ));
     }

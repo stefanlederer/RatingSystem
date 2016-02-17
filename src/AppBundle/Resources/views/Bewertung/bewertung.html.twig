@@ -8,11 +8,11 @@
     </div>
     <div id="main">
         <div class="frage">
-
+            {{ survey['question'] }}
         </div>
         <div id="bewertung">
             {% for source in buttonsources %}
-                <a href="{{ path('abgabeBewertung', ({'id': newOne.id})) }}">
+                <a href="#">
                     <input type="image" src="{{ asset(source) }}" name={{ loop.index }}/>
                 </a>
             {% endfor %}

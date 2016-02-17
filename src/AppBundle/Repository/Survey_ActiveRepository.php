@@ -13,14 +13,15 @@ class Survey_ActiveRepository extends \Doctrine\ORM\EntityRepository
     public function getQuestion($conn, $time) {
         $em = $this->getEntityManager();
         $query = $em->createQueryBuilder()
-            ->select('sa', 's.buttonQuantity as buttonQuantity')
+            ->select('sa', 's.buttonQuantity as buttonQuantity', 's.question as question')
             ->from('AppBundle:Survey_Active', 'sa')
             ->leftJoin('AppBundle:Survey', 's', 'WITH', 'sa.surveyId = s.id')
             ->leftJoin('AppBundle:Devices', 'd', 'WITH', 'sa.devicesId = d.id')
-            ->where('d.conn = :conn', 's.surveyStart <= :time', 's.surveyEnd > :time')
-            ->setParameter('device' , $conn)
-            ->setParameter('time', $time);
+            ->where('d.conn = :conn', 'sa.start <= :time', 'sa.end > :time')
+            ->setParameter('conn' , $conn)
+            ->setParameter('time', $time)
+            ->getQuery();
 
-        return $query->getQuery()->getResult();
+        return $query->setMaxResults(1)->getOneOrNullResult();
     }
 }

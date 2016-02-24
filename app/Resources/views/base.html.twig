@@ -10,6 +10,9 @@
     </head>
     <body>
         {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
+        {% block javascripts %}
+            <script type="text/javascript" src="{{ asset('js/jquery2.1.4.js') }}"></script>
+            <script type="text/javascript" src="{{ asset('js/buttonClick.js') }}"></script>
+        {% endblock %}
     </body>
 </html>

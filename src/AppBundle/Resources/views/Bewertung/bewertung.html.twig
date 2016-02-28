@@ -10,13 +10,15 @@
         <div class="frage">
             {{ survey['question'] }}
         </div>
-        <div id="bewertung">
-            {% for source in buttonsources %}
-                <a href="#">
-                    <input type="image" src="{{ asset(source) }}" name={{ loop.index }}/>
-                </a>
-            {% endfor %}
-        </div>
+        <form method="post" class="button-form" action="{{ path('bewertungAction') }}">
+            <div id="bewertung">
+                {% for source in buttonsources %}
+                    <button class="button" value="{{ loop.index }}" type="submit" name="button">
+                        <img class="image-button" src="{{ asset(source) }}">
+                    </button>
+                {% endfor %}
+            </div>
+        </form>
     </div>
     <div id="footer">
         <img src="{{ asset('images/bosch.png') }}" class="logo">

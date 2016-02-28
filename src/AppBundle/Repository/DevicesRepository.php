@@ -10,4 +10,15 @@ namespace AppBundle\Repository;
  */
 class DevicesRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function getDevicesId($conn) {
+        $em = $this->getEntityManager();
+        $query = $em->createQueryBuilder()
+            ->select("d.id")
+            ->from('AppBundle:Devices', 'd')
+            ->where('d.conn = :conn')
+            ->setParameter('conn', $conn)
+            ->getQuery();
+
+        return $query->getArrayResult();
+    }
 }

@@ -49,9 +49,15 @@ img.logo {
     right: 10px;
 }
 
-input {
+.image-button {
+    width: 100%;
+    position: relative;
+}
+.button {
     width: 18%;
     position: relative;
+    background-color: white;
+    border: none;
 }
 
 p.copyrightText {

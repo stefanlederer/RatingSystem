@@ -15,7 +15,7 @@ class Action
     /**
      * @var int
      */
-    private $answerId;
+    private $answersId;
 
     /**
      * @var int
@@ -39,27 +39,27 @@ class Action
     }
 
     /**
-     * Set answerId
+     * Set answersId
      *
-     * @param integer $answerId
+     * @param integer $answersId
      *
      * @return Action
      */
-    public function setAnswerId($answerId)
+    public function setAnswersId($answersId)
     {
-        $this->answerId = $answerId;
+        $this->answersId = $answersId;
 
         return $this;
     }
 
     /**
-     * Get answerId
+     * Get answersId
      *
      * @return int
      */
-    public function getAnswerId()
+    public function getAnswersId()
     {
-        return $this->answerId;
+        return $this->answersId;
     }
 
     /**

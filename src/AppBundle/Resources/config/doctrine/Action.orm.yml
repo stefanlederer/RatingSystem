@@ -9,9 +9,9 @@ AppBundle\Entity\Action:
             generator:
                 strategy: AUTO
     fields:
-        answerId:
+        answersId:
             type: integer
-            column: answer_id
+            column: answers_id
         devicesId:
             type: integer
             column: devices_id

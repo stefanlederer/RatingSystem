@@ -10,4 +10,16 @@ namespace AppBundle\Repository;
  */
 class AnswersRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function getAnswerId($surveyID, $buttonID) {
+        $em = $this->getEntityManager();
+        $query = $em->createQueryBuilder()
+            ->select('a.id')
+            ->from('AppBundle:Answers', 'a')
+            ->where('a.surveyId = :surveyID')
+            ->andWhere('a.buttonId = :buttonID')
+            ->setParameter('surveyID', $surveyID)
+            ->setParameter('buttonID', $buttonID);
+
+        return $query->getQuery()->getArrayResult();
+    }
 }

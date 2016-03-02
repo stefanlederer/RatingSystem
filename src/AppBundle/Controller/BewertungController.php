@@ -66,6 +66,12 @@ class BewertungController extends Controller
             'survey' => $question,
             'buttonsources' => $buttonsource
         ));
+
+        $response = new Response(json_encode(array(
+
+        )));
+        $response->headers->set('Content-Type', 'application/json');
+        return $response;
     }
 
 

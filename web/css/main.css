@@ -15,7 +15,7 @@ p.headerText {
     margin-left: 60px;
     color: rgb(221, 221, 221);
     font-size: 22px;
-    vertical-align: middle;
+    margin-top: 15px;
 }
 
 #main {
@@ -65,6 +65,7 @@ p.copyrightText {
     position: relative;
     font-size: 20px;
     margin-left: 20px;
+    margin-top: 20px;
 }
 
 

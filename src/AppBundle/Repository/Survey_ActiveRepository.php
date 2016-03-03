@@ -17,6 +17,7 @@ class Survey_ActiveRepository extends \Doctrine\ORM\EntityRepository
             ->from('AppBundle:Survey_Active', 'sa')
             ->leftJoin('AppBundle:Survey', 's', 'WITH', 'sa.surveyId = s.id')
             ->leftJoin('AppBundle:Devices', 'd', 'WITH', 'sa.devicesId = d.id')
+//            ->leftJoin('AppBundle:Answers', 'a', 'WITH', 's.id = a.surveyId')
             ->where('d.conn = :conn', 'sa.start <= :time', 'sa.end > :time')
             ->setParameter('conn' , $conn)
             ->setParameter('time', $time)

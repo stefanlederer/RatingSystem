@@ -5,7 +5,7 @@ namespace AppBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
+//use Symfony\Component\HttpFoundation\Response;
 use AppBundle\Entity\Action;
 
 class BewertungController extends Controller
@@ -33,12 +33,18 @@ class BewertungController extends Controller
         $request = Request::createFromGlobals();
         $buttonID = $request->request->get('button');
         $surveyID = $question["surveyID"];
+
+//        print_r($buttonID);
+//        print_r($surveyID);
+
         $dID = $em->getRepository('AppBundle:Devices')
             ->getDevicesId($conn);
         $devicesID = $dID[0]['id'];
         $aID = $em->getRepository('AppBundle:Answers')
             ->getAnswerId($surveyID, $buttonID);
+
         if ($aID != null) {
+
             $answerID = $aID[0]['id'];
 
             $time = new \DateTime();
@@ -77,6 +83,9 @@ class BewertungController extends Controller
 
     public function getConn()
     {
+//        $hostname = gethostbyaddr($_SERVER['REMOTE_ADDR']);
+//        print_r($hostname);
+//        return $hostname;
         return "10.0.0.12";
     }
 

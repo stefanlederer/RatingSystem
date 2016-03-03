@@ -11,10 +11,11 @@
 }
 
 p.headerText {
-    position: absolute;
-    left: 60px;
+    position: relative;
+    margin-left: 60px;
     color: rgb(221, 221, 221);
     font-size: 22px;
+    vertical-align: middle;
 }
 
 #main {
@@ -61,8 +62,9 @@ img.logo {
 }
 
 p.copyrightText {
-    position: absolute;
-    left: 20px;
+    position: relative;
+    font-size: 20px;
+    margin-left: 20px;
 }
 
 

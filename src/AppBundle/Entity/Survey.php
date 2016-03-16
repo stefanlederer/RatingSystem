@@ -42,6 +42,11 @@ class Survey
      */
     private $userId;
 
+    /**
+     * @var int
+     */
+    private $status;
+
 
     /**
      * Get id
@@ -195,6 +200,30 @@ class Survey
     public function getUserId()
     {
         return $this->userId;
+    }
+
+    /**
+     * Set status
+     *
+     * @param integer $status
+     *
+     * @return Survey
+     */
+    public function setStatus($status)
+    {
+        $this->status = $status;
+
+        return $this;
+    }
+
+    /**
+     * Get status
+     *
+     * @return int
+     */
+    public function getStatus()
+    {
+        return $this->status;
     }
 }
 

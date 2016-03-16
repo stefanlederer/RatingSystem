@@ -27,4 +27,7 @@ AppBundle\Entity\Survey:
         userId:
             type: integer
             column: user_id
+        status:
+            type: integer
+            column: status
     lifecycleCallbacks: {  }

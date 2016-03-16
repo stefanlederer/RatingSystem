@@ -15,7 +15,7 @@ class Devices
     /**
      * @var string
      */
-    private $conn;
+    private $connection;
 
 
     /**
@@ -29,27 +29,27 @@ class Devices
     }
 
     /**
-     * Set conn
+     * Set connection
      *
-     * @param string $conn
+     * @param string $connection
      *
      * @return Devices
      */
-    public function setConn($conn)
+    public function setConnection($connection)
     {
-        $this->conn = $conn;
+        $this->connection = $connection;
 
         return $this;
     }
 
     /**
-     * Get conn
+     * Get connection
      *
      * @return string
      */
-    public function getConn()
+    public function getConnection()
     {
-        return $this->conn;
+        return $this->connection;
     }
 }
 

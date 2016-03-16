@@ -9,7 +9,7 @@ AppBundle\Entity\Devices:
             generator:
                 strategy: AUTO
     fields:
-        conn:
+        connection:
             type: string
             length: 255
     lifecycleCallbacks: {  }

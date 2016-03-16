@@ -86,7 +86,7 @@ class BewertungController extends Controller
 //        $hostname = gethostbyaddr($_SERVER['REMOTE_ADDR']);
 //        print_r($hostname);
 //        return $hostname;
-        return "10.0.0.12";
+        return "erstes Gerät";
     }
 
     public function getTime()

@@ -15,8 +15,8 @@ class DevicesRepository extends \Doctrine\ORM\EntityRepository
         $query = $em->createQueryBuilder()
             ->select("d.id")
             ->from('AppBundle:Devices', 'd')
-            ->where('d.conn = :conn')
-            ->setParameter('conn', $conn)
+            ->where('d.connection = :connection')
+            ->setParameter('connection', $conn)
             ->getQuery();
 
         return $query->getArrayResult();

@@ -1,0 +1,15 @@
+AppBundle\Entity\Ranks:
+    type: entity
+    table: null
+    repositoryClass: AppBundle\Repository\RanksRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        rank:
+            type: string
+            length: 255
+    lifecycleCallbacks: {  }

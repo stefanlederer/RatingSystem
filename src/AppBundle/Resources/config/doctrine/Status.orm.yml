@@ -1,0 +1,15 @@
+AppBundle\Entity\Status:
+    type: entity
+    table: null
+    repositoryClass: AppBundle\Repository\StatusRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        status:
+            type: string
+            length: 255
+    lifecycleCallbacks: {  }

@@ -4,9 +4,9 @@
 #header {
     position: absolute;
     width: 100%;
-    top: 0px;
+    top: 0;
     left: 0;
-    height: 60px;
+    height: 65px;
     background-color: rgb(58, 90, 130);
 }
 
@@ -36,11 +36,11 @@ div.frage {
 }
 
 #footer {
-    position: absolute;
+    position: fixed;
     left: 0;
     width: 100%;
-    bottom: 0px;
-    height: 60px;
+    bottom: 0;
+    height: 65px;
     background-color: rgb(221, 221, 221);
 }
 
@@ -54,13 +54,18 @@ img.logo {
 
 .image-button {
     width: 100%;
+    margin-top: 0;
     position: relative;
 }
 .button {
     width: 18%;
     position: relative;
-    background-color: white;
+    background-color: #ffffff;
     border: none;
+}
+
+p.answerOption {
+    font-size: 20px;
 }
 
 p.copyrightText {
@@ -79,26 +84,39 @@ p.copyrightText {
     margin-top: 10%;
     text-align: center;
 }
+div.answerOption {
+    width: 100%;
+    position: relative;
+    margin-top: 25px;
+}
+div.answerOption-field {
+    text-align: center;
+}
+p.buttonname {
+    width: 18%;
+    float: left;
+    text-align: center;
+}
 /*
 popup fenster
 */
-.popUp {
-    position: absolute;
-    top: 35%;
-    left: 30%;
-    width: 40%;
-    z-index: 5000;
-    background-color: rgb(225,225,225);
-    border: 5px solid rgb(128, 130, 133);
-    border-radius: 15px;
-    visibility: hidden;
-    background-color: rgb(168, 186, 210);
-}
+/*.popUp {*/
+    /*position: absolute;*/
+    /*top: 35%;*/
+    /*left: 30%;*/
+    /*width: 40%;*/
+    /*z-index: 5000;*/
+    /*background-color: rgb(225,225,225);*/
+    /*border: 5px solid rgb(128, 130, 133);*/
+    /*border-radius: 15px;*/
+    /*visibility: hidden;*/
+    /*background-color: rgb(168, 186, 210);*/
+/*}*/
 
-p.popUpNachricht {
-    text-align: center;
-    position: relative;
-    font-size: 160%;
-    color: rgb( 0, 50, 100);
+/*p.popUpNachricht {*/
+    /*text-align: center;*/
+    /*position: relative;*/
+    /*font-size: 160%;*/
+    /*color: rgb( 0, 50, 100);*/
 
-}
+/*}*/

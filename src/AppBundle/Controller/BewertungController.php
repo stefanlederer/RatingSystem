@@ -26,8 +26,18 @@ class BewertungController extends Controller
             ->setMaxResults(1)
             ->getOneOrNullResult();
 
+        //get buttonnames (answerOptions)
+        $buttonname = $em->getRepository('AppBundle:Answers')
+            ->getAnswerOption($question["surveyID"]);
+
         $buttonsource = $this->nameToSource($question['buttonQuantity']);
 
+        //get buttonsources and answerOptions
+        $buttons = array();
+        for($i = 0; $i < count($buttonname); $i++) {
+            $buttons[$i]['source'] = $buttonsource[$i];
+            $buttons[$i]['answerOption'] = $buttonname[$i]['answerOption'];
+        }
 
         //insert Question
         $request = Request::createFromGlobals();
@@ -70,7 +80,8 @@ class BewertungController extends Controller
         return $this->render('AppBundle:Bewertung:bewertung.html.twig', array(
             // the question of the survey
             'survey' => $question,
-            'buttonsources' => $buttonsource
+            'buttons' => $buttons,
+            'buttonnames' => $buttonname
         ));
 
         $response = new Response(json_encode(array(

@@ -12,9 +12,11 @@
         </div>
         <form method="post" class="button-form" action="{{ path('bewertungAction') }}">
             <div id="bewertung">
-                {% for source in buttonsources %}
+                {#{{ dump(buttons) }}#}
+                {% for button in buttons %}
                     <button class="button" value="{{ loop.index }}" type="submit" name="button">
-                        <img class="image-button" src="{{ asset(source) }}">
+                        <img class="image-button" src="{{ asset(button['source']) }}">
+                        <p class="answerOption">{{ button['answerOption'] }}</p>
                     </button>
                 {% endfor %}
             </div>
@@ -26,7 +28,7 @@
         <p class="copyrightText">Corporate Design © Robert Bosch GmbH</p>
     </div>
 
-    <div class="popUp">
-        <p class="popUpNachricht">Danke für Ihre Bewertung</p>
-    </div>
+    {#<div class="popUp">#}
+        {#<p class="popUpNachricht">Danke für Ihre Bewertung</p>#}
+    {#</div>#}
 {% endblock %}

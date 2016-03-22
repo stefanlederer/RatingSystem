@@ -15,11 +15,12 @@ $(document).ready(function () {
         if (clicked) {
             console.log('clicked');
 
+            var elementVal = $(elem).val();
+            $('.button[value!=' + elementVal + ']').fadeTo( "slow", 0.2 );
             $('.button').prop("disabled", true);
-            $('.popUp').css("visibility", "visible");
             setTimeout(function () {
+                $('.button[value!=elementVal]').fadeTo("slow", 1);
                 $('.button').prop("disabled", false);
-                $('.popUp').css("visibility", "hidden");
             }, 3000);
 
             var buttontype = $(elem).val();

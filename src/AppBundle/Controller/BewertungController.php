@@ -94,10 +94,9 @@ class BewertungController extends Controller
 
     public function getConn()
     {
-//        $hostname = gethostbyaddr($_SERVER['REMOTE_ADDR']);
-//        print_r($hostname);
-//        return $hostname;
-        return "erstes Gerät";
+        $hostname = php_uname('n');
+        print_r($hostname);
+        return $hostname;
     }
 
     public function getTime()

@@ -97,6 +97,15 @@ p.buttonname {
     float: left;
     text-align: center;
 }
+p.error_message {
+    font-size: 55px;
+    text-align: center;
+    font-family: Helvetica;
+    font-weight:bold;
+    color: #FF0000;
+    position: relative;
+    margin-top: 150px;
+}
 /*
 popup fenster
 */

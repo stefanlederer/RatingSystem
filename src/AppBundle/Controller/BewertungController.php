@@ -4,6 +4,7 @@ namespace AppBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\Config\Definition\Exception\Exception;
 use Symfony\Component\HttpFoundation\Request;
 //use Symfony\Component\HttpFoundation\Response;
 use AppBundle\Entity\Action;
@@ -20,75 +21,91 @@ class BewertungController extends Controller
 
         $time = $this->getTime();
 
-        $em = $this->getDoctrine()->getManager();
-        $question = $em->getRepository('AppBundle:Survey_Active')
-            ->getQuestion($conn, $time)
-            ->setMaxResults(1)
-            ->getOneOrNullResult();
+        try {
+            $em = $this->getDoctrine()->getManager();
+            $question = $em->getRepository('AppBundle:Survey_Active')
+                ->getQuestion($conn, $time)
+                ->setMaxResults(1)
+                ->getOneOrNullResult();
 
-        //get buttonnames (answerOptions)
-        $buttonname = $em->getRepository('AppBundle:Answers')
-            ->getAnswerOption($question["surveyID"]);
+            //get buttonnames (answerOptions)
+            $buttonname = $em->getRepository('AppBundle:Answers')
+                ->getAnswerOption($question["surveyID"]);
 
-        $buttonsource = $this->nameToSource($question['buttonQuantity']);
 
-        //get buttonsources and answerOptions
-        $buttons = array();
-        for($i = 0; $i < count($buttonname); $i++) {
-            $buttons[$i]['source'] = $buttonsource[$i];
-            $buttons[$i]['answerOption'] = $buttonname[$i]['answerOption'];
-        }
+            $buttonsource = $this->nameToSource($question['buttonQuantity']);
 
-        //insert Question
-        $request = Request::createFromGlobals();
-        $buttonID = $request->request->get('button');
-        $surveyID = $question["surveyID"];
+            //get buttonsources and answerOptions
+            $buttons = array();
+            for ($i = 0; $i < count($buttonname); $i++) {
+                $buttons[$i]['source'] = $buttonsource[$i];
+                $buttons[$i]['answerOption'] = $buttonname[$i]['answerOption'];
+            }
+
+            //insert Question
+            $request = Request::createFromGlobals();
+            $buttonID = $request->request->get('button');
+            $surveyID = $question["surveyID"];
 
 //        print_r($buttonID);
 //        print_r($surveyID);
 
-        $dID = $em->getRepository('AppBundle:Devices')
-            ->getDevicesId($conn);
-        $devicesID = $dID[0]['id'];
-        $aID = $em->getRepository('AppBundle:Answers')
-            ->getAnswerId($surveyID, $buttonID);
+            $dID = $em->getRepository('AppBundle:Devices')
+                ->getDevicesId($conn);
+            $devicesID = $dID[0]['id'];
+            $aID = $em->getRepository('AppBundle:Answers')
+                ->getAnswerId($surveyID, $buttonID);
 
-        if ($aID != null) {
+            if ($aID != null) {
 
-            $answerID = $aID[0]['id'];
+                $answerID = $aID[0]['id'];
 
-            $time = new \DateTime();
-            $time->format('Y-m-d \O\n H:i:s');
+                $time = new \DateTime();
+                $time->format('Y-m-d \O\n H:i:s');
 
-            $action = new Action();
+                $action = new Action();
 
-            $action->setAnswersId($answerID);
-            $action->setDevicesId($devicesID);
-            $action->setTime($time);
+                $action->setAnswersId($answerID);
+                $action->setDevicesId($devicesID);
+                $action->setTime($time);
 
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($action);
-            $em->flush();
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($action);
+                $em->flush();
 
 
 //            print_r($buttonID);
 //            print_r($surveyID);
 //            print_r($devicesID);
 //            print_r($answerID);
+            }
+
+            return $this->render('AppBundle:Bewertung:bewertung.html.twig', array(
+                // the question of the survey
+                'survey' => $question,
+                'buttons' => $buttons,
+                'buttonnames' => $buttonname
+            ));
+
+            $response = new Response(json_encode(array()));
+            $response->headers->set('Content-Type', 'application/json');
+            return $response;
+
+        } catch (\Doctrine\ORM\ORMException $e) {
+            $this->get('session')->getFlashBag()->add('error', 'Your custom message');
+            $this->get('logger')->error($e->getMessage());
+
+            return $this->redirect($this->getRequest()->headers->get('referer'));
+        } catch (\Exception $e) {
+
+            $errormessage = "Derzeit steht keine Umfrage zur Verfügung!";
+
+            return $this->render('AppBundle:Bewertung:error.html.twig', array(
+                "errormessage" => $errormessage
+            ));
+
         }
 
-        return $this->render('AppBundle:Bewertung:bewertung.html.twig', array(
-            // the question of the survey
-            'survey' => $question,
-            'buttons' => $buttons,
-            'buttonnames' => $buttonname
-        ));
-
-        $response = new Response(json_encode(array(
-
-        )));
-        $response->headers->set('Content-Type', 'application/json');
-        return $response;
     }
 
 

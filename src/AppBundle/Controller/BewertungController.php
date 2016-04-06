@@ -47,9 +47,6 @@ class BewertungController extends Controller
             $buttonID = $request->request->get('button');
             $surveyID = $question["surveyID"];
 
-//        print_r($buttonID);
-//        print_r($surveyID);
-
             $dID = $em->getRepository('AppBundle:Devices')
                 ->getDevicesId($conn);
             $devicesID = $dID[0]['id'];
@@ -73,11 +70,6 @@ class BewertungController extends Controller
                 $em->persist($action);
                 $em->flush();
 
-
-//            print_r($buttonID);
-//            print_r($surveyID);
-//            print_r($devicesID);
-//            print_r($answerID);
             }
 
             return $this->render('AppBundle:Bewertung:bewertung.html.twig', array(
@@ -112,7 +104,6 @@ class BewertungController extends Controller
     public function getConn()
     {
         $hostname = php_uname('n');
-        print_r($hostname);
         return $hostname;
     }
 

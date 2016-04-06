@@ -34,14 +34,5 @@ class AnswersRepository extends \Doctrine\ORM\EntityRepository
 
         return $query->getQuery()->getArrayResult();
 
-//        print_r($result);
-//        $answerOption = array();
-//        for($i = 0; $i< count($result); $i++) {
-//            $answerOption = $result[$i]["answerOption"];
-//        }
-//
-//        print_r($answerOption);
-
-
     }
 }

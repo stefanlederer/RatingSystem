@@ -10,22 +10,4 @@ namespace AppBundle\Repository;
  */
 class ActionRepository extends \Doctrine\ORM\EntityRepository
 {
-//    public function getQuestion($conn, $time)
-//    {
-//
-//        $em = $this->getEntityManager();
-//        $query = $em->createQueryBuilder()
-//            ->select('ac', 's.buttonQuantity as buttonQuantity')
-//            ->from('AppBundle:Bewertung','ac')
-//            ->leftJoin('AppBundle:Devices','d', 'WITH', 'ac.devicesId = d.id')
-//            ->leftJoin('AppBundle:Answers', 'an', 'WITH', 'ac.answersId = an.id')
-//            ->leftJoin('AppBundle:Survey', 's', 'WITH', 'an.surveyId = s.id')
-//            ->leftJoin('AppBundle:Users', 'u', 'WITH', 's.usersId = u.id')
-//            ->leftJoin('AppBundle:Buttons', 'b', 'WITH', 'an.buttonsId = b.id')
-//            ->where('d.conn = :conn', 's.surveyStart <= :time', 's.surveyEnd > :time')
-//            ->setParameter('device' , $conn)
-//            ->setParameter('time', $time);
-//
-//        return $query->getQuery()->getResult();
-//    }
 }

@@ -16,10 +16,11 @@ class BewertungController extends Controller
      */
     public function bewertungAction()
     {
-        //get Question
-        $conn = $this->getConn();
 
-        $time = $this->getTime();
+            //get Question
+            $conn = $this->getConn();
+
+            $time = $this->getTime();
 
         try {
             $em = $this->getDoctrine()->getManager();
@@ -78,25 +79,23 @@ class BewertungController extends Controller
                 'buttons' => $buttons,
                 'buttonnames' => $buttonname
             ));
+        }
+        catch(\Doctrine\ORM\ORMException $e) {
+            $this->get('session')->getFlashBag()->add('error', 'Your custom message');
+            $this->get('logger')->error($e->getMessage());
+            return $this->redirect($this->getRequest()->headers->get('referer'));
+        }
+        catch(Exception $e) {
+            $errormessage = "Derzeit steht keine Umfrage zur Verfügung!";
+            return $this->render('AppBundle:Bewertung:error.html.twig', array(
+                "errormessage" => $errormessage
+            ));
+        }
 
             $response = new Response(json_encode(array()));
             $response->headers->set('Content-Type', 'application/json');
             return $response;
 
-        } catch (\Doctrine\ORM\ORMException $e) {
-            $this->get('session')->getFlashBag()->add('error', 'Your custom message');
-            $this->get('logger')->error($e->getMessage());
-
-            return $this->redirect($this->getRequest()->headers->get('referer'));
-        } catch (\Exception $e) {
-
-            $errormessage = "Derzeit steht keine Umfrage zur Verfügung!";
-
-            return $this->render('AppBundle:Bewertung:error.html.twig', array(
-                "errormessage" => $errormessage
-            ));
-
-        }
 
     }
 

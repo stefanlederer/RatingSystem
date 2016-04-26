@@ -3,7 +3,7 @@
  */
 setInterval(function() {
     query();
-}, 3600000); //one hour = 3600000
+}, 5000); //one hour = 3600000
 
 function query() {
     $.ajax({

@@ -97,7 +97,7 @@ p.buttonname {
     float: left;
     text-align: center;
 }
-p.error_message {
+p.error-message {
     font-size: 55px;
     text-align: center;
     font-family: Helvetica;
@@ -105,6 +105,12 @@ p.error_message {
     color: #FF0000;
     position: relative;
     margin-top: 150px;
+}
+p.detail-error-message {
+    font-size: 15px;
+    text-align: center;
+    font-family: Helvetica;
+    color: #000000;
 }
 /*
 popup fenster

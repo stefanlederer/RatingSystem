@@ -22,6 +22,8 @@ class BewertungController extends Controller
 
             $time = $this->getTime();
 
+        $detailerror = "";
+
         try {
             $em = $this->getDoctrine()->getManager();
             $question = $em->getRepository('AppBundle:Survey_Active')
@@ -85,10 +87,12 @@ class BewertungController extends Controller
             $this->get('logger')->error($e->getMessage());
             return $this->redirect($this->getRequest()->headers->get('referer'));
         }
-        catch(Exception $e) {
+        catch(\Exception $e) {
+            $detailerror = $e->getMessage();
             $errormessage = "Derzeit steht keine Umfrage zur Verfügung!";
             return $this->render('AppBundle:Bewertung:error.html.twig', array(
-                "errormessage" => $errormessage
+                "errormessage" => $errormessage,
+                "detailerror" => $detailerror
             ));
         }
 

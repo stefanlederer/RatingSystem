@@ -1,0 +1,4 @@
+
+login:
+    path:     /admin/login
+    defaults: { _controller: AppBundle:Login:login }

@@ -1,0 +1,27 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}AppBundle:Login:login{% endblock %}
+
+{% block body %}
+    <div class="admin-content">
+        <div class="admin-content-header">
+            <div class="admin-content-header-logo">
+                <img class="login-logo" src="{{ asset('images/Bosch.png') }}">
+            </div>
+            <p class="admin-content-headername">Bosch</p>
+        </div>
+        <div class="login-form">
+            <form action="{{ path('login_check') }}" method="post">
+                <label class="username" for="username">Name</label>
+                <br>
+                <input type="text" id="username" name="_username"/>
+
+                <label class="password" for="password">Passwort</label>
+                <br>
+                <input type="password" id="password" name="_password"/>
+                <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+                <button type="submit" class="login-button">Login</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}

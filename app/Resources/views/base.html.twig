@@ -5,6 +5,11 @@
         <title>{% block title %}Welcome!{% endblock %}</title>
         {% block stylesheets %}
             <link href="{{ asset('css/main.css') }}" type="text/css" rel="stylesheet">
+            {#<link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}">#}
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+            <link href='https://fonts.googleapis.com/css?family=Roboto+Mono:100,700' rel='stylesheet' type='text/css'>
+            <link href='https://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
+            <link rel="stylesheet" href="{{ asset('css/datepicker.css') }}" >
         {% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
@@ -14,6 +19,8 @@
             <script type="text/javascript" src="{{ asset('js/jquery2.1.4.js') }}"></script>
             <script type="text/javascript" src="{{ asset('js/buttonClick.js') }}"></script>
             <script type="text/javascript" src="{{ asset('js/ajax.js') }}"></script>
+            <script type="text/javascript" src="{{ asset('js/bootstrap-datepicker.js') }}"></script>
+            <script type="text/javascript" src="{{ asset('js/styles.js') }}"></script>
         {% endblock %}
     </body>
 </html>

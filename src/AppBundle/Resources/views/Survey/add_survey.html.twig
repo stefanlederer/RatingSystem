@@ -1,0 +1,42 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}AppBundle:Survey:allSurvey{% endblock %}
+
+{% block body %}
+    <header>
+        <p class="header-heading">Bewertungssystem Bosch</p>
+        <nav class="navigation">
+            <a>Alle Umfragen</a>
+            <a>Umfrage &auml;ndern</a>
+        </nav>
+        <a href="{{ path('addSurvey') }}">
+            <button class="button-add">
+                <i class="fa fa-plus" aria-hidden="true"></i>
+            </button>
+        </a>
+        <button class="button-auswerten">
+            <i class="fa fa-line-chart" aria-hidden="true"></i>
+        </button>
+    </header>
+    <main class="add-statistic-survey">
+        <input type="text">
+        <br>
+        <input id="datepicker-start">
+        <br>
+        <input id="datepicker-end">
+        <br>
+        <select class="answerQuantity">
+            <option></option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+        </select>
+        <br>
+        <div class="answerOption">
+        </div>
+        <br>
+        <button class="newSurvey-button">Erstellen</button>
+    </main>
+
+{% endblock %}

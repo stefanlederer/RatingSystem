@@ -16,7 +16,7 @@ $(document).ready(function () {
             console.log('clicked');
 
             var elementVal = $(elem).val();
-            $('.button[value!=' + elementVal + ']').fadeTo( "slow", 0.2 );
+            $('.button[value!=' + elementVal + ']').fadeTo("slow", 0.2);
             $('.button').prop("disabled", true);
             setTimeout(function () {
                 $('.button[value!=elementVal]').fadeTo("slow", 1);
@@ -34,6 +34,16 @@ $(document).ready(function () {
                 success: console.log("success")
             });
             clicked = false;
+        }
+    });
+
+    //get answerOption boxes
+    $(".answerQuantity").change(function () {
+        $("input[class=options]").remove();
+        var quantity = $(".answerQuantity option:selected").text();
+        console.log(quantity);
+        for (var i = 1; i <= quantity; i++) {
+            $('.answerOption').append('<input type="text" class="options"/>');
         }
     });
 });

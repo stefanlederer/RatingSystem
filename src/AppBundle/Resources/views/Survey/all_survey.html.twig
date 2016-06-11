@@ -1,0 +1,74 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}AppBundle:Survey:allSurvey{% endblock %}
+
+{% block body %}
+    <header>
+        <p class="header-heading">Bewertungssystem Bosch</p>
+        <nav class="navigation">
+            <a class="active">Alle Umfragen</a>
+            <a>Umfrage &auml;ndern</a>
+        </nav>
+        <a href="{{ path('addSurvey') }}">
+            <button class="button-add">
+                <i class="fa fa-plus" aria-hidden="true"></i>
+            </button>
+        </a>
+        <button class="button-auswerten">
+            <i class="fa fa-line-chart" aria-hidden="true"></i>
+        </button>
+    </header>
+    <main class="all-change-survey">
+        <table>
+            <tr class="table-header">
+                <th>Frage</th>
+                <th>Start</th>
+                <th>Ende</th>
+                <th>Anzahl</th>
+                <th>Aktivit&auml;t</th>
+            </tr>
+            <tr>
+                <td>fasfdsafds</td>
+                <td>fasfdsafds</td>
+                <td>fasfdsafds</td>
+                <td>fasfdsafds</td>
+                <td>fasfdsafds</td>
+            </tr>
+            <tr>
+                <td>fasfdsafds</td>
+                <td>fasfdsafds</td>
+                <td>fasfdsafds</td>
+                <td>fasfdsafds</td>
+                <td>fasfdsafds</td>
+            </tr>
+            <tr>
+                <td>fasfdsafds</td>
+                <td>fasfdsafds</td>
+                <td>fasfdsafds</td>
+                <td>fasfdsafds</td>
+                <td>fasfdsafds</td>
+            </tr>
+            <tr>
+                <td>fasfdsafds</td>
+                <td>fasfdsafds</td>
+                <td>fasfdsafds</td>
+                <td>fasfdsafds</td>
+                <td>fasfdsafds</td>
+            </tr>
+            <tr>
+                <td>fasfdsafds</td>
+                <td>fasfdsafds</td>
+                <td>fasfdsafds</td>
+                <td>fasfdsafds</td>
+                <td>fasfdsafds</td>
+            </tr>
+            <tr>
+                <td>fasfdsafds</td>
+                <td>fasfdsafds</td>
+                <td>fasfdsafds</td>
+                <td>fasfdsafds</td>
+                <td>fasfdsafds</td>
+            </tr>
+        </table>
+    </main>
+{% endblock %}

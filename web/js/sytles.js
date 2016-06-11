@@ -11,6 +11,10 @@
 $(document).ready(function() {
 
    //datepicker
+
+   // http://www.eyecon.ro/bootstrap-datepicker/
+   // https://eonasdan.github.io/bootstrap-datetimepicker/
+
    //  var nowTemp = new Date();
    //  var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
    //

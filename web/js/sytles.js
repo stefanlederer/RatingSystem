@@ -38,11 +38,6 @@ $(document).ready(function() {
    //  }).on('changeDate', function(ev) {
    //      checkout.hide();
    //  }).data('datepicker');
+    
 
-    //get answerOption boxes
-    console.log("hello");
-    var quantity = $('answerQuantity').val();
-    for(var i = 0; i <= quantity; i++) {
-        $('.answerOption').append('<input type="text"');
-    }
 });

@@ -6,8 +6,8 @@
     <header>
         <p class="header-heading">Bewertungssystem Bosch</p>
         <nav class="navigation">
-            <a class="active">Alle Umfragen</a>
-            <a>Umfrage &auml;ndern</a>
+            <a class="active" href="{{ path('allSurvey') }}">Alle Umfragen</a>
+            <a href="{{ path('changeSurvey') }}">Umfrage &auml;ndern</a>
         </nav>
         <a href="{{ path('addSurvey') }}">
             <button class="button-add">

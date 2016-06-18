@@ -119,8 +119,9 @@ Admin Bereich
 */
 div.admin-content{
     margin: auto;
-    width: 300px;
+    width: 415px;
     height: 350px;
+    margin-top: 100px;
     box-shadow: 1px 1px 5px 0px rgba(115,111,113,1);
 }
 div.admin-content-header {
@@ -132,30 +133,33 @@ img.login-logo {
 }
 p.admin-content-headername {
     font-family: 'Roboto Mono';
-    font-size: 40px;
+    font-size: 70px;
     text-align: center;
-    margin-top: -70px;
+    margin-top: -90px;
     color: #FFFFFF;
 }
 div.login-form {
     margin-top: 30px;
+    margin-left: 30px;
 }
 label.username {
     margin-top: 15px;
     font-family: 'Oswald', sans-serif;
     margin-left: 10px;
-    font-size: 15px;
+    font-size: 20px;
     transition: 1s;
+    color: #99A7FF;
 }
 /*label.username:active {*/
     /*font-size: 10px;*/
 /*}*/
 #username {
     margin-bottom: 20px;
-    margin-left: 20px;
+    margin-left: 35px;
     margin-top: 5px;
-    width: 260px;
-    border-bottom: 2px solid RGB(167, 167, 167);
+    width: 310px;
+    font-size: 20px;
+    border-bottom: 2px solid #99A7FF;
     border-top: medium none;
     border-left: medium none;
     border-right: medium none;
@@ -165,18 +169,20 @@ label.password {
     margin-top: 15px;
     font-family: 'Oswald', sans-serif;
     margin-left: 10px;
-    font-size: 15px;
+    font-size: 20px;
     transition: 1s;
+    color: #99A7FF;
 }
 /*label.password:active {*/
     /*font-size: 10px;*/
 /*}*/
 #password {
     margin-bottom: 20px;
-    margin-left: 20px;
+    margin-left: 35px;
     margin-top: 5px;
-    width: 260px;
-    border-bottom: 2px solid RGB(167, 167, 167);
+    width: 310px;
+    font-size: 20px;
+    border-bottom: 2px solid #99A7FF;
     border-top: medium none;
     border-left: medium none;
     border-right: medium none;
@@ -184,7 +190,7 @@ label.password {
 }
 button.login-button {
     margin-top: 20px;
-    margin-left: 20px;
+    margin-left: 40px;
     width: 260px;
     height: 40px;
     background-color: #99A7FF;
@@ -192,6 +198,9 @@ button.login-button {
     border: none;
     box-shadow: 1px 1px 5px 0px rgba(115,111,113,1);
 }
+
+/*Header*/
+
 header {
     position: fixed;
     top: 0;
@@ -216,9 +225,12 @@ a {
     margin-left: 25px;
     font-family: 'Roboto Mono';
     font-weight: bold;
+    color: #FFFFFF;
+    border: none;
+    text-decoration: none;
 }
 a.active {
-    border-bottom: 2px solid #04B404;
+    border-bottom: 2px solid #BCF5A9;
 }
 button.button-auswerten {
     position: fixed;
@@ -248,6 +260,9 @@ button.button-add {
     color: #99A7FF;
     cursor: pointer;
 }
+
+/*change_survey, all_survey*/
+
 main.all-change-survey {
     margin-top: 270px;
     margin-left: 30px;
@@ -273,13 +288,51 @@ td {
     font-size: 15px;
     color: #4A4A4A;
 }
-a.info-icon {
+td.icon-row{
+    width: 100px;
+}
+a.info-icon, a.delete-icon, a.noChange-icon, a.save-icon{
     color: #4A4A4A;
+    font-size: 20px;
+    cursor: pointer;
+}
+a.save-icon :hover, a.noChange-icon :hover, a.delete-icon :hover, a.info-icon :hover{
+    color: #000000;
+}
+table input {
+    width: 100px;
 }
 /*add survey*/
 main.add-statistic-survey {
+    margin: auto;
     margin-top: 270px;
-    text-align: center;
     width: 350px;
+    text-align: center;
     box-shadow: 1px 1px 5px 0px rgba(115,111,113,1);
+}
+input {
+    border-bottom: 2px solid #99A7FF;
+    border-top: medium none;
+    border-left: medium none;
+    border-right: medium none;
+    font-family: 'Roboto Mono';
+}
+input.input-question {
+    margin-top: 30px;
+}
+#datepicker-end, #datepicker-start {
+    width: 100px;
+    margin-top: 10px;
+}
+select.answerQuantity {
+    margin-top: 10px;
+}
+button.newSurvey-button {
+    width: 260px;
+    height: 40px;
+    background-color: #99A7FF;
+    border-radius: 5px;
+    border: none;
+    box-shadow: 1px 1px 5px 0px rgba(115,111,113,1);
+    margin-bottom: 25px;
 }

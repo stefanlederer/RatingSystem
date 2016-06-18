@@ -6,8 +6,8 @@
     <header>
         <p class="header-heading">Bewertungssystem Bosch</p>
         <nav class="navigation">
-            <a>Alle Umfragen</a>
-            <a>Umfrage &auml;ndern</a>
+            <a href="{{ path('allSurvey') }}">Alle Umfragen</a>
+            <a href="{{ path('changeSurvey') }}">Umfrage &auml;ndern</a>
         </nav>
         <a href="{{ path('addSurvey') }}">
             <button class="button-add">
@@ -19,11 +19,10 @@
         </button>
     </header>
     <main class="add-statistic-survey">
-        <input type="text">
+        <input class="input-question" type="text" placeholder="Frage">
         <br>
-        <input id="datepicker-start">
-        <br>
-        <input id="datepicker-end">
+        <input id="datepicker-start" placeholder="Startzeit">
+        <input id="datepicker-end" placeholder="Endzeit">
         <br>
         <select class="answerQuantity">
             <option></option>

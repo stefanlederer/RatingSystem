@@ -8,12 +8,23 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 class LoginController extends Controller
 {
     /**
-     * @Route("/admin")
+     * @Route("/admin", name="login_route")
      */
     public function loginAction()
     {
+        $helper = $this->get('security.authentication_utils');
+        $authenticationUtils = $this->get('security.authentication_utils');
+
+        // get the login error if there is one
+        $error = $authenticationUtils->getLastAuthenticationError();
+
+        // last username entered by the user
+        $lastUsername = $authenticationUtils->getLastUsername();
+
         return $this->render('AppBundle:Login:login.html.twig', array(
-            // ...
+            // last username entered by the user
+            'last_username' => $lastUsername,
+            'error'         => $error
         ));
     }
 

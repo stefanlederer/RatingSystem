@@ -12,8 +12,13 @@ class SurveyController extends Controller
      */
     public function allSurveyAction()
     {
+        $em = $this->getDoctrine()->getManager();
+        $allSurvey = $em
+            ->getRepository('AppBundle:Survey')
+            ->findBy(array(), array('id' => 'DESC'));
+        
         return $this->render('AppBundle:Survey:all_survey.html.twig', array(
-            // ...
+            'allSurvey' => $allSurvey
         ));
     }
 

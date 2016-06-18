@@ -27,48 +27,15 @@
                 <th>Anzahl</th>
                 <th>Aktivit&auml;t</th>
             </tr>
-            <tr>
-                <td>fasfdsafds</td>
-                <td>fasfdsafds</td>
-                <td>fasfdsafds</td>
-                <td>fasfdsafds</td>
-                <td>fasfdsafds</td>
-            </tr>
-            <tr>
-                <td>fasfdsafds</td>
-                <td>fasfdsafds</td>
-                <td>fasfdsafds</td>
-                <td>fasfdsafds</td>
-                <td>fasfdsafds</td>
-            </tr>
-            <tr>
-                <td>fasfdsafds</td>
-                <td>fasfdsafds</td>
-                <td>fasfdsafds</td>
-                <td>fasfdsafds</td>
-                <td>fasfdsafds</td>
-            </tr>
-            <tr>
-                <td>fasfdsafds</td>
-                <td>fasfdsafds</td>
-                <td>fasfdsafds</td>
-                <td>fasfdsafds</td>
-                <td>fasfdsafds</td>
-            </tr>
-            <tr>
-                <td>fasfdsafds</td>
-                <td>fasfdsafds</td>
-                <td>fasfdsafds</td>
-                <td>fasfdsafds</td>
-                <td>fasfdsafds</td>
-            </tr>
-            <tr>
-                <td>fasfdsafds</td>
-                <td>fasfdsafds</td>
-                <td>fasfdsafds</td>
-                <td>fasfdsafds</td>
-                <td>fasfdsafds</td>
-            </tr>
+            {% for survey in allSurvey %}
+                <tr>
+                    <td>{{ survey.question }}</td>
+                    <td>{{ survey.surveyStart|date('Y-m-d') }}</td>
+                    <td>{{ survey.surveyEnd|date('Y-m-d') }}</td>
+                    <td>{{ survey.buttonQuantity }}</td>
+                    <td>{{ survey.status }}</td>
+                </tr>
+            {% endfor %}
         </table>
     </main>
 {% endblock %}

@@ -11,6 +11,7 @@
             <p class="admin-content-headername">Bosch</p>
         </div>
         <div class="login-form">
+            {% if error %}{{ error }} {% endif %}
             <form action="{{ path('login_check') }}" method="post">
                 <label class="username" for="username">Name</label>
                 <br>

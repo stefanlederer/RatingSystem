@@ -12,9 +12,6 @@ AppBundle\Entity\Answers:
         surveyId:
             type: integer
             column: survey_id
-        buttonId:
-            type: integer
-            column: button_id
         answerOption:
             type: string
             length: 255

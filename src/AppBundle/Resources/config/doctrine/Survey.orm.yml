@@ -15,9 +15,6 @@ AppBundle\Entity\Survey:
         buttonQuantity:
             type: integer
             column: button_quantity
-        buttonType:
-            type: integer
-            column: button_type
         surveyStart:
             type: datetime
             column: survey_start

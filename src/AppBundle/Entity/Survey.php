@@ -23,11 +23,6 @@ class Survey
     private $buttonQuantity;
 
     /**
-     * @var int
-     */
-    private $buttonType;
-
-    /**
      * @var \DateTime
      */
     private $surveyStart;
@@ -104,30 +99,6 @@ class Survey
     public function getButtonQuantity()
     {
         return $this->buttonQuantity;
-    }
-
-    /**
-     * Set buttonType
-     *
-     * @param integer $buttonType
-     *
-     * @return Survey
-     */
-    public function setButtonType($buttonType)
-    {
-        $this->buttonType = $buttonType;
-
-        return $this;
-    }
-
-    /**
-     * Get buttonType
-     *
-     * @return int
-     */
-    public function getButtonType()
-    {
-        return $this->buttonType;
     }
 
     /**

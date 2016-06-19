@@ -18,11 +18,6 @@ class Answers
     private $surveyId;
 
     /**
-     * @var int
-     */
-    private $buttonId;
-
-    /**
      * @var string
      */
     private $answerOption;
@@ -60,30 +55,6 @@ class Answers
     public function getSurveyId()
     {
         return $this->surveyId;
-    }
-
-    /**
-     * Set buttonId
-     *
-     * @param integer $buttonId
-     *
-     * @return Answers
-     */
-    public function setButtonId($buttonId)
-    {
-        $this->buttonId = $buttonId;
-
-        return $this;
-    }
-
-    /**
-     * Get buttonId
-     *
-     * @return int
-     */
-    public function getButtonId()
-    {
-        return $this->buttonId;
     }
 
     /**

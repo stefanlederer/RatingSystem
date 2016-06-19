@@ -32,17 +32,6 @@ class SurveyRepository extends \Doctrine\ORM\EntityRepository
         $result = $query->getQuery()->execute();
     }
 
-    public function deleteSurvey($id) {
-        $em = $this->getEntityManager();
-        $query = $em->createQueryBuilder()
-            ->delete('s')
-            ->from('AppBundle:Survey', 's')
-            ->where('s.id = :id')
-            ->setParameter('id', $id);
-
-        $result = $query->getQuery()->execute();
-    }
-
     public function getStatisticFromSurvey() {
         $em = $this->getEntityManager();
         $query = $em->createQueryBuilder()

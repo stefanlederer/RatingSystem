@@ -8,6 +8,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 
 class SurveyController extends Controller
@@ -56,29 +57,37 @@ class SurveyController extends Controller
         $count = $request->request->get('count');
         $activity = $request->request->get('activity');
 
-        $em = $this->getDoctrine()
-            ->getManager()
-            ->getRepository('AppBundle:Survey')
-            ->changeSurvey($id, $question, $date_start, $date_end, $count, $activity);
+        $em = $this->getDoctrine()->getManager();
 
-        $response = new Response(json_encode(array()));
-        $response->headers->set('Content-Type', 'application/json');
-        return $response;
+        $survey = $this->getDoctrine()->getRepository('AppBundle:Survey')->find($id);
+
+        $survey->setQuestion($question);
+        $survey->setSurveyStart(new \DateTime($date_start));
+        $survey->setSurveyEnd(new \DateTime($date_end));
+        $survey->setButtonQuantity($count);
+        $survey->setStatus($activity);
+
+        $em->persist($survey);
+        $em->flush();
+
+
+        return new JsonResponse(array('message' => 'erfolgreich geändert'));
     }
 
     /**
      * @Route("/admin/changeSurvey/delete")
      */
     public function deleteSurveyRowAction() {
-        
         $request = Request::createFromGlobals();
         $id = $request->request->get('id');
-        
-        $em = $this->getDoctrine()
-            ->getManager()
-            ->getRepository('AppBundle:Survey')
-            ->deleteSurvey($id);
-        
+
+        $em = $this->getDoctrine()->getManager();
+
+        $survey = $this->getDoctrine()->getRepository('AppBundle:Survey')->find($id);
+
+        $em->remove($survey);
+        $em->flush();
+        return new JsonResponse(array('message' => 'erfolgreich gelöscht'));
     }
 
     /**

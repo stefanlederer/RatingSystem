@@ -6,6 +6,10 @@ $(document).ready(function () {
     //send post when button clicked
     var clicked = false;
     var elem = '';
+
+    $('.date').datepicker({
+        dateFormat: "yy-mm-dd"
+    });
     $('.button').click(function () {
         clicked = true;
         elem = this;
@@ -50,92 +54,18 @@ $(document).ready(function () {
         }
     });
 
-    //change survey
-    $('.info-icon').click(function () {
-        var parentTR = $(this).parents("tr");
-        var parentTD = $(this).parent();
-        var table_question = parentTR.children('td.table-question');
-        var table_start = parentTR.children('td.table-start');
-        var table_end = parentTR.children('td.table-end');
-        var table_count = parentTR.children('td.table-count');
-        var table_activity = parentTR.children('td.table-activity');
-
-        var table_question_oldValue = table_question.text();
-        var table_start_oldValue = table_start.text();
-        var table_end_oldValue = table_end.text();
-        var table_count_oldValue = table_count.text();
-        var table_activity_oldValue = table_activity.text();
-
-        $(table_question).html('<input class="table-question" name="table-question" value="' + table_question_oldValue + '" />');
-        $(table_start).html('<input class="table-start" name="table-start" value="' + table_start_oldValue + '" />');
-        $(table_end).html('<input class="table-end" name="table-end" value="' + table_end_oldValue + '" />');
-        $(table_count).html('<input class="table-count" name="table-count" value="' + table_count_oldValue + '" />');
-        $(table_activity).html('<input class="table-activity" name="table-activity" value="' + table_activity_oldValue + '" />');
-
-        //remove pencil icon
-        $(this).remove();
-        $(parentTD).html('<a class="save-icon"><i class="fa fa-check" aria-hidden="true"></i></a>' +
-            '<a class="noChange-icon"><i class="fa fa-times" aria-hidden="true"></i></a>');
-
-        //noChange button clicked
-        $('.noChange-icon').click(function () {
-            $(parentTD).children('a').remove();
-            $(parentTD).html('<a class="info-icon"><i class="fa fa-pencil" aria-hidden="true"></i></a>');
-            
-            
-            $(table_question).html(table_question_oldValue);
-            $(table_start).html(table_start_oldValue);
-            $(table_end).html(table_end_oldValue);
-            $(table_count).html(table_count_oldValue);
-            $(table_activity).html(table_activity_oldValue);
-        });
-
-        //save button clicked
-        $('.save-icon').click(function () {
-            var table_id = $('.survey-id').val();
-            var table_question_newValue = $('.table-question').val();
-            var table_start_newValue = $('.table-start').val();
-            var table_end_newValue = $('.table-end').val();
-            var table_count_newValue = $('.table-count').val();
-            var table_activity_newValue = $('.table-activity').val();
-
-            console.log("save icon clicked");
-            $.ajax({
-                type: "POST",
-                url: "/admin/changeSurvey/change",
-                data: {
-                    id: table_id,
-                    question: table_question_newValue,
-                    date_start: table_start_newValue,
-                    date_end: table_end_newValue,
-                    count: table_count_newValue,
-                    activity: table_activity_newValue
-                },
-                success: function () {
-                    $(parentTD).children('a').remove();
-                    $(parentTD).html('<a class="info-icon"><i class="fa fa-pencil" aria-hidden="true"></i></a>');
-
-                    $(table_question).html(table_question_newValue);
-                    $(table_start).html(table_start_newValue);
-                    $(table_end).html(table_end_newValue);
-                    $(table_count).html(table_count_newValue);
-                    $(table_activity).html(table_activity_newValue);
-                }
-            });
-        });
-    });
-
     //delete button clicked
     $('.delete-icon').click(function () {
-
-        console.log("delete button clicked");
-
-        var table_id = $('.survey-id').val();
+        var table_id = $('.survey-id').text();
+        var deleteIcon = this;
         $.ajax({
             type: "POST",
             url: "/admin/changeSurvey/delete",
             data: {
                 id: table_id
+            },
+            success: function() {
+                $(deleteIcon).parents('tr').remove();
             }
         });
     });
@@ -158,7 +88,7 @@ $(document).ready(function () {
         });
 
     });
-
+    bindPencil();
     console.log("chart");
     var ctx = $('.chart');
     var myChart = new Chart(ctx, {
@@ -190,3 +120,108 @@ $(document).ready(function () {
     });
 
 });
+
+function bindPencilEvents() {
+    //noChange button clicked
+    $('.noChange-icon').click(function () {
+        var parentTR = $(this).parents("tr");
+        var parentTD = $(this).parent();
+        var table_question = parentTR.children('td.table-question').find('input');
+        var table_start = parentTR.children('td.table-start').find('input');
+        var table_end = parentTR.children('td.table-end').find('input');
+        var table_count = parentTR.children('td.table-count').find('input');
+        var table_activity = parentTR.children('td.table-activity').find('input');
+
+        var table_question_oldValue = table_question.val();
+        var table_start_oldValue = table_start.val();
+        var table_end_oldValue = table_end.val();
+        var table_count_oldValue = table_count.val();
+        var table_activity_oldValue = table_activity.val();
+        $(parentTD).children('a').remove();
+        $(parentTD).html('<a class="info-icon"><i class="fa fa-pencil" aria-hidden="true"></i></a>');
+
+
+        $(table_question.parent()).html(table_question_oldValue);
+        $(table_start.parent()).html(table_start_oldValue);
+        $(table_end.parent()).html(table_end_oldValue);
+        $(table_count.parent()).html(table_count_oldValue);
+        $(table_activity.parent()).html(table_activity_oldValue);
+        bindPencil();
+    });
+
+    //save button clicked
+    $('.save-icon').click(function () {
+        var table_id = $('.survey-id').text();
+        var table_question_newValue = $('.table-question').find('input').val();
+        var table_start_newValue = $('.table-start').find('input').val();
+        var table_end_newValue = $('.table-end').find('input').val();
+        var table_count_newValue = $('.table-count').find('input').val();
+        var table_activity_newValue = $('.table-activity').find('input').val();
+        var elem = this;
+        $.ajax({
+            type: "POST",
+            url: "/admin/changeSurvey/change",
+            data: {
+                id: table_id,
+                question: table_question_newValue,
+                date_start: table_start_newValue,
+                date_end: table_end_newValue,
+                count: table_count_newValue,
+                activity: table_activity_newValue
+            },
+            success: function () {
+                var parentTR = $(elem).parents("tr");
+                var parentTD = $(elem).parent();
+                var table_question = parentTR.children('td.table-question');
+                var table_start = parentTR.children('td.table-start');
+                var table_end = parentTR.children('td.table-end');
+                var table_count = parentTR.children('td.table-count');
+                var table_activity = parentTR.children('td.table-activity');
+
+                $(parentTD).children('a').remove();
+                $(parentTD).html('<a class="info-icon"><i class="fa fa-pencil" aria-hidden="true"></i></a>');
+
+                $(table_question).html(table_question_newValue);
+                $(table_start).html(table_start_newValue);
+                $(table_end).html(table_end_newValue);
+                $(table_count).html(table_count_newValue);
+                $(table_activity).html(table_activity_newValue);
+                bindPencil();
+            }
+        });
+    });
+}
+function bindPencil() {
+    //change survey
+    $('.info-icon').click(function () {
+        var parentTR = $(this).parents("tr");
+        var parentTD = $(this).parent();
+        var table_question = parentTR.children('td.table-question');
+        var table_start = parentTR.children('td.table-start');
+        var table_end = parentTR.children('td.table-end');
+        var table_count = parentTR.children('td.table-count');
+        var table_activity = parentTR.children('td.table-activity');
+
+        var table_question_oldValue = table_question.text();
+        var table_start_oldValue = table_start.text();
+        var table_end_oldValue = table_end.text();
+        var table_count_oldValue = table_count.text();
+        var table_activity_oldValue = table_activity.text();
+
+        $(table_question).html('<input class="table-question" name="table-question" value="' + table_question_oldValue + '" />');
+        $(table_start).html('<input class="table-start date" type="text" name="table-start" value="' + table_start_oldValue + '" />');
+        $(table_end).html('<input class="table-end date" type="text" name="table-end" value="' + table_end_oldValue + '" />');
+        $(table_count).html('<input class="table-count" name="table-count" value="' + table_count_oldValue + '" />');
+        $(table_activity).html('<input class="table-activity" name="table-activity" value="' + table_activity_oldValue + '" />');
+
+        $('.date').datepicker({
+            dateFormat: "yy-mm-dd"
+        });
+
+        //remove pencil icon
+        $(this).remove();
+        $(parentTD).html('<a class="save-icon"><i class="fa fa-check" aria-hidden="true"></i></a>' +
+            '<a class="noChange-icon"><i class="fa fa-times" aria-hidden="true"></i></a>');
+        bindPencilEvents();
+    });
+}

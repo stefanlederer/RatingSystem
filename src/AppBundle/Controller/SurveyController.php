@@ -3,7 +3,9 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Answers;
+use AppBundle\Entity\Devices;
 use AppBundle\Entity\Survey;
+use AppBundle\Entity\Users;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\DependencyInjection\LazyProxy\Instantiator\RealServiceInstantiator;
@@ -95,6 +97,7 @@ class SurveyController extends Controller {
     public function addSurveyAction() {
 
         $request = Request::createFromGlobals();
+        //add survey
         $question = $request->request->get('question');
         $date_start = $request->request->get('startDate');
         $date_end = $request->request->get('endDate');
@@ -102,6 +105,14 @@ class SurveyController extends Controller {
         $device = $request->request->get('device');
         $count = $request->request->get('answerQuantity');
         $answerOptions[] = $request->request->get('answerOptions');
+
+        //add devices
+        $newDevice = $request->request->get('newdevice');
+
+        //add user
+        $newUsername = $request->request->get('newUser');
+        $newUserPW = $request->request->get('userPW');
+        $newUserRole = $request->request->get('newUserRole');
 
 
         if (strlen($question) > 0 && strlen($date_start) > 0 && strlen($date_end) > 0 && strlen($status) > 0 &&
@@ -135,6 +146,40 @@ class SurveyController extends Controller {
                 $em->flush();
             }
 
+
+        }
+
+        if(strlen($newDevice) > 0) {
+            $addNewDevice = new Devices();
+
+            $addNewDevice->setConnection($newDevice);
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($addNewDevice);
+            $em->flush();
+
+        }
+
+        if(strlen($newUsername) > 0 && strlen($newUserPW) > 0 && strlen($newUserRole) > 0) {
+            $user = new Users();
+
+            if($newUserRole == "Benutzer") {
+                $newUserRole = "ROLE_USER";
+            }
+            if($newUserRole == "Administrator") {
+                $newUserRole = "ROLE_ADMIN";
+            }
+
+            $options = array('cost' => 12);
+            $newpw = password_hash($newUserPW, PASSWORD_BCRYPT, $options);
+            
+            $user->setUsername($newUsername);
+            $user->setPassword($newpw);
+            $user->setRoles(array($newUserRole));
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($user);
+            $em->flush();
 
         }
 

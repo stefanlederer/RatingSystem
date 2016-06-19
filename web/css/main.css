@@ -316,12 +316,35 @@ table input {
     width: 100px;
 }
 /*add survey*/
-main.add-statistic-survey {
+main.insert-main {
+
+}
+div.container {
     margin: auto;
     margin-top: 270px;
-    width: 350px;
-    text-align: center;
+}
+div.add-statistic-survey {
+    padding: 40px;
     box-shadow: 1px 1px 5px 0px rgba(115,111,113,1);
+    float: left;
+    margin-bottom: 30px;
+    box-sizing: border-box;
+}
+div.add-addition {
+    box-sizing: border-box;
+}
+div.add-devices {
+    box-shadow: 1px 1px 5px 0px rgba(115,111,113,1);
+    height: 190px;
+    margin-bottom:30px;
+    box-sizing: border-box;
+}
+.add {
+    padding:40px !important;
+}
+div.add-user {
+    box-shadow: 1px 1px 5px 0px rgba(115,111,113,1);
+    box-sizing: border-box;
 }
 input {
     border-bottom: 2px solid #99A7FF;
@@ -330,23 +353,11 @@ input {
     border-right: medium none;
     font-family: 'Roboto Mono';
 }
-input.input-question {
-    margin-top: 30px;
-}
 #datepicker-end, #datepicker-start {
     width: 100px;
     margin-top: 10px;
 }
-select.status {
-    margin-top: 10px;
-}
-select.devices {
-    margin-top: 10px;
-}
-select.answerQuantity {
-    margin-top: 10px;
-}
-button.newSurvey-button {
+button.newInsert-button {
     width: 260px;
     height: 40px;
     background-color: #99A7FF;

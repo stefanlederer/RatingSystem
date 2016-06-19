@@ -24,7 +24,7 @@ class Users implements UserInterface
     private $password;
 
     /**
-     * @var int
+     * @var array
      */
     private $roles;
 
@@ -88,9 +88,9 @@ class Users implements UserInterface
     }
 
     /**
-     * Set rank
+     * Set roles
      *
-     * @param integer $roles
+     * @param array $roles
      *
      * @return Users
      */
@@ -102,9 +102,9 @@ class Users implements UserInterface
     }
 
     /**
-     * Get rank
+     * Get roles
      *
-     * @return int
+     * @return array
      */
     public function getRoles()
     {

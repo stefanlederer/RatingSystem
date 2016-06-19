@@ -208,6 +208,7 @@ header {
     right: 0;
     height: 200px;
     background-color: #99A7FF;
+    z-index: 10000;
 }
 p.header-heading {
     font-family: 'Roboto Mono';
@@ -333,6 +334,12 @@ input.input-question {
 }
 #datepicker-end, #datepicker-start {
     width: 100px;
+    margin-top: 10px;
+}
+select.status {
+    margin-top: 10px;
+}
+select.devices {
     margin-top: 10px;
 }
 select.answerQuantity {

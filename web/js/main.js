@@ -46,7 +46,7 @@ $(document).ready(function () {
         $("input[class=options]").remove();
         var quantity = $(".answerQuantity option:selected").text();
         for (var i = 1; i <= quantity; i++) {
-            $('.answerOption').append('<input type="text" class="options" placeholder="Antwortmöglichkeiten"/>');
+            $('.answerOption').append('<input type="text" name="answerOptions[]" class="options" placeholder="Antwortmöglichkeiten"/>');
         }
     });
 

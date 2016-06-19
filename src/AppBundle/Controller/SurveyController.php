@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Answers;
 use AppBundle\Entity\Survey;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -90,11 +91,16 @@ class SurveyController extends Controller
         $question = $request->request->get('question');
         $date_start = $request->request->get('startDate');
         $date_end = $request->request->get('endDate');
+        $status = $request->request->get('status');
+        $device = $request->request->get('device');
         $count = $request->request->get('answerQuantity');
+        $answerOptions[] = $request->request->get('answerOptions');
 
-        //answerOptions!!!!!!!!!!!! missing
 
-        if(strlen($question) > 0 && strlen($date_start) > 0 && strlen($date_end) > 0 && strlen($count) > 0) {
+        if(strlen($question) > 0 && strlen($date_start) > 0 && strlen($date_end) > 0 && strlen($status) > 0 &&
+            strlen($device) > 0 && strlen($count) > 0) {
+
+            $userId = $this->getUser()->getId();
 
             $survey = new Survey();
 
@@ -102,15 +108,37 @@ class SurveyController extends Controller
             $survey->setSurveyStart(new \DateTime($date_start));
             $survey->setSurveyEnd(new \DateTime($date_end));
             $survey->setButtonQuantity($count);
+            $survey->setUserId($userId);
+            $survey->setStatus($status);
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($survey);
             $em->flush();
 
+            $survey_id = $survey->getId();
+            $buttonQuantity = count($answerOptions[0]);
+
+
+            for($i = 0; $i < $buttonQuantity; $i++) {
+                $answer = new Answers();
+                $answer->setSurveyId($survey_id);
+                $answer->setAnswerOption($answerOptions[0][$i]);
+                $em->persist($answer);
+                $em->flush();
+            }
+
+
+
         }
 
-        return $this->render('AppBundle:Survey:add_survey.html.twig', array(
 
+        $em = $this->getDoctrine()->getManager();
+        $allDevices = $em
+            ->getRepository('AppBundle:Devices')
+            ->findBy(array(), array('id' => 'ASC'));
+
+        return $this->render('AppBundle:Survey:add_survey.html.twig', array(
+            'allDevices' => $allDevices
         ));
     }
     

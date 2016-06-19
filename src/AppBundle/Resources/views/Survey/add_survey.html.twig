@@ -5,13 +5,26 @@
 {% block body %}
     {% include'AppBundle:Templates:header.html.twig' %}
     <main class="add-statistic-survey">
+
         <form action="{{ path('addSurvey') }}" class="add-survey-form" method="post">
             <input class="input-question" name="question" type="text" placeholder="Frage">
             <br>
             <input id="datepicker-start" name="startDate" placeholder="Startzeit">
             <input id="datepicker-end" name="endDate" placeholder="Endzeit">
             <br>
-            <select class="answerQuantity" name="answerQuantity">
+            <select class="status" title="Status" name="status">
+                <option>Aktiv</option>
+                <option>Inaktiv</option>
+            </select>
+            <br>
+            <select class="devices" title="Geräte" name="device">
+                <option></option>
+                {% for device in allDevices %}
+                    <option>{{ device.connection }}</option>
+                {% endfor %}
+            </select>
+            <br>
+            <select class="answerQuantity" name="answerQuantity" title="Buttonanzahl">
                 <option></option>
                 <option>2</option>
                 <option>3</option>

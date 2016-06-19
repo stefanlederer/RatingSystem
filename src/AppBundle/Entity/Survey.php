@@ -43,7 +43,7 @@ class Survey
     private $userId;
 
     /**
-     * @var int
+     * @var string
      */
     private $status;
 
@@ -205,7 +205,7 @@ class Survey
     /**
      * Set status
      *
-     * @param integer $status
+     * @param string $status
      *
      * @return Survey
      */
@@ -219,7 +219,7 @@ class Survey
     /**
      * Get status
      *
-     * @return int
+     * @return string
      */
     public function getStatus()
     {

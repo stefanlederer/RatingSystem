@@ -1,0 +1,55 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}AppBundle:Survey:allSurvey{% endblock %}
+
+{% block body %}
+    {% include'AppBundle:Templates:header.html.twig' %}
+
+    <main class="all-change-survey">
+        <table>
+            <tr class="table-header">
+                <th></th>
+                <th>Frage</th>
+                <th>Bewertungen</th>
+                <th>Buttons</th>
+                <th>Dauer</th>
+            </tr>
+            <tr>
+                <td class="icon-statistic">
+                <i class="fa fa-pie-chart" aria-hidden="true"></i>
+                </td>
+                <td class="table-question">Hier steht die Frage</td>
+                <td class="table-rating">125</td>
+                <td class="table-count">5</td>
+                <td class="table-period">23</td>
+            </tr>
+            <tr>
+                <td class="icon-statistic">
+                    <i class="fa fa-pie-chart" aria-hidden="true"></i>
+                </td>
+                <td class="table-question">Hier steht die Frage</td>
+                <td class="table-rating">125</td>
+                <td class="table-count">5</td>
+                <td class="table-period">23</td>
+            </tr>
+            <tr>
+                <td class="icon-statistic">
+                    <i class="fa fa-pie-chart" aria-hidden="true"></i>
+                </td>
+                <td class="table-question">Hier steht die Frage</td>
+                <td class="table-rating">125</td>
+                <td class="table-count">5</td>
+                <td class="table-period">23</td>
+            </tr>
+            <tr>
+                <td class="icon-statistic">
+                    <i class="fa fa-pie-chart" aria-hidden="true"></i>
+                </td>
+                <td class="table-question">Hier steht die Frage</td>
+                <td class="table-rating">125</td>
+                <td class="table-count">5</td>
+                <td class="table-period">23</td>
+            </tr>
+        </table>
+    </main>
+{% endblock %}

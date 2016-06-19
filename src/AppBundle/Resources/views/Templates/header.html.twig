@@ -1,0 +1,22 @@
+<header>
+    <p class="header-heading">Bewertungssystem Bosch</p>
+    <nav class="navigation">
+        <a href="{{ path('allSurvey') }}">Alle Umfragen</a>
+        <a href="{{ path('changeSurvey') }}">Umfrage &auml;ndern</a>
+    </nav>
+    <a href="{{ path('addSurvey') }}">
+        <button class="button-add">
+            <i class="fa fa-plus" aria-hidden="true"></i>
+        </button>
+    </a>
+    <a href="{{ path('statisticSelection') }}">
+        <button class="button-auswerten">
+            <i class="fa fa-line-chart" aria-hidden="true"></i>
+        </button>
+    </a>
+    <div class="logout-button">
+        <a href="{{ path('logout_route') }}">
+            <i class="fa fa-sign-out" aria-hidden="true"></i>
+        </a>
+    </div>
+</header>

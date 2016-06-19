@@ -3,134 +3,40 @@
 {% block title %}AppBundle:Survey:allSurvey{% endblock %}
 
 {% block body %}
-    <header>
-        <p class="header-heading">Bewertungssystem Bosch</p>
-        <nav class="navigation">
-            <a href="{{ path('allSurvey') }}">Alle Umfragen</a>
-            <a class="active" href="{{ path('changeSurvey') }}">Umfrage &auml;ndern</a>
-        </nav>
-        <a href="{{ path('addSurvey') }}">
-            <button class="button-add">
-                <i class="fa fa-plus" aria-hidden="true"></i>
-            </button>
-        </a>
-        <button class="button-auswerten">
-            <i class="fa fa-line-chart" aria-hidden="true"></i>
-        </button>
-    </header>
+    {% include'AppBundle:Templates:header.html.twig' %}
     <main class="all-change-survey">
-        <table>
-            <tr class="table-header">
-                <th></th>
-                <th>Frage</th>
-                <th>Start</th>
-                <th>Ende</th>
-                <th>Anzahl</th>
-                <th>Aktivit&auml;t</th>
-                <th></th>
-            </tr>
-            <tr>
-                <td class="icon-row">
-                    <a class="info-icon">
-                        <i class="fa fa-pencil" aria-hidden="true"></i>
-                    </a>
-                </td>
-                <td class="table-question">fasfdsafds</td>
-                <td class="table-start">fasfdsafds</td>
-                <td class="table-end">fasfdsafds</td>
-                <td class="table-count">fasfdsafds</td>
-                <td class="table-activity">fasfdsafds</td>
-                <td>
-                    <a class="delete-icon">
-                        <i class="fa fa-trash" aria-hidden="true"></i>
-                    </a>
-                </td>
-            </tr>
-            <tr>
-                <td class="icon-row">
-                    <a class="info-icon">
-                        <i class="fa fa-pencil" aria-hidden="true"></i>
-                    </a>
-                </td>
-                <td class="table-question">fasfdsafds</td>
-                <td class="table-start">fasfdsafds</td>
-                <td class="table-end">fasfdsafds</td>
-                <td class="table-count">fasfdsafds</td>
-                <td class="table-activity">fasfdsafds</td>
-                <td>
-                    <a class="delete-icon">
-                        <i class="fa fa-trash" aria-hidden="true"></i>
-                    </a>
-                </td>
-            </tr>
-            <tr>
-                <td class="icon-row">
-                    <a class="info-icon">
-                        <i class="fa fa-pencil" aria-hidden="true"></i>
-                    </a>
-                </td>
-                <td class="table-question">fasfdsafds</td>
-                <td class="table-start">fasfdsafds</td>
-                <td class="table-end">fasfdsafds</td>
-                <td class="table-count">fasfdsafds</td>
-                <td class="table-activity">fasfdsafds</td>
-                <td>
-                    <a class="delete-icon">
-                        <i class="fa fa-trash" aria-hidden="true"></i>
-                    </a>
-                </td>
-            </tr>
-            <tr>
-                <td class="icon-row">
-                    <a class="info-icon">
-                        <i class="fa fa-pencil" aria-hidden="true"></i>
-                    </a>
-                </td>
-                <td class="table-question">fasfdsafds</td>
-                <td class="table-start">fasfdsafds</td>
-                <td class="table-end">fasfdsafds</td>
-                <td class="table-count">fasfdsafds</td>
-                <td class="table-activity">fasfdsafds</td>
-                <td>
-                    <a class="delete-icon">
-                        <i class="fa fa-trash" aria-hidden="true"></i>
-                    </a>
-                </td>
-            </tr>
-            <tr>
-                <td class="icon-row">
-                    <a class="info-icon">
-                        <i class="fa fa-pencil" aria-hidden="true"></i>
-                    </a>
-                </td>
-                <td class="table-question">fasfdsafds</td>
-                <td class="table-start">fasfdsafds</td>
-                <td class="table-end">fasfdsafds</td>
-                <td class="table-count">fasfdsafds</td>
-                <td class="table-activity">fasfdsafds</td>
-                <td>
-                    <a class="delete-icon">
-                        <i class="fa fa-trash" aria-hidden="true"></i>
-                    </a>
-                </td>
-            </tr>
-            <tr>
-                <td class="icon-row">
-                    <a class="info-icon">
-                        <i class="fa fa-pencil" aria-hidden="true"></i>
-                    </a>
-                </td>
-                <td class="table-question">fasfdsafds</td>
-                <td class="table-start">fasfdsafds</td>
-                <td class="table-end">fasfdsafds</td>
-                <td class="table-count">fasfdsafds</td>
-                <td class="table-activity">fasfdsafds</td>
-                <td>
-                    <a class="delete-icon">
-                        <i class="fa fa-trash" aria-hidden="true"></i>
-                    </a>
-                </td>
-            </tr>
-        </table>
+        <form class="change-survey-form" method="post">
+            <table>
+                <tr class="table-header">
+                    <th></th>
+                    <th>Frage</th>
+                    <th>Start</th>
+                    <th>Ende</th>
+                    <th>Anzahl</th>
+                    <th>Status</th>
+                    <th></th>
+                </tr>
+                {% for survey in allSurvey %}
+                    <tr>
+                        <td class="survey-id">{{ survey.id }}</td>
+                        <td class="icon-row">
+                            <a class="info-icon">
+                                <i class="fa fa-pencil" aria-hidden="true"></i>
+                            </a>
+                        </td>
+                        <td class="table-question">{{ survey.question }}</td>
+                        <td class="table-start">{{ survey.surveyStart|date('Y-m-d') }}</td>
+                        <td class="table-end">{{ survey.surveyEnd|date('Y-m-d') }}</td>
+                        <td class="table-count">{{ survey.buttonQuantity }}</td>
+                        <td class="table-activity">{{ survey.status }}</td>
+                        <td>
+                            <a class="delete-icon">
+                                <i class="fa fa-trash" aria-hidden="true"></i>
+                            </a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </form>
     </main>
 {% endblock %}

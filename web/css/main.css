@@ -260,6 +260,14 @@ button.button-add {
     color: #99A7FF;
     cursor: pointer;
 }
+div.logout-button {
+    color: #FFFFFF;
+    position: fixed;
+    right: 20px;
+    top: 20px;
+    font-size: 20px;
+    cursor: pointer;
+}
 
 /*change_survey, all_survey*/
 
@@ -288,8 +296,11 @@ td {
     font-size: 15px;
     color: #4A4A4A;
 }
-td.icon-row{
+td.icon-row {
     width: 100px;
+}
+td.survey-id {
+    display: none;
 }
 a.info-icon, a.delete-icon, a.noChange-icon, a.save-icon{
     color: #4A4A4A;
@@ -335,4 +346,12 @@ button.newSurvey-button {
     border: none;
     box-shadow: 1px 1px 5px 0px rgba(115,111,113,1);
     margin-bottom: 25px;
+}
+
+/*
+statistic area
+*/
+td.icon-statistic {
+    font-size: 20px;
+    cursor: pointer;
 }

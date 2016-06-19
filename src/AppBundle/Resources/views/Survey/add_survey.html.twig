@@ -3,39 +3,27 @@
 {% block title %}AppBundle:Survey:allSurvey{% endblock %}
 
 {% block body %}
-    <header>
-        <p class="header-heading">Bewertungssystem Bosch</p>
-        <nav class="navigation">
-            <a href="{{ path('allSurvey') }}">Alle Umfragen</a>
-            <a href="{{ path('changeSurvey') }}">Umfrage &auml;ndern</a>
-        </nav>
-        <a href="{{ path('addSurvey') }}">
-            <button class="button-add">
-                <i class="fa fa-plus" aria-hidden="true"></i>
-            </button>
-        </a>
-        <button class="button-auswerten">
-            <i class="fa fa-line-chart" aria-hidden="true"></i>
-        </button>
-    </header>
+    {% include'AppBundle:Templates:header.html.twig' %}
     <main class="add-statistic-survey">
-        <input class="input-question" type="text" placeholder="Frage">
-        <br>
-        <input id="datepicker-start" placeholder="Startzeit">
-        <input id="datepicker-end" placeholder="Endzeit">
-        <br>
-        <select class="answerQuantity">
-            <option></option>
-            <option>2</option>
-            <option>3</option>
-            <option>4</option>
-            <option>5</option>
-        </select>
-        <br>
-        <div class="answerOption">
-        </div>
-        <br>
-        <button class="newSurvey-button">Erstellen</button>
+        <form action="{{ path('addSurvey') }}" class="add-survey-form" method="post">
+            <input class="input-question" name="question" type="text" placeholder="Frage">
+            <br>
+            <input id="datepicker-start" name="startDate" placeholder="Startzeit">
+            <input id="datepicker-end" name="endDate" placeholder="Endzeit">
+            <br>
+            <select class="answerQuantity" name="answerQuantity">
+                <option></option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+            </select>
+            <br>
+            <div class="answerOption">
+            </div>
+            <br>
+            <button class="newSurvey-button">Erstellen</button>
+        </form>
     </main>
 
 {% endblock %}

@@ -51,7 +51,7 @@ $(document).ready(function () {
     });
 
     //change survey
-    $('.info-icon').click(function() {
+    $('.info-icon').click(function () {
         var parentTR = $(this).parents("tr");
         var parentTD = $(this).parent();
         var table_question = parentTR.children('td.table-question');
@@ -66,11 +66,11 @@ $(document).ready(function () {
         var table_count_oldValue = table_count.text();
         var table_activity_oldValue = table_activity.text();
 
-        $(table_question).html('<input class="table-question" name="table-question" value="'+table_question_oldValue+'" />');
-        $(table_start).html('<input class="table-start" name="table-start" value="'+table_start_oldValue+'" />');
-        $(table_end).html('<input class="table-end" name="table-end" value="'+table_end_oldValue+'" />');
-        $(table_count).html('<input class="table-count" name="table-count" value="'+table_count_oldValue+'" />');
-        $(table_activity).html('<input class="table-activity" name="table-activity" value="'+table_activity_oldValue+'" />');
+        $(table_question).html('<input class="table-question" name="table-question" value="' + table_question_oldValue + '" />');
+        $(table_start).html('<input class="table-start" name="table-start" value="' + table_start_oldValue + '" />');
+        $(table_end).html('<input class="table-end" name="table-end" value="' + table_end_oldValue + '" />');
+        $(table_count).html('<input class="table-count" name="table-count" value="' + table_count_oldValue + '" />');
+        $(table_activity).html('<input class="table-activity" name="table-activity" value="' + table_activity_oldValue + '" />');
 
         //remove pencil icon
         $(this).remove();
@@ -78,10 +78,11 @@ $(document).ready(function () {
             '<a class="noChange-icon"><i class="fa fa-times" aria-hidden="true"></i></a>');
 
         //noChange button clicked
-        $('.noChange-icon').click(function() {
+        $('.noChange-icon').click(function () {
             $(parentTD).children('a').remove();
             $(parentTD).html('<a class="info-icon"><i class="fa fa-pencil" aria-hidden="true"></i></a>');
-
+            
+            
             $(table_question).html(table_question_oldValue);
             $(table_start).html(table_start_oldValue);
             $(table_end).html(table_end_oldValue);
@@ -90,24 +91,27 @@ $(document).ready(function () {
         });
 
         //save button clicked
-        $('.save-icon').click(function() {
+        $('.save-icon').click(function () {
+            var table_id = $('.survey-id').val();
             var table_question_newValue = $('.table-question').val();
             var table_start_newValue = $('.table-start').val();
             var table_end_newValue = $('.table-end').val();
             var table_count_newValue = $('.table-count').val();
             var table_activity_newValue = $('.table-activity').val();
 
+            console.log("save icon clicked");
             $.ajax({
                 type: "POST",
-                url: "",
+                url: "/admin/changeSurvey/change",
                 data: {
+                    id: table_id,
                     question: table_question_newValue,
                     date_start: table_start_newValue,
                     date_end: table_end_newValue,
                     count: table_count_newValue,
                     activity: table_activity_newValue
                 },
-                success: function() {
+                success: function () {
                     $(parentTD).children('a').remove();
                     $(parentTD).html('<a class="info-icon"><i class="fa fa-pencil" aria-hidden="true"></i></a>');
 
@@ -119,16 +123,70 @@ $(document).ready(function () {
                 }
             });
         });
+    });
 
-        //delete button clicked
-        $('.delete-icon').click(function() {
-            $.ajax({
-                
-            });
+    //delete button clicked
+    $('.delete-icon').click(function () {
+
+        console.log("delete button clicked");
+
+        var table_id = $('.survey-id').val();
+        $.ajax({
+            type: "POST",
+            url: "/admin/changeSurvey/delete",
+            data: {
+                id: table_id
+            }
+        });
+    });
+
+    //statistics
+    var question;
+    var sumRatings;
+    var sumButtons;
+    var period;
+    $('.icon-statistic').click(function () {
+        var parentTR = $(this).parents("tr");
+        question = $(parentTR).children('td.table-question').text();
+        sumRatings = $(parentTR).children('td.table-rating').text();
+        sumButtons = $(parentTR).children('td.table-count').text();
+        period = $(parentTR).children('td.table-period').text();
+
+        $.ajax({
+            type: "POST",
+            url: "/admin/statistic/chart"
         });
 
     });
 
-
+    console.log("chart");
+    var ctx = $('.chart');
+    var myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+            datasets: [{
+                label: '# of Votes',
+                data: [12, 19, 3, 5, 2, 3],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255,99,132,1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)'
+                ],
+                borderWidth: 1
+            }]
+        }
+    });
 
 });

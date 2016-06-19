@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Answers;
+use AppBundle\Entity\Devices;
 use AppBundle\Entity\Survey;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -97,6 +98,7 @@ class SurveyController extends Controller
     {
 
         $request = Request::createFromGlobals();
+        //add survey
         $question = $request->request->get('question');
         $date_start = $request->request->get('startDate');
         $date_end = $request->request->get('endDate');
@@ -104,6 +106,9 @@ class SurveyController extends Controller
         $device = $request->request->get('device');
         $count = $request->request->get('answerQuantity');
         $answerOptions[] = $request->request->get('answerOptions');
+
+        //add devices
+        $newDevice = $request->request->get('newdevice');
 
 
         if(strlen($question) > 0 && strlen($date_start) > 0 && strlen($date_end) > 0 && strlen($status) > 0 &&
@@ -137,6 +142,16 @@ class SurveyController extends Controller
             }
 
 
+
+        }
+
+        if(strlen($newDevice) > 0) {
+            $addNewDevice = new Devices();
+            $addNewDevice->setConnection($newDevice);
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($addNewDevice);
+            $em->flush();
 
         }
 

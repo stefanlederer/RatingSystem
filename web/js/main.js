@@ -6,7 +6,7 @@ $(document).ready(function () {
     //send post when button clicked
     var clicked = false;
     var elem = '';
-
+    $('select').material_select();
     $('.date').datepicker({
         dateFormat: "yy-mm-dd"
     });
@@ -56,7 +56,7 @@ $(document).ready(function () {
 
     //delete button clicked
     $('.delete-icon').click(function () {
-        var table_id = $('.survey-id').text();
+        var table_id = $(this).parents('tr').find('.survey-id').text();
         var deleteIcon = this;
         $.ajax({
             type: "POST",
@@ -151,7 +151,8 @@ function bindPencilEvents() {
 
     //save button clicked
     $('.save-icon').click(function () {
-        var table_id = $('.survey-id').text();
+
+        var table_id = $(this).parents('tr').find('.survey-id').text();
         var table_question_newValue = $('.table-question').find('input').val();
         var table_start_newValue = $('.table-start').find('input').val();
         var table_end_newValue = $('.table-end').find('input').val();
@@ -170,6 +171,7 @@ function bindPencilEvents() {
                 activity: table_activity_newValue
             },
             success: function () {
+                console.log("save icon clicked");
                 var parentTR = $(elem).parents("tr");
                 var parentTD = $(elem).parent();
                 var table_question = parentTR.children('td.table-question');

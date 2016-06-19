@@ -316,11 +316,14 @@ table input {
     width: 100px;
 }
 /*add survey*/
-main.add-statistic-survey {
-    margin: auto;
+main.insert-main {
     margin-top: 270px;
+    margin-bottom: 30px;
+}
+div.add-statistic-survey {
+    margin: auto;
     width: 350px;
-    text-align: center;
+    padding: 40px;
     box-shadow: 1px 1px 5px 0px rgba(115,111,113,1);
 }
 input {
@@ -346,7 +349,7 @@ select.devices {
 select.answerQuantity {
     margin-top: 10px;
 }
-button.newSurvey-button {
+button.newInsert-button {
     width: 260px;
     height: 40px;
     background-color: #99A7FF;
@@ -355,7 +358,14 @@ button.newSurvey-button {
     box-shadow: 1px 1px 5px 0px rgba(115,111,113,1);
     margin-bottom: 25px;
 }
-
+div.add-devices {
+    width: 350px;
+    padding: 40px;
+    box-shadow: 1px 1px 5px 0px rgba(115,111,113,1);
+    position: absolute;
+    top: 270px;
+    right: 10px;
+}
 /*
 statistic area
 */

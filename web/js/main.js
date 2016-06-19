@@ -52,15 +52,16 @@ $(document).ready(function () {
 
     //delete button clicked
     $('.delete-icon').click(function () {
-
-        console.log("delete button clicked");
-
-        var table_id = $('.survey-id').val();
+        var table_id = $('.survey-id').text();
+        var deleteIcon = this;
         $.ajax({
             type: "POST",
             url: "/admin/changeSurvey/delete",
             data: {
                 id: table_id
+            },
+            success: function(data) {
+                $(deleteIcon).parents('tr').remove();
             }
         });
     });

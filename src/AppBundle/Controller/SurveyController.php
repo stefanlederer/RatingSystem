@@ -56,10 +56,19 @@ class SurveyController extends Controller
         $count = $request->request->get('count');
         $activity = $request->request->get('activity');
 
-        $em = $this->getDoctrine()
-            ->getManager()
-            ->getRepository('AppBundle:Survey')
-            ->changeSurvey($id, $question, $date_start, $date_end, $count, $activity);
+        $em = $this->getDoctrine()->getManager();
+
+        $survey = $this->getDoctrine()->getRepository('AppBundle:Survey')->find($id);
+
+        $survey->setQuestion($question);
+        $survey->setSurveyStart(new \DateTime($date_start));
+        $survey->setSurveyEnd(new \DateTime($date_end));
+        $survey->setButtonQuantity($count);
+        $survey->setStatus($activity);
+
+        $em->persist($survey);
+        $em->flush();
+
 
         return new JsonResponse(array('message' => 'erfolgreich geändert'));
     }

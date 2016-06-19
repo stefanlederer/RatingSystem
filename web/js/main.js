@@ -60,7 +60,7 @@ $(document).ready(function () {
             data: {
                 id: table_id
             },
-            success: function(data) {
+            success: function() {
                 $(deleteIcon).parents('tr').remove();
             }
         });
@@ -147,12 +147,13 @@ function bindPencilEvents() {
 
     //save button clicked
     $('.save-icon').click(function () {
-        var table_id = $('.survey-id').val();
-        var table_question_newValue = $('.table-question').val();
-        var table_start_newValue = $('.table-start').val();
-        var table_end_newValue = $('.table-end').val();
-        var table_count_newValue = $('.table-count').val();
-        var table_activity_newValue = $('.table-activity').val();
+        var table_id = $('.survey-id').text();
+        var table_question_newValue = $('.table-question').find('input').val();
+        var table_start_newValue = $('.table-start').find('input').val();
+        var table_end_newValue = $('.table-end').find('input').val();
+        var table_count_newValue = $('.table-count').find('input').val();
+        var table_activity_newValue = $('.table-activity').find('input').val();
+        var elem = this;
         $.ajax({
             type: "POST",
             url: "/admin/changeSurvey/change",
@@ -165,6 +166,14 @@ function bindPencilEvents() {
                 activity: table_activity_newValue
             },
             success: function () {
+                var parentTR = $(elem).parents("tr");
+                var parentTD = $(elem).parent();
+                var table_question = parentTR.children('td.table-question');
+                var table_start = parentTR.children('td.table-start');
+                var table_end = parentTR.children('td.table-end');
+                var table_count = parentTR.children('td.table-count');
+                var table_activity = parentTR.children('td.table-activity');
+
                 $(parentTD).children('a').remove();
                 $(parentTD).html('<a class="info-icon"><i class="fa fa-pencil" aria-hidden="true"></i></a>');
 

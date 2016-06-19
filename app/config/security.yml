@@ -16,7 +16,6 @@ security:
             form_login:
                 login_path: login_route
                 check_path: login_check
-                csrf_provider: security.csrf.token_manager
             logout:
                 # The route name the user can go to in order to logout
                 path: logout_route

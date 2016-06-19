@@ -385,3 +385,9 @@ td.icon-statistic {
     width:40px !important;
     top:0 !important;
 }
+#chart-modal {
+    z-index:20000 !important;
+}
+.lean-overlay {
+    z-index:19999 !important;
+}

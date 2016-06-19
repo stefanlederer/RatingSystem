@@ -15,6 +15,7 @@
             </tr>
             {% for survey in allSurvey %}
                 <tr>
+                    <td class="survey-id">{{ survey.id }}</td>
                     <td class="icon-statistic">
                         <i class="fa fa-pie-chart" aria-hidden="true"></i>
                     </td>
@@ -26,4 +27,14 @@
             {% endfor %}
         </table>
     </main>
+
+    <div id="chart-modal" class="modal">
+        <div class="modal-content">
+            <canvas class="chart" width="400" height="200"></canvas>
+        </div>
+        <div class="modal-footer">
+            <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">OK</a>
+        </div>
+    </div>
+
 {% endblock %}

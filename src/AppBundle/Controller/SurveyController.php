@@ -182,7 +182,15 @@ class SurveyController extends Controller
             'dateDiff' => $dateDiff
         ));
     }
-    
+
+    /**
+     * @Route("/admin/survey/getAnswers/{id}")
+     */
+    public function getAnswers($id) {
+        $survey = $this->getDoctrine()->getRepository('AppBundle:Survey')->find($id);
+        $answers = $this->getDoctrine()->getRepository('AppBundle:Answers')->getStatisticsInformations($survey->getId());
+        return new JsonResponse(array('content' => $answers));
+    }
     /**
      * @Route("/admin/statistic/chart")
      */

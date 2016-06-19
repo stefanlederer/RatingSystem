@@ -6,7 +6,7 @@ $(document).ready(function () {
     //send post when button clicked
     var clicked = false;
     var elem = '';
-
+    var myChart = null;
     $('.date').datepicker({
         dateFormat: "yy-mm-dd"
     });
@@ -64,7 +64,7 @@ $(document).ready(function () {
             data: {
                 id: table_id
             },
-            success: function() {
+            success: function () {
                 $(deleteIcon).parents('tr').remove();
             }
         });
@@ -89,34 +89,49 @@ $(document).ready(function () {
 
     });
     bindPencil();
-    console.log("chart");
-    var ctx = $('.chart');
-    var myChart = new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
-            datasets: [{
-                label: '# of Votes',
-                data: [12, 19, 3, 5, 2, 3],
-                backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
-                    'rgba(255, 206, 86, 0.2)',
-                    'rgba(75, 192, 192, 0.2)',
-                    'rgba(153, 102, 255, 0.2)',
-                    'rgba(255, 159, 64, 0.2)'
-                ],
-                borderColor: [
-                    'rgba(255,99,132,1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(75, 192, 192, 1)',
-                    'rgba(153, 102, 255, 1)',
-                    'rgba(255, 159, 64, 1)'
-                ],
-                borderWidth: 1
-            }]
-        }
+    $('.icon-statistic').click(function () {
+        var survey_id = $(this).parents('tr').find('.survey-id').text();
+        $.get('/admin/survey/getAnswers/' + survey_id, {}, function (data) {
+        }).success(function (data) {
+            var surveyInformation = data.content;
+            var countActions = [];
+            var answersOptions = [];
+            data.content.forEach(function (value) {
+                countActions.push(parseInt(value[1]));
+                answersOptions.push(value['answerOption']);
+            });
+            var ctx = $('.chart');
+            if(myChart !== null){
+                myChart.destroy();
+            }
+            myChart = new Chart(ctx, {
+                type: 'pie',
+                data: {
+                    labels: answersOptions,
+                    datasets: [{
+                        label: '# of Votes',
+                        data: countActions,
+                        backgroundColor: [
+                            'rgba(113,225,13,0.8)',
+                            'rgba(232,160,12, 0.8)',
+                            'rgba(255,0,0,0.8)',
+                            'rgba(57,13,232, 0.8)',
+                            'rgba(0,255,230,0.8)'
+                        ],
+                        borderColor: [
+                            '#ffffff',
+                            '#ffffff',
+                            '#ffffff',
+                            '#ffffff',
+                            '#ffffff'
+                        ],
+                        borderWidth: 2
+                    }]
+                }
+            });
+            $('#chart-modal').openModal();
+        });
+
     });
 
 });

@@ -2,11 +2,11 @@ security:
     encoders:
         # Our user class and the algorithm we'll use to encode passwords
         # http://symfony.com/doc/current/book/security.html#encoding-the-user-s-password
-        AppBundle\Entity\User: bcrypt
+        AppBundle\Entity\Users: bcrypt
 
     providers:
         database_users:
-            entity: { class: AppBundle:User, property: username }
+            entity: { class: AppBundle:Users, property: username }
 
     # http://symfony.com/doc/current/book/security.html#firewalls-authentication
     firewalls:
@@ -14,9 +14,9 @@ security:
             pattern:    ^/
             anonymous: true
             form_login:
+                default_target_path: /admin/allSurvey
                 login_path: login_route
                 check_path: login_check
-                csrf_provider: security.csrf.token_manager
             logout:
                 # The route name the user can go to in order to logout
                 path: logout_route
@@ -24,3 +24,5 @@ security:
                 target: login_route
 
     access_control:
+        - { path: ^/admin, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/admin/, roles: ROLE_ADMIN }

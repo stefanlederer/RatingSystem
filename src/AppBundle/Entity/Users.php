@@ -1,11 +1,12 @@
 <?php
 
 namespace AppBundle\Entity;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * Users
  */
-class Users
+class Users implements UserInterface
 {
     /**
      * @var int
@@ -25,7 +26,7 @@ class Users
     /**
      * @var int
      */
-    private $rank;
+    private $roles;
 
 
     /**
@@ -89,13 +90,13 @@ class Users
     /**
      * Set rank
      *
-     * @param integer $rank
+     * @param integer $roles
      *
      * @return Users
      */
-    public function setRank($rank)
+    public function setRoles($roles)
     {
-        $this->rank = $rank;
+        $this->roles = $roles;
 
         return $this;
     }
@@ -105,9 +106,17 @@ class Users
      *
      * @return int
      */
-    public function getRank()
+    public function getRoles()
     {
-        return $this->rank;
+        return $this->roles;
+    }
+    public function getSalt()
+    {
+        // TODO: Implement getSalt() method.
+    }
+    public function eraseCredentials()
+    {
+        // TODO: Implement eraseCredentials() method.
     }
 }
 

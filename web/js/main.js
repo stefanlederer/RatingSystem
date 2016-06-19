@@ -6,6 +6,10 @@ $(document).ready(function () {
     //send post when button clicked
     var clicked = false;
     var elem = '';
+
+    $('.date').datepicker({
+        dateFormat: "yy-mm-dd"
+    });
     $('.button').click(function () {
         clicked = true;
         elem = this;
@@ -205,10 +209,14 @@ function bindPencil() {
         var table_activity_oldValue = table_activity.text();
 
         $(table_question).html('<input class="table-question" name="table-question" value="' + table_question_oldValue + '" />');
-        $(table_start).html('<input class="table-start" name="table-start" value="' + table_start_oldValue + '" />');
-        $(table_end).html('<input class="table-end" name="table-end" value="' + table_end_oldValue + '" />');
+        $(table_start).html('<input class="table-start date" type="text" name="table-start" value="' + table_start_oldValue + '" />');
+        $(table_end).html('<input class="table-end date" type="text" name="table-end" value="' + table_end_oldValue + '" />');
         $(table_count).html('<input class="table-count" name="table-count" value="' + table_count_oldValue + '" />');
         $(table_activity).html('<input class="table-activity" name="table-activity" value="' + table_activity_oldValue + '" />');
+
+        $('.date').datepicker({
+            dateFormat: "yy-mm-dd"
+        });
 
         //remove pencil icon
         $(this).remove();

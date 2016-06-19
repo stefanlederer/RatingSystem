@@ -1,5 +1,8 @@
 @charset "utf-8";
 /* CSS Document */
+* {
+    font-family: 'Roboto Mono', sans-serif;
+}
 
 #header {
     position: absolute;
@@ -287,12 +290,10 @@ tr.table-header {
     height: 100px;
 }
 th {
-    font-family: 'Roboto Mono';
     font-size: 30px;
     color: #868686;
 }
 td {
-    font-family: 'Roboto Mono';
     font-size: 15px;
     color: #4A4A4A;
 }
@@ -354,4 +355,26 @@ statistic area
 td.icon-statistic {
     font-size: 20px;
     cursor: pointer;
+}
+.ui-datepicker th {
+    font-size:0.9em;
+}
+.ui-datepicker tr {
+    height:20px;
+}
+.ui-datepicker a {
+    margin:0;
+    font-size:10px;
+    font-weight:700 !important;
+}
+
+.ui-datepicker-header a {
+    height:100% !important;
+    width:40px !important;
+    top:0 !important;
+}
+.ui-datepicker-header a:hover {
+    height:100% !important;
+    width:40px !important;
+    top:0 !important;
 }

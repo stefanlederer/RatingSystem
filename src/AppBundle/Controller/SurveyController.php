@@ -6,24 +6,23 @@ use AppBundle\Entity\Answers;
 use AppBundle\Entity\Survey;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\DependencyInjection\LazyProxy\Instantiator\RealServiceInstantiator;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\Security\Core\Authentication\Provider\DaoAuthenticationProvider;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
+use Symfony\Component\HttpFoundation\StreamedResponse;
 
-
-class SurveyController extends Controller
-{
+class SurveyController extends Controller {
     /**
      * @Route("/admin/allSurvey", name="allSurvey")
      */
-    public function allSurveyAction()
-    {
+    public function allSurveyAction() {
         $em = $this->getDoctrine()->getManager();
         $allSurvey = $em
             ->getRepository('AppBundle:Survey')
             ->findBy(array(), array('id' => 'DESC'));
-        
+
         return $this->render('AppBundle:Survey:all_survey.html.twig', array(
             'allSurvey' => $allSurvey
         ));
@@ -32,19 +31,18 @@ class SurveyController extends Controller
     /**
      * @Route("/admin/changeSurvey", name="changeSurvey")
      */
-    public function changeSurveyAction()
-    {
+    public function changeSurveyAction() {
         $em = $this->getDoctrine()->getManager();
         $allSurvey = $em
             ->getRepository('AppBundle:Survey')
             ->findBy(array(), array('id' => 'DESC'));
 
 
-
         return $this->render('AppBundle:Survey:change_survey.html.twig', array(
             'allSurvey' => $allSurvey
         ));
     }
+
     /**
      * @Route("/admin/changeSurvey/change")
      */
@@ -94,8 +92,7 @@ class SurveyController extends Controller
     /**
      * @Route("/admin/addSurvey", name="addSurvey")
      */
-    public function addSurveyAction()
-    {
+    public function addSurveyAction() {
 
         $request = Request::createFromGlobals();
         $question = $request->request->get('question');
@@ -107,8 +104,9 @@ class SurveyController extends Controller
         $answerOptions[] = $request->request->get('answerOptions');
 
 
-        if(strlen($question) > 0 && strlen($date_start) > 0 && strlen($date_end) > 0 && strlen($status) > 0 &&
-            strlen($device) > 0 && strlen($count) > 0) {
+        if (strlen($question) > 0 && strlen($date_start) > 0 && strlen($date_end) > 0 && strlen($status) > 0 &&
+            strlen($device) > 0 && strlen($count) > 0
+        ) {
 
             $userId = $this->getUser()->getId();
 
@@ -129,14 +127,13 @@ class SurveyController extends Controller
             $buttonQuantity = count($answerOptions[0]);
 
 
-            for($i = 0; $i < $buttonQuantity; $i++) {
+            for ($i = 0; $i < $buttonQuantity; $i++) {
                 $answer = new Answers();
                 $answer->setSurveyId($survey_id);
                 $answer->setAnswerOption($answerOptions[0][$i]);
                 $em->persist($answer);
                 $em->flush();
             }
-
 
 
         }
@@ -151,7 +148,7 @@ class SurveyController extends Controller
             'allDevices' => $allDevices
         ));
     }
-    
+
     /**
      * @Route("/admin/statistic", name="statisticSelection")
      */
@@ -162,19 +159,19 @@ class SurveyController extends Controller
             ->findBy(array(), array('id' => 'DESC'));
         $countSurvey = [];
         $i = 0;
-        foreach ($allSurvey as $value){
+        foreach ($allSurvey as $value) {
             $allAnswersOnThisSurvey = $em->getRepository('AppBundle:Answers')->findBySurveyId($value->getId());
             $countSurvey[$i]['surveyId'] = $value->getId();
             $countSurvey[$i]['count'] = 0;
-            foreach($allAnswersOnThisSurvey as $answer){
+            foreach ($allAnswersOnThisSurvey as $answer) {
                 $countSurvey[$i]['count'] += intval($em->getRepository('AppBundle:Action')->countActionBySurveyId($answer->getId())[0][1]);
             }
             $i++;
         }
 
         $dateDiff = [];
-        foreach($allSurvey as $value) {
-            $dateDiff[] = date_diff($value->getSurveyEnd(),$value->getSurveyStart());
+        foreach ($allSurvey as $value) {
+            $dateDiff[] = date_diff($value->getSurveyEnd(), $value->getSurveyStart());
         }
         return $this->render('AppBundle:Survey:statistic_selection.html.twig', array(
             'allSurvey' => $allSurvey,
@@ -191,15 +188,52 @@ class SurveyController extends Controller
         $answers = $this->getDoctrine()->getRepository('AppBundle:Answers')->getStatisticsInformations($survey->getId());
         return new JsonResponse(array('content' => $answers));
     }
+
     /**
      * @Route("/admin/statistic/chart")
      */
     public function statisticChartAction() {
 
-        return $this->render('AppBundle:Survey:statisticChart.html.twig', array(
-            
-        ));
-        
+        return $this->render('AppBundle:Survey:statisticChart.html.twig', array());
+
     }
 
+    /**
+     * @Route("/admin/statistic/csv/{id}")
+     */
+    public function csvAction($id) {
+        $survey = $this->getDoctrine()->getRepository('AppBundle:Survey')->find($id);
+        $answers = $this->getDoctrine()->getRepository('AppBundle:Answers')->getStatisticsInformations($survey->getId());
+        $answerOption = [];
+        $countAnswer = [];
+
+        foreach ($answers as $value) {
+            $answerOption[] = $value['answerOption'];
+            $countAnswer[] = $value[1];
+        }
+        $list = [$answerOption, $countAnswer];
+
+        $filename = 'csv/' . $this->generateRandomString(20) . '.csv';
+
+        $fp = fopen($filename, 'wr');
+        foreach ($list as $fields) {
+            fputcsv($fp, $fields);
+        }
+
+        return new JsonResponse(array('path' => $filename));
+    }
+    /**
+     * generates a random string
+     * @param int $length
+     * @return string
+     */
+    private function generateRandomString($length = null) {
+        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $charactersLength = strlen($characters);
+        $randomString = '';
+        for ($i = 0; $i < $length; $i++) {
+            $randomString .= $characters[rand(0, $charactersLength - 1)];
+        }
+        return $randomString;
+    }
 }

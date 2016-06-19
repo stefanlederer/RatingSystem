@@ -7,6 +7,7 @@ $(document).ready(function () {
     var clicked = false;
     var elem = '';
     var myChart = null;
+
     $('.date').datepicker({
         dateFormat: "yy-mm-dd"
     });
@@ -89,8 +90,13 @@ $(document).ready(function () {
 
     });
     bindPencil();
+
     $('.icon-statistic').click(function () {
         var survey_id = $(this).parents('tr').find('.survey-id').text();
+        $.get('/admin/statistic/csv/' + survey_id, function (data) {
+        }).success(function (data) {
+            $('.csv').attr('href', '/' + data.path);
+        });
         $.get('/admin/survey/getAnswers/' + survey_id, {}, function (data) {
         }).success(function (data) {
             var surveyInformation = data.content;
@@ -101,7 +107,7 @@ $(document).ready(function () {
                 answersOptions.push(value['answerOption']);
             });
             var ctx = $('.chart');
-            if(myChart !== null){
+            if (myChart !== null) {
                 myChart.destroy();
             }
             myChart = new Chart(ctx, {

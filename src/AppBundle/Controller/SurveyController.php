@@ -127,19 +127,23 @@ class SurveyController extends Controller
      * @Route("/admin/statistic", name="statisticSelection")
      */
     public function statisticSelectionAction() {
-
-//        $em = $this->getDoctrine()->getManager();
-//        $allSurvey = $em
-//            ->getRepository('AppBundle:Survey')
-//            ->getStatisticFromSurvey();
-
         $em = $this->getDoctrine()->getManager();
         $allSurvey = $em
             ->getRepository('AppBundle:Survey')
             ->findBy(array(), array('id' => 'DESC'));
+        $countSurvey = [];
+        $i = 0;
+        foreach ($allSurvey as $value){
+            $i++;
+            $allAnswersOnThisSurvey = $em->getRepository('AppBundle:Answers')->findBySurveyId($value->getId());
+            foreach($allAnswersOnThisSurvey as $answer){
+                $countSurvey[$i] += intval($em->getRepository('AppBundle:Action')->countActionBySurveyId($answer->getId())[0]['count']);
+            }
+        }
 
         return $this->render('AppBundle:Survey:statistic_selection.html.twig', array(
-            'allSurvey' => $allSurvey
+            'allSurvey' => $allSurvey,
+            'countSurvey' => $countSurvey
         ));
     }
     

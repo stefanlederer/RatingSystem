@@ -5,45 +5,64 @@
 {% block body %}
     {% include'AppBundle:Templates:header.html.twig' %}
     <main class="insert-main">
-        <div class="add-statistic-survey">
-            <form action="{{ path('addSurvey') }}" class="add-survey-form" method="post">
-                <input class="input-question" name="question" type="text" placeholder="Frage">
-                <br>
-                <input class="date" id="datepicker-start" name="startDate" placeholder="Startzeit">
-                <input class="date" id="datepicker-end" name="endDate" placeholder="Endzeit">
-                <br>
-                <select class="status" title="Status" name="status">
-                    <option value="" disabled selected>Status</option>
-                    <option>Aktiv</option>
-                    <option>Inaktiv</option>
-                </select>
-                <br>
-                <select class="devices" title="Geräte" name="device">
-                    <option value="" disabled selected>Geräte</option>
-                    {% for device in allDevices %}
-                        <option value="{{ loop.index }}">{{ device.connection }}</option>
-                    {% endfor %}
-                </select>
-                <br>
-                <select class="answerQuantity" name="answerQuantity" title="Buttonanzahl">
-                    <option value="" disabled selected>Buttonanzahl</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                </select>
-                <br>
-                <div class="answerOption">
+        <div class="container row">
+            <div class="add-statistic-survey add col s6">
+                <form action="{{ path('addSurvey') }}" class="add-survey-form" method="post">
+                    <input class="input-question" name="question" type="text" placeholder="Frage">
+                    <br>
+                    <input class="date" id="datepicker-start" name="startDate" placeholder="Startzeit">
+                    <input class="date" id="datepicker-end" name="endDate" placeholder="Endzeit">
+                    <br>
+                    <select class="status" title="Status" name="status">
+                        <option value="" disabled selected>Status</option>
+                        <option>Aktiv</option>
+                        <option>Inaktiv</option>
+                    </select>
+                    <br>
+                    <select class="devices" title="Geräte" name="device">
+                        <option value="" disabled selected>Geräte</option>
+                        {% for device in allDevices %}
+                            <option value="{{ loop.index }}">{{ device.connection }}</option>
+                        {% endfor %}
+                    </select>
+                    <br>
+                    <select class="answerQuantity" name="answerQuantity" title="Buttonanzahl">
+                        <option value="" disabled selected>Buttonanzahl</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                    </select>
+                    <br>
+                    <div class="answerOption">
+                    </div>
+                    <br>
+                    <button class="newInsert-button">Erstellen</button>
+                </form>
+            </div>
+            <div class="add-addition col s5 offset-s1">
+                <div class="wrapper row">
+                    <div class="add-devices add col s12">
+                        <form action="{{ path('addSurvey') }}" method="post">
+                            <input name="newdevice" placeholder="neues Gerät">
+                            <button class="newInsert-button">Erstellen</button>
+                        </form>
+                    </div>
+                    <div class="add-user add col s12">
+                        <form action="{{ path('addSurvey') }}" method="post">
+                            <input name="newUser" placeholder="neuer Nutzer">
+                            <input name="userPW" type="password" placeholder="Passwort">
+                            <select class="userRole" name="newUserRole">
+                                <option value="" disabled selected>Nutzerrolle</option>
+                                <option>Administrator</option>
+                                <option>Benutzer</option>
+                            </select>
+                            <button class="newInsert-button">Erstellen</button>
+                        </form>
+                    </div>
                 </div>
-                <br>
-                <button class="newInsert-button">Erstellen</button>
-            </form>
-        </div>
-        <div class="add-devices">
-            <form action="{{ path('addSurvey') }}" method="post">
-                <input name="newdevice" placeholder="neues Gerät">
-                <button class="newInsert-button">Erstellen</button>
-            </form>
+
+            </div>
         </div>
     </main>
 {% endblock %}

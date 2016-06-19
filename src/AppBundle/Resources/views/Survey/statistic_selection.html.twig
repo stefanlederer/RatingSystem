@@ -4,7 +4,6 @@
 
 {% block body %}
     {% include'AppBundle:Templates:header.html.twig' %}
-    {{ dump(countSurvey) }}
     <main class="all-change-survey">
         <table>
             <tr class="table-header">
@@ -20,9 +19,9 @@
                         <i class="fa fa-pie-chart" aria-hidden="true"></i>
                     </td>
                     <td class="table-question">{{ survey.question }}</td>
-                    <td class="table-rating">125</td>
+                    <td class="table-rating">{{ countSurvey[loop.index0]['count'] }}</td>
                     <td class="table-count">{{ survey.buttonQuantity }}</td>
-                    <td class="table-period"></td>
+                    <td class="table-period">{{ dateDiff[loop.index0].days }}</td>
                 </tr>
             {% endfor %}
         </table>

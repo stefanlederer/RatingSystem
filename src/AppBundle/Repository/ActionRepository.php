@@ -18,7 +18,7 @@ class ActionRepository extends \Doctrine\ORM\EntityRepository {
     public function countActionBySurveyId($id){
             $em = $this->getEntityManager();
             $query = $em->createQueryBuilder()
-                ->select('COUNT(a.id) as count')
+                ->select('COUNT(a.id)')
                 ->from('AppBundle:Action', 'a')
                 ->where('a.answersId = :answerID')
                 ->setParameter('answerID', $id);

@@ -9,6 +9,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\Security\Core\Authentication\Provider\DaoAuthenticationProvider;
 
 
 class SurveyController extends Controller
@@ -162,16 +163,23 @@ class SurveyController extends Controller
         $countSurvey = [];
         $i = 0;
         foreach ($allSurvey as $value){
-            $i++;
             $allAnswersOnThisSurvey = $em->getRepository('AppBundle:Answers')->findBySurveyId($value->getId());
+            $countSurvey[$i]['surveyId'] = $value->getId();
+            $countSurvey[$i]['count'] = 0;
             foreach($allAnswersOnThisSurvey as $answer){
-                $countSurvey[$i] += intval($em->getRepository('AppBundle:Action')->countActionBySurveyId($answer->getId())[0]['count']);
+                $countSurvey[$i]['count'] += intval($em->getRepository('AppBundle:Action')->countActionBySurveyId($answer->getId())[0][1]);
             }
+            $i++;
         }
 
+        $dateDiff = [];
+        foreach($allSurvey as $value) {
+            $dateDiff[] = date_diff($value->getSurveyEnd(),$value->getSurveyStart());
+        }
         return $this->render('AppBundle:Survey:statistic_selection.html.twig', array(
             'allSurvey' => $allSurvey,
-            'countSurvey' => $countSurvey
+            'countSurvey' => $countSurvey,
+            'dateDiff' => $dateDiff
         ));
     }
     

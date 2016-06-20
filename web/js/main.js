@@ -7,6 +7,10 @@ $(document).ready(function () {
     var clicked = false;
     var elem = '';
 
+    var myChart = null;
+
+    var countActions = [];
+    var answersOptions = [];
     $('.date').datepicker({
         dateFormat: "yy-mm-dd"
     });
@@ -57,7 +61,7 @@ $(document).ready(function () {
 
     //delete button clicked
     $('.delete-icon').click(function () {
-        var table_id = $(this).parents('tr').find('.survey-id').text();
+        var table_id = $('.survey-id').text();
         var deleteIcon = this;
         $.ajax({
             type: "POST",
@@ -65,7 +69,7 @@ $(document).ready(function () {
             data: {
                 id: table_id
             },
-            success: function() {
+            success: function () {
                 $(deleteIcon).parents('tr').remove();
             }
         });
@@ -90,34 +94,121 @@ $(document).ready(function () {
 
     });
     bindPencil();
-    console.log("chart");
-    var ctx = $('.chart');
-    var myChart = new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
-            datasets: [{
-                label: '# of Votes',
-                data: [12, 19, 3, 5, 2, 3],
-                backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
-                    'rgba(255, 206, 86, 0.2)',
-                    'rgba(75, 192, 192, 0.2)',
-                    'rgba(153, 102, 255, 0.2)',
-                    'rgba(255, 159, 64, 0.2)'
-                ],
-                borderColor: [
-                    'rgba(255,99,132,1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(75, 192, 192, 1)',
-                    'rgba(153, 102, 255, 1)',
-                    'rgba(255, 159, 64, 1)'
-                ],
-                borderWidth: 1
-            }]
+    $('.chart-controls .pie-chart').click(function () {
+        if(!$(this).hasClass('active')){
+            $(this).parents('.chart-controls').find('i').removeClass('active');
+            $(this).addClass('active');
+            myChart.destroy();
+            var ctx = $('.chart');
+            myChart = new Chart(ctx, {
+                type: 'pie',
+                data: {
+                    labels: answersOptions,
+                    datasets: [{
+                        label: '# of Votes',
+                        data: countActions,
+                        backgroundColor: [
+                            'rgba(113,225,13,0.8)',
+                            'rgba(232,160,12, 0.8)',
+                            'rgba(255,0,0,0.8)',
+                            'rgba(57,13,232, 0.8)',
+                            'rgba(0,255,230,0.8)'
+                        ],
+                        borderColor: [
+                            '#ffffff',
+                            '#ffffff',
+                            '#ffffff',
+                            '#ffffff',
+                            '#ffffff'
+                        ],
+                        borderWidth: 2
+                    }]
+                }
+            });
         }
+    });
+    $('.chart-controls .bar-chart').click(function () {
+        if(!$(this).hasClass('active')){
+            $(this).parents('.chart-controls').find('i').removeClass('active');
+            $(this).addClass('active');
+            myChart.destroy();
+            var ctx = $('.chart');
+            myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: answersOptions,
+                    datasets: [{
+                        label: '# of Votes',
+                        data: countActions,
+                        backgroundColor: [
+                            'rgba(113,225,13,0.8)',
+                            'rgba(232,160,12, 0.8)',
+                            'rgba(255,0,0,0.8)',
+                            'rgba(57,13,232, 0.8)',
+                            'rgba(0,255,230,0.8)'
+                        ],
+                        borderColor: [
+                            '#ffffff',
+                            '#ffffff',
+                            '#ffffff',
+                            '#ffffff',
+                            '#ffffff'
+                        ],
+                        borderWidth: 2
+                    }]
+                }
+            });
+        }
+    })
+    $('.icon-statistic').click(function () {
+        var survey_id = $(this).parents('tr').find('.survey-id').text();
+        $('.chart-controls').find('i').removeClass('active');
+        $('.chart-controls .pie-chart').addClass('active');
+        $.get('/admin/statistic/csv/' + survey_id, function (data) {
+        }).success(function (data) {
+            $('.csv').attr('href', '/' + data.path);
+        });
+        $.get('/admin/survey/getAnswers/' + survey_id, {}, function (data) {
+        }).success(function (data) {
+            var surveyInformation = data.content;
+            countActions = [];
+            answersOptions = [];
+            data.content.forEach(function (value) {
+                countActions.push(parseInt(value[1]));
+                answersOptions.push(value['answerOption']);
+            });
+            var ctx = $('.chart');
+            if (myChart !== null) {
+                myChart.destroy();
+            }
+            myChart = new Chart(ctx, {
+                type: 'pie',
+                data: {
+                    labels: answersOptions,
+                    datasets: [{
+                        label: '# of Votes',
+                        data: countActions,
+                        backgroundColor: [
+                            'rgba(113,225,13,0.8)',
+                            'rgba(232,160,12, 0.8)',
+                            'rgba(255,0,0,0.8)',
+                            'rgba(57,13,232, 0.8)',
+                            'rgba(0,255,230,0.8)'
+                        ],
+                        borderColor: [
+                            '#ffffff',
+                            '#ffffff',
+                            '#ffffff',
+                            '#ffffff',
+                            '#ffffff'
+                        ],
+                        borderWidth: 2
+                    }]
+                }
+            });
+            $('#chart-modal').openModal();
+        });
+
     });
 
 });
@@ -152,8 +243,7 @@ function bindPencilEvents() {
 
     //save button clicked
     $('.save-icon').click(function () {
-
-        var table_id = $(this).parents('tr').find('.survey-id').text();
+        var table_id = $('.survey-id').text();
         var table_question_newValue = $('.table-question').find('input').val();
         var table_start_newValue = $('.table-start').find('input').val();
         var table_end_newValue = $('.table-end').find('input').val();
@@ -172,7 +262,6 @@ function bindPencilEvents() {
                 activity: table_activity_newValue
             },
             success: function () {
-                console.log("save icon clicked");
                 var parentTR = $(elem).parents("tr");
                 var parentTD = $(elem).parent();
                 var table_question = parentTR.children('td.table-question');

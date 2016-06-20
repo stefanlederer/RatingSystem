@@ -35,4 +35,17 @@ class AnswersRepository extends \Doctrine\ORM\EntityRepository
         return $query->getQuery()->getArrayResult();
 
     }
+
+    public function getStatisticsInformations($id) {
+        $em = $this->getEntityManager();
+        $query = $em->createQueryBuilder()
+            ->select('a.answerOption as answerOption, COUNT(ac.id)')
+            ->from('AppBundle:Answers', 'a')
+            ->leftJoin('AppBundle:Action', 'ac', 'WITH', 'ac.answersId = a.id')
+            ->where('a.surveyId = :surveyId')
+            ->setParameter('surveyId', $id)
+            ->groupBy('a.id');
+
+        return $query->getQuery()->getResult();
+    }
 }

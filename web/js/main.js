@@ -8,6 +8,8 @@ $(document).ready(function () {
     var elem = '';
     var myChart = null;
 
+    var countActions = [];
+    var answersOptions = [];
     $('.date').datepicker({
         dateFormat: "yy-mm-dd"
     });
@@ -90,9 +92,76 @@ $(document).ready(function () {
 
     });
     bindPencil();
-
+    $('.chart-controls .pie-chart').click(function () {
+        if(!$(this).hasClass('active')){
+            $(this).parents('.chart-controls').find('i').removeClass('active');
+            $(this).addClass('active');
+            myChart.destroy();
+            var ctx = $('.chart');
+            myChart = new Chart(ctx, {
+                type: 'pie',
+                data: {
+                    labels: answersOptions,
+                    datasets: [{
+                        label: '# of Votes',
+                        data: countActions,
+                        backgroundColor: [
+                            'rgba(113,225,13,0.8)',
+                            'rgba(232,160,12, 0.8)',
+                            'rgba(255,0,0,0.8)',
+                            'rgba(57,13,232, 0.8)',
+                            'rgba(0,255,230,0.8)'
+                        ],
+                        borderColor: [
+                            '#ffffff',
+                            '#ffffff',
+                            '#ffffff',
+                            '#ffffff',
+                            '#ffffff'
+                        ],
+                        borderWidth: 2
+                    }]
+                }
+            });
+        }
+    });
+    $('.chart-controls .bar-chart').click(function () {
+        if(!$(this).hasClass('active')){
+            $(this).parents('.chart-controls').find('i').removeClass('active');
+            $(this).addClass('active');
+            myChart.destroy();
+            var ctx = $('.chart');
+            myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: answersOptions,
+                    datasets: [{
+                        label: '# of Votes',
+                        data: countActions,
+                        backgroundColor: [
+                            'rgba(113,225,13,0.8)',
+                            'rgba(232,160,12, 0.8)',
+                            'rgba(255,0,0,0.8)',
+                            'rgba(57,13,232, 0.8)',
+                            'rgba(0,255,230,0.8)'
+                        ],
+                        borderColor: [
+                            '#ffffff',
+                            '#ffffff',
+                            '#ffffff',
+                            '#ffffff',
+                            '#ffffff'
+                        ],
+                        borderWidth: 2
+                    }]
+                }
+            });
+        }
+    })
     $('.icon-statistic').click(function () {
         var survey_id = $(this).parents('tr').find('.survey-id').text();
+        $('.chart-controls').find('i').removeClass('active');
+        $('.chart-controls .pie-chart').addClass('active');
         $.get('/admin/statistic/csv/' + survey_id, function (data) {
         }).success(function (data) {
             $('.csv').attr('href', '/' + data.path);
@@ -100,8 +169,8 @@ $(document).ready(function () {
         $.get('/admin/survey/getAnswers/' + survey_id, {}, function (data) {
         }).success(function (data) {
             var surveyInformation = data.content;
-            var countActions = [];
-            var answersOptions = [];
+            countActions = [];
+            answersOptions = [];
             data.content.forEach(function (value) {
                 countActions.push(parseInt(value[1]));
                 answersOptions.push(value['answerOption']);

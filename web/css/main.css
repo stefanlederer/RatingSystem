@@ -402,3 +402,12 @@ td.icon-statistic {
 .lean-overlay {
     z-index:19999 !important;
 }
+.chart-controls i {
+    padding:5px;
+    border:1px solid #d0d0d0;
+    border-radius:4px;
+    cursor:pointer;
+}
+.chart-controls i.active {
+    background:#d0d0d0;
+}

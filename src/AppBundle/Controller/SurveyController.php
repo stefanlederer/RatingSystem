@@ -258,7 +258,7 @@ class SurveyController extends Controller {
         }
         $list = [$answerOption, $countAnswer];
 
-        $filename = 'csv/' . $this->generateRandomString(20) . '.csv';
+        $filename = 'csv/' . $survey->getId() . '.csv';
 
         $fp = fopen($filename, 'wr');
         foreach ($list as $fields) {

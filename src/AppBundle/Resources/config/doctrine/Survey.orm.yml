@@ -27,4 +27,7 @@ AppBundle\Entity\Survey:
         status:
             type: string
             column: status
+        devicesId:
+            type: integer
+            column: devices_id
     lifecycleCallbacks: {  }

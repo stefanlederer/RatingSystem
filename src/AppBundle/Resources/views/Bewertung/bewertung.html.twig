@@ -8,13 +8,13 @@
     </div>
     <div id="main">
         <div class="frage">
-            {{ survey['question'] }}
+            {{ survey[0]['question'] }}
         </div>
         <form method="post" class="button-form" action="{{ path('bewertungAction') }}">
             <div id="bewertung">
                 {#{{ dump(buttons) }}#}
                 {% for button in buttons %}
-                    <button class="button" value="{{ loop.index }}" type="submit" name="button">
+                    <button class="button" value="{{ button['answerOption'] }}" type="submit" name="button">
                         <img class="image-button" src="{{ asset(button['source']) }}">
                         <p class="answerOption">{{ button['answerOption'] }}</p>
                     </button>

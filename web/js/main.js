@@ -6,7 +6,7 @@ $(document).ready(function () {
     //send post when button clicked
     var clicked = false;
     var elem = '';
-    $('select').material_select();
+
     $('.date').datepicker({
         dateFormat: "yy-mm-dd"
     });
@@ -44,6 +44,7 @@ $(document).ready(function () {
 
     //Admin Area
 
+    $('select').material_select();
 
     //get answerOption boxes
     $(".answerQuantity").change(function () {

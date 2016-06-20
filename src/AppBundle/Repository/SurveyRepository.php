@@ -10,6 +10,26 @@ namespace AppBundle\Repository;
  */
 class SurveyRepository extends \Doctrine\ORM\EntityRepository
 {
+
+    public function getQuestion($conn, $time)
+    {
+        $status = "Aktiv";
+        $em = $this->getEntityManager();
+        $query = $em->createQueryBuilder()
+            ->select('s')
+            ->from('AppBundle:Survey', 's')
+            ->leftJoin('AppBundle:Devices', 'd', 'WITH', 's.devicesId = d.id')
+            ->where('d.connection = :connection')
+            ->andWhere('s.surveyStart <= :time')
+            ->andWhere('s.surveyEnd > :time')
+            ->andWhere('s.status = :status')
+            ->setParameter('connection', $conn)
+            ->setParameter('time', $time)
+            ->setParameter('status', $status)
+            ->setMaxResults(1);
+
+        return $query->getQuery()->getArrayResult();
+    }
     
     public function changeSurvey($id, $question, $date_start, $date_end, $count, $activity) {
         $em = $this->getEntityManager();

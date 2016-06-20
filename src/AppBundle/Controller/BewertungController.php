@@ -26,17 +26,15 @@ class BewertungController extends Controller
 
         try {
             $em = $this->getDoctrine()->getManager();
-            $question = $em->getRepository('AppBundle:Survey_Active')
-                ->getQuestion($conn, $time)
-                ->setMaxResults(1)
-                ->getOneOrNullResult();
+            $question = $em->getRepository('AppBundle:Survey')
+                ->getQuestion($conn, $time);
 
             //get buttonnames (answerOptions)
             $buttonname = $em->getRepository('AppBundle:Answers')
-                ->getAnswerOption($question["surveyID"]);
+                ->getAnswerOption($question[0]["id"]);
 
 
-            $buttonsource = $this->nameToSource($question['buttonQuantity']);
+            $buttonsource = $this->nameToSource($question[0]['buttonQuantity']);
 
             //get buttonsources and answerOptions
             $buttons = array();
@@ -47,14 +45,14 @@ class BewertungController extends Controller
 
             //insert Question
             $request = Request::createFromGlobals();
-            $buttonID = $request->request->get('button');
-            $surveyID = $question["surveyID"];
+            $answerOption = $request->request->get('button');
+            $surveyID = $question[0]["id"];
 
             $dID = $em->getRepository('AppBundle:Devices')
                 ->getDevicesId($conn);
             $devicesID = $dID[0]['id'];
             $aID = $em->getRepository('AppBundle:Answers')
-                ->getAnswerId($surveyID, $buttonID);
+                ->getAnswerId($surveyID, $answerOption);
 
             if ($aID != null) {
 

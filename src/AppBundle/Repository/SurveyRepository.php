@@ -15,11 +15,12 @@ class SurveyRepository extends \Doctrine\ORM\EntityRepository
     {
         $status = "Aktiv";
         $em = $this->getEntityManager();
+
         $query = $em->createQueryBuilder()
             ->select('s')
             ->from('AppBundle:Survey', 's')
             ->leftJoin('AppBundle:Devices', 'd', 'WITH', 's.devicesId = d.id')
-            ->where('d.connection = :connection')
+            ->where('d.connection = :connection OR s.devicesId = 0')
             ->andWhere('s.surveyStart <= :time')
             ->andWhere('s.surveyEnd > :time')
             ->andWhere('s.status = :status')

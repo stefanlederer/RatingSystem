@@ -284,11 +284,28 @@ div.logout-button {
 }
 
 /*change_survey, all_survey*/
+main.all-survey {
+    margin-top: 270px;
+    margin-left: 70px;
+    margin-right: 30px;
+}
 
 main.all-change-survey {
-    margin-top: 270px;
+    margin-top: 50px;
     margin-left: 30px;
     margin-right: 30px;
+}
+div.changeNavigation {
+    text-align: center;
+    position: relative;
+    margin-top: 200px;
+    height: 30px;
+    background-color: #99A7FF;
+}
+a.changeNav {
+    color: #FFFFFF;
+    height: 30px;
+    vertical-align: bottom;
 }
 table {
     width: 100%;
@@ -314,12 +331,15 @@ td.icon-row {
 td.survey-id {
     display: none;
 }
-a.info-icon, a.delete-icon, a.noChange-icon, a.save-icon{
+a.info-icon, a.delete-icon, a.noChange-icon, a.save-icon, a.info-icon-device, a.delete-icon-device,
+a.noChange-icon-device, a.info-icon-user, a.delete-icon-user, a.noChange-icon-user {
     color: #4A4A4A;
     font-size: 20px;
     cursor: pointer;
 }
-a.save-icon :hover, a.noChange-icon :hover, a.delete-icon :hover, a.info-icon :hover{
+a.save-icon :hover, a.noChange-icon :hover, a.delete-icon :hover, a.info-icon :hover, a.save-icon :hover,
+a.info-icon-device :hover, a.delete-icon-device :hover, a.noChange-icon-device :hover, a.info-icon-user :hover,
+a.delete-icon-user :hover, a.noChange-icon-user :hover {
     color: #000000;
 }
 table input {

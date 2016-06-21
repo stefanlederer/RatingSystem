@@ -59,7 +59,7 @@ $(document).ready(function () {
         }
     });
 
-    //delete button clicked
+    //delete button clicked in change survey
     $('.delete-icon').click(function () {
         var table_id = $('.survey-id').text();
         var deleteIcon = this;
@@ -73,6 +73,38 @@ $(document).ready(function () {
                 $(deleteIcon).parents('tr').remove();
             }
         });
+    });
+    
+    //delete button clicked in change devices
+    $('.delete-icon-device').click(function() {
+        var table_id = $('.device-id').text();
+        var deleteIcon = this;
+        $.ajax({
+            type: "POST",
+            url: "/admin/changeDevice/delete",
+            data: {
+                id: table_id
+            },
+            success: function () {
+                $(deleteIcon).parents('tr').remove();
+            }
+        })
+    });
+
+    //delete button clicked in change user
+    $('.delete-icon-user').click(function() {
+        var table_id = $('.user-id').text();
+        var deleteIcon = this;
+        $.ajax({
+            type: "POST",
+            url: "/admin/changeUser/delete",
+            data: {
+                id: table_id
+            },
+            success: function () {
+                $(deleteIcon).parents('tr').remove();
+            }
+        })
     });
 
     //statistics
@@ -214,7 +246,7 @@ $(document).ready(function () {
 });
 
 function bindPencilEvents() {
-    //noChange button clicked
+    //noChange button clicked in change survey
     $('.noChange-icon').click(function () {
         var parentTR = $(this).parents("tr");
         var parentTD = $(this).parent();
@@ -241,7 +273,7 @@ function bindPencilEvents() {
         bindPencil();
     });
 
-    //save button clicked
+    //save button clicked in change survey
     $('.save-icon').click(function () {
         var table_id = $('.survey-id').text();
         var table_question_newValue = $('.table-question').find('input').val();
@@ -282,6 +314,99 @@ function bindPencilEvents() {
             }
         });
     });
+
+    //noChange button clicked in change devices
+    $('.noChange-icon-device').click(function() {
+        var parentTR = $(this).parents("tr");
+        var parentTD = $(this).parent();
+
+        var table_device = parentTR.children('td.table-device').find('input');
+
+        var table_device_oldValue = table_device.val();
+
+        $(parentTD).children('a').remove();
+        $(parentTD).html('<a class="info-icon-device"><i class="fa fa-pencil" aria-hidden="true"></i></a>');
+
+        $(table_device.parent()).html(table_device_oldValue);
+        bindPencil();
+    });
+
+    //save button clicked in change devices
+    $('.save-icon-device').click(function() {
+        var table_id = $('.device-id').text();
+        var table_device_newValue = $('.table-device').find('input').val();
+        var elem = this;
+
+        $.ajax({
+            type: "POST",
+            url: "/admin/changeDevice/change",
+            data: {
+                id: table_id,
+                device: table_device_newValue
+            },
+            success: function () {
+                var parentTR = $(elem).parents("tr");
+                var parentTD = $(elem).parent();
+                var table_device = parentTR.children('td.table-device');
+
+                $(parentTD).children('a').remove();
+                $(parentTD).html('<a class="info-icon-device"><i class="fa fa-pencil" aria-hidden="true"></i></a>');
+
+                $(table_device).html(table_device_newValue);
+                bindPencil();
+            }
+        });
+    });
+
+    //noChange button clicked in change user
+    $('.noChange-icon-user').click(function() {
+        var parentTR = $(this).parents("tr");
+        var parentTD = $(this).parent();
+
+        var table_username = parentTR.children('td.table-username').find('input');
+        var table_role = parentTR.children('td.table-role').find('input');
+
+        var table_username_oldValue = table_username.val();
+        var table_role_oldValue = table_role.val();
+
+        $(parentTD).children('a').remove();
+        $(parentTD).html('<a class="info-icon-username"><i class="fa fa-pencil" aria-hidden="true"></i></a>');
+
+        $(table_username.parent()).html(table_username_oldValue);
+        $(table_role.parent()).html(table_role_oldValue);
+        bindPencil();
+    });
+
+    //save button clicked in change users
+    $('.save-icon-user').click(function() {
+        var table_id = $('.user-id').text();
+        var table_username_newValue = $('.table-username').find('input').val();
+        var table_role_newValue = $('.table-role').find('input').val();
+        var elem = this;
+
+        $.ajax({
+            type: "POST",
+            url: "/admin/changeUser/change",
+            data: {
+                id: table_id,
+                username: table_username_newValue,
+                role: table_role_newValue
+            },
+            success: function () {
+                var parentTR = $(elem).parents("tr");
+                var parentTD = $(elem).parent();
+                var table_username = parentTR.children('td.table-username');
+                var table_role = parentTR.children('td.table-role');
+
+                $(parentTD).children('a').remove();
+                $(parentTD).html('<a class="info-icon-user"><i class="fa fa-pencil" aria-hidden="true"></i></a>');
+
+                $(table_username).html(table_username_newValue);
+                $(table_role).html(table_role_newValue);
+                bindPencil();
+            }
+        });
+    });
 }
 function bindPencil() {
     //change survey
@@ -314,6 +439,42 @@ function bindPencil() {
         $(this).remove();
         $(parentTD).html('<a class="save-icon"><i class="fa fa-check" aria-hidden="true"></i></a>' +
             '<a class="noChange-icon"><i class="fa fa-times" aria-hidden="true"></i></a>');
+        bindPencilEvents();
+    });
+
+    //change device
+    $.('.info-icon-device').click(function() {
+        console.log('info icon device clicked');
+        var parentTR = $(this).parents("tr");
+        var parentTD = $(this).parent();
+        var table_device = parentTR.children('td.table-device');
+
+        var table_device_oldValue = table_device.text();
+
+        $(table_device).html('<input class="table-device" name="table-device" value="' + table_device_oldValue + '" />');
+
+        $(this).remove();
+        $(parentTD).html('<a class="save-icon-device"><i class="fa fa-check" aria-hidden="true"></i></a>' +
+            '<a class="noChange-icon-device"><i class="fa fa-times" aria-hidden="true"></i></a>');
+        bindPencilEvents();
+    });
+
+    //change user
+    $.('.info-icon-user').click(function() {
+        var parentTR = $(this).parents("tr");
+        var parentTD = $(this).parent();
+        var table_username = parentTR.children('td.table-username');
+        var table_role = parentTR.children('td.table-userRole');
+
+        var table_username_oldValue = table_username.text();
+        var table_role_oldValue = table_role.text();
+
+        $(table_username).html('<input class="table-username" name="table-username" value="' + table_username_oldValue + '" />');
+        $(table_role).html('<input class="table-role" name="table-role" value="' + table_role_oldValue + '" />');
+
+        $(this).remove();
+        $(parentTD).html('<a class="save-icon-user"><i class="fa fa-check" aria-hidden="true"></i></a>' +
+            '<a class="noChange-icon-user"><i class="fa fa-times" aria-hidden="true"></i></a>');
         bindPencilEvents();
     });
 }

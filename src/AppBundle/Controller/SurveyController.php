@@ -92,6 +92,110 @@ class SurveyController extends Controller {
     }
 
     /**
+     * @Route("/admin/changeDevice", name="changeDevice")
+     */
+    public function changeDeviceAction() {
+        $em = $this->getDoctrine()->getManager();
+        $allDevices = $em
+            ->getRepository('AppBundle:Devices')
+            ->findBy(array(), array('id' => 'ASC'));
+
+        return $this->render('AppBundle:Survey:change_device.html.twig', array(
+            'allDevices' => $allDevices
+        ));
+    }
+
+    /**
+     * @Route("/admin/changeDevice/change")
+     */
+    public function changeDeviceRowAction() {
+        $request = Request::createFromGlobals();
+        $id = $request->request->get('id');
+        $connection = $request->request->get('device');
+
+        $em = $this->getDoctrine()->getManager();
+
+        $device = $this->getDoctrine()->getRepository('AppBundle:Devices')->find($id);
+
+        $device->setConnection($connection);
+
+        $em->persist($device);
+        $em->flush();
+
+
+        return new JsonResponse(array('message' => 'erfolgreich geändert'));
+    }
+
+    /**
+     * @Route("/admin/changeDevice/delete")
+     */
+    public function deleteDeviceRowAction() {
+        $request = Request::createFromGlobals();
+        $id = $request->request->get('id');
+
+        $em = $this->getDoctrine()->getManager();
+
+        $devices = $this->getDoctrine()->getRepository('AppBundle:Devices')->find($id);
+
+        $em->remove($devices);
+        $em->flush();
+        return new JsonResponse(array('message' => 'erfolgreich gelöscht'));
+    }
+
+    /**
+     * @Route("/admin/changeUser", name="changeUser")
+     */
+    public function changeUserAction() {
+        $em = $this->getDoctrine()->getManager();
+        $allUsers = $em
+            ->getRepository('AppBundle:Users')
+            ->findBy(array(), array('id' => 'ASC'));
+
+        return $this->render('AppBundle:Survey:change_user.html.twig', array(
+            'allUsers' => $allUsers
+        ));
+    }
+
+    /**
+     * @Route("/admin/changeUser/change")
+     */
+    public function changeUserRowAction() {
+        $request = Request::createFromGlobals();
+        $id = $request->request->get('id');
+        $username = $request->request->get('username');
+        $role = $request->request->get('role');
+
+        $em = $this->getDoctrine()->getManager();
+
+        $user = $this->getDoctrine()->getRepository('AppBundle:Users')->find($id);
+
+        $user->setUsername($username);
+        $user->setRoles(array($role));
+
+        $em->persist($user);
+        $em->flush();
+
+
+        return new JsonResponse(array('message' => 'erfolgreich geändert'));
+    }
+
+    /**
+     * @Route("/admin/changeUser/delete")
+     */
+    public function deleteUserRowAction() {
+        $request = Request::createFromGlobals();
+        $id = $request->request->get('id');
+
+        $em = $this->getDoctrine()->getManager();
+
+        $users = $this->getDoctrine()->getRepository('AppBundle:Users')->find($id);
+
+        $em->remove($users);
+        $em->flush();
+        return new JsonResponse(array('message' => 'erfolgreich gelöscht'));
+    }
+
+    /**
      * @Route("/admin/addSurvey", name="addSurvey")
      */
     public function addSurveyAction() {

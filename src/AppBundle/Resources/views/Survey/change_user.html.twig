@@ -5,37 +5,31 @@
 {% block body %}
     {% include'AppBundle:Templates:header.html.twig' %}
     <div class="changeNavigation">
-        <a class="changeNav active" href="{{ path('changeSurvey') }}">Umfrage ändern</a>
+        <a class="changeNav" href="{{ path('changeSurvey') }}">Umfrage ändern</a>
         <a class="changeNav" href="{{ path('changeDevice') }}">Geräte ändern</a>
-        <a class="changeNav" href="{{ path('changeUser') }}">Nutzer ändern</a>
+        <a class="changeNav active" href="{{ path('changeUser') }}">Nutzer ändern</a>
     </div>
     <main class="all-change-survey">
         <form class="change-survey-form" method="post">
             <table>
                 <tr class="table-header">
                     <th></th>
-                    <th>Frage</th>
-                    <th>Start</th>
-                    <th>Ende</th>
-                    <th>Anzahl</th>
-                    <th>Status</th>
+                    <th>Nutzername</th>
+                    <th>Rolle</th>
                     <th></th>
                 </tr>
-                {% for survey in allSurvey %}
+                {% for user in allUsers %}
                     <tr>
-                        <td class="survey-id">{{ survey.id }}</td>
+                        <td class="user-id">{{ user.id }}</td>
                         <td class="icon-row">
-                            <a class="info-icon">
+                            <a class="info-icon-user">
                                 <i class="fa fa-pencil" aria-hidden="true"></i>
                             </a>
                         </td>
-                        <td class="table-question">{{ survey.question }}</td>
-                        <td class="table-start">{{ survey.surveyStart|date('Y-m-d') }}</td>
-                        <td class="table-end">{{ survey.surveyEnd|date('Y-m-d') }}</td>
-                        <td class="table-count">{{ survey.buttonQuantity }}</td>
-                        <td class="table-activity">{{ survey.status }}</td>
+                        <td class="table-username">{{ user.username }}</td>
+                        <td class="table-userRole">{{ user.roles[0] }}</td>
                         <td>
-                            <a class="delete-icon">
+                            <a class="delete-icon-user">
                                 <i class="fa fa-trash" aria-hidden="true"></i>
                             </a>
                         </td>

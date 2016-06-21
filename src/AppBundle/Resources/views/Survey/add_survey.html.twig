@@ -21,8 +21,9 @@
                     <br>
                     <select class="devices" title="Geräte" name="device">
                         <option value="" disabled selected>Geräte</option>
+                        <option value=""></option>
                         {% for device in allDevices %}
-                            <option value="{{ loop.index }}">{{ device.connection }}</option>
+                            <option value="{{ device.id }}">{{ device.connection }}</option>
                         {% endfor %}
                     </select>
                     <br>

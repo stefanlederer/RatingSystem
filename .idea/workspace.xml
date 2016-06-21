@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="84777d70-628d-40b0-8c42-874255ae0ad0" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Controller/SurveyController.php" afterPath="$PROJECT_DIR$/src/AppBundle/Controller/SurveyController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Resources/views/Survey/add_survey.html.twig" afterPath="$PROJECT_DIR$/src/AppBundle/Resources/views/Survey/add_survey.html.twig" />
     </list>
     <ignored path="Bosch.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -25,11 +25,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="SurveyController.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="add_survey.html.twig" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/AppBundle/Resources/views/Survey/add_survey.html.twig">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="342">
+              <caret line="25" column="55" selection-start-line="25" selection-start-column="55" selection-end-line="25" selection-end-column="55" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SurveyController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/SurveyController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="140" column="43" selection-start-line="140" selection-start-column="43" selection-end-line="140" selection-end-column="43" />
+            <state relative-caret-position="341">
+              <caret line="199" column="52" selection-start-line="199" selection-start-column="52" selection-end-line="199" selection-end-column="52" />
               <folding />
             </state>
           </provider>
@@ -86,7 +96,6 @@
         <option value="$PROJECT_DIR$/src/AppBundle/Resources/config/doctrine/Answers.orm.yml" />
         <option value="$PROJECT_DIR$/src/AppBundle/Entity/Answers.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Entity/Users.php" />
-        <option value="$PROJECT_DIR$/src/AppBundle/Resources/views/Survey/add_survey.html.twig" />
         <option value="$PROJECT_DIR$/src/AppBundle/Resources/config/doctrine/Survey.orm.yml" />
         <option value="$PROJECT_DIR$/src/AppBundle/Entity/Survey.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Repository/SurveyRepository.php" />
@@ -97,6 +106,7 @@
         <option value="$PROJECT_DIR$/web/css/main.css" />
         <option value="$PROJECT_DIR$/app/config/security.yml" />
         <option value="$PROJECT_DIR$/src/AppBundle/Controller/SurveyController.php" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Resources/views/Survey/add_survey.html.twig" />
       </list>
     </option>
   </component>
@@ -642,7 +652,7 @@
       <workItem from="1466452534373" duration="1769000" />
       <workItem from="1466487700758" duration="2386000" />
       <workItem from="1466517988994" duration="80000" />
-      <workItem from="1466541527743" duration="1614000" />
+      <workItem from="1466541527743" duration="1884000" />
     </task>
     <task id="LOCAL-00001" summary="[FE] updated bewertung.html.twig to symfony standard">
       <created>1455569280804</created>
@@ -980,11 +990,18 @@
       <option name="project" value="LOCAL" />
       <updated>1466541564663</updated>
     </task>
-    <option name="localTasksCounter" value="49" />
+    <task id="LOCAL-00049" summary="[BE]all input answerOptions must be filled">
+      <created>1466543170623</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1466543170623</updated>
+    </task>
+    <option name="localTasksCounter" value="50" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="106435000" />
+    <option name="totallyTimeSpent" value="106705000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="65" y="24" width="1375" height="876" extended-state="6" />
@@ -1022,7 +1039,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="[FE] updated style" />
     <MESSAGE value="[BE] updated database entity" />
     <MESSAGE value="[BE] added new tables in database" />
     <MESSAGE value="[BE] updated code to new database" />
@@ -1047,7 +1063,8 @@
     <MESSAGE value="Merge branch 'develop' of git.tfranek.net:StefanLederer/BewertungssystemBosch into develop&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;src/AppBundle/Repository/AnswersRepository.php&#10;#&#9;web/js/main.js&#10;" />
     <MESSAGE value="[FE]fixed input placeholder color" />
     <MESSAGE value="[BE]fixed security access control" />
-    <option name="LAST_COMMIT_MESSAGE" value="[BE]fixed security access control" />
+    <MESSAGE value="[BE]all input answerOptions must be filled" />
+    <option name="LAST_COMMIT_MESSAGE" value="[BE]all input answerOptions must be filled" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1261,13 +1278,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Resources/views/Survey/add_survey.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="324">
-          <caret line="24" column="49" selection-start-line="24" selection-start-column="49" selection-end-line="24" selection-end-column="49" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Resources/config/doctrine/Survey.orm.yml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="558">
@@ -1317,24 +1327,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/BewertungController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1458">
-          <caret line="81" column="9" selection-start-line="81" selection-start-column="9" selection-end-line="81" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Resources/views/Bewertung/bewertung.html.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="504">
           <caret line="28" column="0" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/js/main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="46" column="7" selection-start-line="46" selection-start-column="7" selection-end-line="46" selection-end-column="7" />
         </state>
       </provider>
     </entry>
@@ -1373,10 +1369,34 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/BewertungController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1368">
+          <caret line="81" column="9" selection-start-line="81" selection-start-column="9" selection-end-line="81" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/js/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="234">
+          <caret line="46" column="7" selection-start-line="46" selection-start-column="7" selection-end-line="46" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/SurveyController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="140" column="43" selection-start-line="140" selection-start-column="43" selection-end-line="140" selection-end-column="43" />
+        <state relative-caret-position="341">
+          <caret line="199" column="52" selection-start-line="199" selection-start-column="52" selection-end-line="199" selection-end-column="52" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Resources/views/Survey/add_survey.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="342">
+          <caret line="25" column="55" selection-start-line="25" selection-start-column="55" selection-end-line="25" selection-end-column="55" />
           <folding />
         </state>
       </provider>

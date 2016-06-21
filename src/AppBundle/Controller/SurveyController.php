@@ -106,6 +106,14 @@ class SurveyController extends Controller {
         $count = $request->request->get('answerQuantity');
         $answerOptions[] = $request->request->get('answerOptions');
 
+        //proof if strlen answeroptions are true
+        $answerOptionTrue = true;
+        for($i = 0; $i < count($answerOptions[0]); $i++) {
+            if( strlen($answerOptions[0][$i]) <= 0) {
+                $answerOptionTrue = false;
+            }
+        }
+
         //add devices
         $newDevice = $request->request->get('newdevice');
 
@@ -116,8 +124,9 @@ class SurveyController extends Controller {
 
 
         if (strlen($question) > 0 && strlen($date_start) > 0 && strlen($date_end) > 0 && strlen($status) > 0 &&
-            strlen($device) > 0 && strlen($count) > 0
-        ) {
+            strlen($device) > 0 && strlen($count) > 0 && $answerOptionTrue == true) {
+
+            $em = $this->getDoctrine()->getManager();
 
             $userId = $this->getUser()->getId();
 
@@ -129,8 +138,9 @@ class SurveyController extends Controller {
             $survey->setButtonQuantity($count);
             $survey->setUserId($userId);
             $survey->setStatus($status);
+            $survey->setDevicesId($device);
 
-            $em = $this->getDoctrine()->getManager();
+
             $em->persist($survey);
             $em->flush();
 

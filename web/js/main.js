@@ -61,7 +61,7 @@ $(document).ready(function () {
 
     //delete button clicked in change survey
     $('.delete-icon').click(function () {
-        var table_id = $('.survey-id').text();
+        var table_id = $(this).parents('TR').find('.survey-id').text();
         var deleteIcon = this;
         $.ajax({
             type: "POST",
@@ -74,10 +74,10 @@ $(document).ready(function () {
             }
         });
     });
-    
+
     //delete button clicked in change devices
     $('.delete-icon-device').click(function() {
-        var table_id = $('.device-id').text();
+        var table_id = $(this).parents('TR').find('.device-id').text();
         var deleteIcon = this;
         $.ajax({
             type: "POST",
@@ -93,7 +93,7 @@ $(document).ready(function () {
 
     //delete button clicked in change user
     $('.delete-icon-user').click(function() {
-        var table_id = $('.user-id').text();
+        var table_id = $(this).parents('TR').find('.user-id').text();
         var deleteIcon = this;
         $.ajax({
             type: "POST",
@@ -275,13 +275,14 @@ function bindPencilEvents() {
 
     //save button clicked in change survey
     $('.save-icon').click(function () {
-        var table_id = $('.survey-id').text();
+        var table_id = $(this).parents("TR").find('.survey-id').text();
         var table_question_newValue = $('.table-question').find('input').val();
         var table_start_newValue = $('.table-start').find('input').val();
         var table_end_newValue = $('.table-end').find('input').val();
         var table_count_newValue = $('.table-count').find('input').val();
         var table_activity_newValue = $('.table-activity').find('input').val();
         var elem = this;
+
         $.ajax({
             type: "POST",
             url: "/admin/changeSurvey/change",
@@ -333,7 +334,7 @@ function bindPencilEvents() {
 
     //save button clicked in change devices
     $('.save-icon-device').click(function() {
-        var table_id = $('.device-id').text();
+        var table_id = $(this).parents('TR').find('.device-id').text();
         var table_device_newValue = $('.table-device').find('input').val();
         var elem = this;
 
@@ -370,7 +371,7 @@ function bindPencilEvents() {
         var table_role_oldValue = table_role.val();
 
         $(parentTD).children('a').remove();
-        $(parentTD).html('<a class="info-icon-username"><i class="fa fa-pencil" aria-hidden="true"></i></a>');
+        $(parentTD).html('<a class="info-icon-user"><i class="fa fa-pencil" aria-hidden="true"></i></a>');
 
         $(table_username.parent()).html(table_username_oldValue);
         $(table_role.parent()).html(table_role_oldValue);
@@ -379,7 +380,7 @@ function bindPencilEvents() {
 
     //save button clicked in change users
     $('.save-icon-user').click(function() {
-        var table_id = $('.user-id').text();
+        var table_id = $(this).parents('TR').find('.user-id').text();
         var table_username_newValue = $('.table-username').find('input').val();
         var table_role_newValue = $('.table-role').find('input').val();
         var elem = this;
@@ -443,7 +444,7 @@ function bindPencil() {
     });
 
     //change device
-    $.('.info-icon-device').click(function() {
+    $('.info-icon-device').click(function() {
         console.log('info icon device clicked');
         var parentTR = $(this).parents("tr");
         var parentTD = $(this).parent();
@@ -460,11 +461,11 @@ function bindPencil() {
     });
 
     //change user
-    $.('.info-icon-user').click(function() {
+    $('.info-icon-user').click(function() {
         var parentTR = $(this).parents("tr");
         var parentTD = $(this).parent();
         var table_username = parentTR.children('td.table-username');
-        var table_role = parentTR.children('td.table-userRole');
+        var table_role = parentTR.children('td.table-role');
 
         var table_username_oldValue = table_username.text();
         var table_role_oldValue = table_role.text();

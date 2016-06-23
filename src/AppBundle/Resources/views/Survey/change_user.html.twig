@@ -1,6 +1,6 @@
 {% extends "::base.html.twig" %}
 
-{% block title %}AppBundle:Survey:allSurvey{% endblock %}
+{% block title %}Nutzer ändern{% endblock %}
 
 {% block body %}
     {% include'AppBundle:Templates:header.html.twig' %}
@@ -27,7 +27,7 @@
                             </a>
                         </td>
                         <td class="table-username">{{ user.username }}</td>
-                        <td class="table-userRole">{{ user.roles[0] }}</td>
+                        <td class="table-role">{{ user.roles[0] }}</td>
                         <td>
                             <a class="delete-icon-user">
                                 <i class="fa fa-trash" aria-hidden="true"></i>

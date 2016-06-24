@@ -144,6 +144,14 @@ div.admin-content{
     margin-top: 100px;
     box-shadow: 1px 1px 5px 0px rgba(115,111,113,1);
 }
+div.error-message {
+    color: #FFFFFF;
+    background-color: #FE2E2E;
+    font-size: 20px;
+    text-align: center;
+    margin-right: 30px;
+    margin-bottom: 15px;
+}
 div.admin-content-header {
     background-color: #99A7FF;
     height: 80px;

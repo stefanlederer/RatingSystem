@@ -1,18 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="84777d70-628d-40b0-8c42-874255ae0ad0" name="Default" comment="">
+    <list default="true" id="84777d70-628d-40b0-8c42-874255ae0ad0" name="Default" comment="[FE] added titles, fixed change user">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Resources/views/Login/login.html.twig" afterPath="$PROJECT_DIR$/src/AppBundle/Resources/views/Login/login.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Resources/views/Survey/add_survey.html.twig" afterPath="$PROJECT_DIR$/src/AppBundle/Resources/views/Survey/add_survey.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Resources/views/Survey/all_survey.html.twig" afterPath="$PROJECT_DIR$/src/AppBundle/Resources/views/Survey/all_survey.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Resources/views/Survey/change_device.html.twig" afterPath="$PROJECT_DIR$/src/AppBundle/Resources/views/Survey/change_device.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Resources/views/Survey/change_survey.html.twig" afterPath="$PROJECT_DIR$/src/AppBundle/Resources/views/Survey/change_survey.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Resources/views/Survey/change_user.html.twig" afterPath="$PROJECT_DIR$/src/AppBundle/Resources/views/Survey/change_user.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Resources/views/Survey/statisticChart.html.twig" afterPath="$PROJECT_DIR$/src/AppBundle/Resources/views/Survey/statisticChart.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Resources/views/Survey/statistic_selection.html.twig" afterPath="$PROJECT_DIR$/src/AppBundle/Resources/views/Survey/statistic_selection.html.twig" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/css/main.css" afterPath="$PROJECT_DIR$/web/css/main.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/main.js" afterPath="$PROJECT_DIR$/web/js/main.js" />
     </list>
     <ignored path="Bosch.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -33,22 +25,22 @@
     <favorites_list name="Bosch" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="main.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/web/js/main.js">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="login.html.twig" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/AppBundle/Resources/views/Login/login.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1407">
-              <caret line="373" column="50" selection-start-line="373" selection-start-column="50" selection-end-line="373" selection-end-column="50" />
+            <state relative-caret-position="252">
+              <caret line="14" column="104" selection-start-line="14" selection-start-column="104" selection-end-line="14" selection-end-column="104" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="change_user.html.twig" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/AppBundle/Resources/views/Survey/change_user.html.twig">
+      <file leaf-file-name="main.css" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/web/css/main.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="27" column="29" selection-start-line="27" selection-start-column="29" selection-end-line="27" selection-end-column="29" />
+            <state relative-caret-position="148">
+              <caret line="148" column="29" selection-start-line="148" selection-start-column="29" selection-end-line="148" selection-end-column="29" />
               <folding />
             </state>
           </provider>
@@ -108,16 +100,16 @@
         <option value="$PROJECT_DIR$/app/config/security.yml" />
         <option value="$PROJECT_DIR$/src/AppBundle/Repository/SurveyRepository.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Controller/SurveyController.php" />
-        <option value="$PROJECT_DIR$/web/css/main.css" />
         <option value="$PROJECT_DIR$/src/AppBundle/Resources/views/Survey/add_survey.html.twig" />
         <option value="$PROJECT_DIR$/src/AppBundle/Resources/views/Survey/all_survey.html.twig" />
         <option value="$PROJECT_DIR$/src/AppBundle/Resources/views/Survey/change_device.html.twig" />
         <option value="$PROJECT_DIR$/src/AppBundle/Resources/views/Survey/change_survey.html.twig" />
         <option value="$PROJECT_DIR$/src/AppBundle/Resources/views/Survey/statistic_selection.html.twig" />
         <option value="$PROJECT_DIR$/src/AppBundle/Resources/views/Survey/statisticChart.html.twig" />
-        <option value="$PROJECT_DIR$/src/AppBundle/Resources/views/Login/login.html.twig" />
         <option value="$PROJECT_DIR$/src/AppBundle/Resources/views/Survey/change_user.html.twig" />
         <option value="$PROJECT_DIR$/web/js/main.js" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Resources/views/Login/login.html.twig" />
+        <option value="$PROJECT_DIR$/web/css/main.css" />
       </list>
     </option>
   </component>
@@ -161,8 +153,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -579,6 +569,8 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -668,14 +660,8 @@
       <workItem from="1466550798155" duration="1939000" />
       <workItem from="1466581165158" duration="7743000" />
       <workItem from="1466600150450" duration="700000" />
-      <workItem from="1466693497344" duration="694000" />
-    </task>
-    <task id="LOCAL-00004" summary="[BE] created new Entity: AppBundle:Action">
-      <created>1455624211646</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1455624211646</updated>
+      <workItem from="1466693497344" duration="1088000" />
+      <workItem from="1466744728487" duration="613000" />
     </task>
     <task id="LOCAL-00005" summary="[BE] created Entity -&gt; AppBundle:Answers">
       <created>1455624638981</created>
@@ -1013,17 +999,24 @@
       <option name="project" value="LOCAL" />
       <updated>1466552635121</updated>
     </task>
-    <option name="localTasksCounter" value="53" />
+    <task id="LOCAL-00053" summary="[FE] added titles, fixed change user">
+      <created>1466694226166</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1466694226168</updated>
+    </task>
+    <option name="localTasksCounter" value="54" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="124385000" />
+    <option name="totallyTimeSpent" value="125392000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="65" y="24" width="1301" height="744" extended-state="6" />
     <editor active="false" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24750192" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24750192" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1055,7 +1048,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="[BE][FE] added answerOption to bewertung.html.twig" />
     <MESSAGE value="[FE] added button fadeIn / Out (buttonClick.js)" />
     <MESSAGE value="[BE] created function get host name to proof the devices" />
     <MESSAGE value="[FE] created error file when there is an error when getting data" />
@@ -1080,7 +1072,8 @@
     <MESSAGE value="[BE]fixed problem with devices id in select option" />
     <MESSAGE value="[BE][FE] added panel all devices in new survey and get survey" />
     <MESSAGE value="[BE][FE] added change device and change user in change survey navigation" />
-    <option name="LAST_COMMIT_MESSAGE" value="[BE][FE] added change device and change user in change survey navigation" />
+    <MESSAGE value="[FE] added titles, fixed change user" />
+    <option name="LAST_COMMIT_MESSAGE" value="[FE] added titles, fixed change user" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1142,13 +1135,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="381">
           <caret line="54" column="35" selection-start-line="54" selection-start-column="35" selection-end-line="54" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/LoginController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="432">
-          <caret line="34" column="40" selection-start-line="34" selection-start-column="40" selection-end-line="34" selection-end-column="40" />
         </state>
       </provider>
     </entry>
@@ -1323,21 +1309,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/SurveyController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="18">
-          <caret line="54" column="55" selection-start-line="54" selection-start-column="55" selection-end-line="54" selection-end-column="55" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/css/main.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="400">
-          <caret line="342" column="79" selection-start-line="342" selection-start-column="79" selection-end-line="342" selection-end-column="79" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Resources/views/Survey/all_survey.html.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="36">
@@ -1373,13 +1344,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Resources/views/Login/login.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="36">
-          <caret line="2" column="22" selection-start-line="2" selection-start-column="22" selection-end-line="2" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Resources/views/Bewertung/bewertung.html.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="504">
@@ -1387,18 +1351,48 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/web/js/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="467" column="60" selection-start-line="467" selection-start-column="60" selection-end-line="467" selection-end-column="60" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Resources/views/Survey/change_user.html.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
           <caret line="27" column="29" selection-start-line="27" selection-start-column="29" selection-end-line="27" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/SurveyController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="202">
+          <caret line="369" column="53" selection-start-line="369" selection-start-column="53" selection-end-line="369" selection-end-column="53" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/web/js/main.js">
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/LoginController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1407">
-          <caret line="373" column="50" selection-start-line="373" selection-start-column="50" selection-end-line="373" selection-end-column="50" />
+        <state relative-caret-position="288">
+          <caret line="26" column="37" selection-start-line="26" selection-start-column="37" selection-end-line="26" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Resources/views/Login/login.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="252">
+          <caret line="14" column="104" selection-start-line="14" selection-start-column="104" selection-end-line="14" selection-end-column="104" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/css/main.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="148">
+          <caret line="148" column="29" selection-start-line="148" selection-start-column="29" selection-end-line="148" selection-end-column="29" />
           <folding />
         </state>
       </provider>

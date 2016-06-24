@@ -11,7 +11,9 @@
             <p class="admin-content-headername">Bosch</p>
         </div>
         <div class="login-form">
-            {% if error %}{{ error }} {% endif %}
+            {% if error %}
+                <div class="error-message"><i class="fa fa-exclamation-circle" aria-hidden="true"></i>  {{ error.messageKey|trans(error.messageData, 'security') }}</div>
+            {% endif %}
             <form action="{{ path('login_check') }}" method="post">
                 <label class="username" for="username">Name</label>
                 <br>

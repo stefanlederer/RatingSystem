@@ -29,56 +29,67 @@ class BewertungController extends Controller
             $question = $em->getRepository('AppBundle:Survey')
                 ->getQuestion($conn, $time);
 
-            //get buttonnames (answerOptions)
-            $buttonname = $em->getRepository('AppBundle:Answers')
-                ->getAnswerOption($question[0]["id"]);
+            if (strlen($question) > 0) {
 
 
-            $buttonsource = $this->nameToSource($question[0]['buttonQuantity']);
+                //get buttonnames (answerOptions)
+                $buttonname = $em->getRepository('AppBundle:Answers')
+                    ->getAnswerOption($question[0]["id"]);
 
-            //get buttonsources and answerOptions
-            $buttons = array();
-            for ($i = 0; $i < count($buttonname); $i++) {
-                $buttons[$i]['source'] = $buttonsource[$i];
-                $buttons[$i]['answerOption'] = $buttonname[$i]['answerOption'];
+
+                $buttonsource = $this->nameToSource($question[0]['buttonQuantity']);
+
+                //get buttonsources and answerOptions
+                $buttons = array();
+                for ($i = 0; $i < count($buttonname); $i++) {
+                    $buttons[$i]['source'] = $buttonsource[$i];
+                    $buttons[$i]['answerOption'] = $buttonname[$i]['answerOption'];
+                }
+
+                //insert Question
+                $request = Request::createFromGlobals();
+                $answerOption = $request->request->get('button');
+                $surveyID = $question[0]["id"];
+
+                $dID = $em->getRepository('AppBundle:Devices')
+                    ->getDevicesId($conn);
+                $devicesID = $dID[0]['id'];
+                $aID = $em->getRepository('AppBundle:Answers')
+                    ->getAnswerId($surveyID, $answerOption);
+
+                if ($aID != null) {
+
+                    $answerID = $aID[0]['id'];
+
+                    $time = new \DateTime();
+                    $time->format('Y-m-d \O\n H:i:s');
+
+                    $action = new Action();
+
+                    $action->setAnswersId($answerID);
+                    $action->setDevicesId($devicesID);
+                    $action->setTime($time);
+
+                    $em = $this->getDoctrine()->getManager();
+                    $em->persist($action);
+                    $em->flush();
+
+                }
+
+                return $this->render('AppBundle:Bewertung:bewertung.html.twig', array(
+                    // the question of the survey
+                    'survey' => $question,
+                    'buttons' => $buttons,
+                    'buttonnames' => $buttonname
+                ));
+            } else {
+                $errormessage = "Derzeit steht keine Umfrage zur Verfügung!";
+                $detailerror = "No survey";
+                return $this->render('AppBundle:Bewertung:error.html.twig', array(
+                    "errormessage" => $errormessage,
+                    "detailerror" => $detailerror
+                ));
             }
-
-            //insert Question
-            $request = Request::createFromGlobals();
-            $answerOption = $request->request->get('button');
-            $surveyID = $question[0]["id"];
-
-            $dID = $em->getRepository('AppBundle:Devices')
-                ->getDevicesId($conn);
-            $devicesID = $dID[0]['id'];
-            $aID = $em->getRepository('AppBundle:Answers')
-                ->getAnswerId($surveyID, $answerOption);
-
-            if ($aID != null) {
-
-                $answerID = $aID[0]['id'];
-
-                $time = new \DateTime();
-                $time->format('Y-m-d \O\n H:i:s');
-
-                $action = new Action();
-
-                $action->setAnswersId($answerID);
-                $action->setDevicesId($devicesID);
-                $action->setTime($time);
-
-                $em = $this->getDoctrine()->getManager();
-                $em->persist($action);
-                $em->flush();
-
-            }
-
-            return $this->render('AppBundle:Bewertung:bewertung.html.twig', array(
-                // the question of the survey
-                'survey' => $question,
-                'buttons' => $buttons,
-                'buttonnames' => $buttonname
-            ));
         }
         catch(\Doctrine\ORM\ORMException $e) {
             $this->get('session')->getFlashBag()->add('error', 'Your custom message');

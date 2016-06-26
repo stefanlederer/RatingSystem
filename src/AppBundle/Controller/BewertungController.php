@@ -29,7 +29,7 @@ class BewertungController extends Controller
             $question = $em->getRepository('AppBundle:Survey')
                 ->getQuestion($conn, $time);
 
-            if (strlen($question) > 0) {
+            if (strlen($question[0]['id']) > 0) {
 
 
                 //get buttonnames (answerOptions)
@@ -51,29 +51,31 @@ class BewertungController extends Controller
                 $answerOption = $request->request->get('button');
                 $surveyID = $question[0]["id"];
 
-                $dID = $em->getRepository('AppBundle:Devices')
-                    ->getDevicesId($conn);
-                $devicesID = $dID[0]['id'];
-                $aID = $em->getRepository('AppBundle:Answers')
-                    ->getAnswerId($surveyID, $answerOption);
+                if(strlen($answerOption) > 0) {
+                    $dID = $em->getRepository('AppBundle:Devices')
+                        ->getDevicesId($conn);
+                    $devicesID = $dID[0]['id'];
+                    $aID = $em->getRepository('AppBundle:Answers')
+                        ->getAnswerId($surveyID, $answerOption);
 
-                if ($aID != null) {
+                    if ($aID != null) {
 
-                    $answerID = $aID[0]['id'];
+                        $answerID = $aID[0]['id'];
 
-                    $time = new \DateTime();
-                    $time->format('Y-m-d \O\n H:i:s');
+                        $time = new \DateTime();
+                        $time->format('Y-m-d \O\n H:i:s');
 
-                    $action = new Action();
+                        $action = new Action();
 
-                    $action->setAnswersId($answerID);
-                    $action->setDevicesId($devicesID);
-                    $action->setTime($time);
+                        $action->setAnswersId($answerID);
+                        $action->setDevicesId($devicesID);
+                        $action->setTime($time);
 
-                    $em = $this->getDoctrine()->getManager();
-                    $em->persist($action);
-                    $em->flush();
+                        $em = $this->getDoctrine()->getManager();
+                        $em->persist($action);
+                        $em->flush();
 
+                    }
                 }
 
                 return $this->render('AppBundle:Bewertung:bewertung.html.twig', array(

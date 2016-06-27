@@ -391,7 +391,11 @@ input {
     font-family: 'Roboto Mono';
 }
 #datepicker-end, #datepicker-start {
-    width: 100px;
+    width: 150px;
+    margin-top: 10px;
+}
+input.time {
+    width: 150px;
     margin-top: 10px;
 }
 button.newInsert-button {

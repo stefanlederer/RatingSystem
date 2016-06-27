@@ -10,8 +10,11 @@
                 <form action="{{ path('addSurvey') }}" class="add-survey-form" method="post">
                     <input class="input-question" name="question" type="text" placeholder="Frage">
                     <br>
-                    <input class="date" id="datepicker-start" name="startDate" placeholder="Startzeit">
-                    <input class="date" id="datepicker-end" name="endDate" placeholder="Endzeit">
+                    <input class="date" id="datepicker-start" name="startDate" placeholder="Startdatum">
+                    <input class="date" id="datepicker-end" name="endDate" placeholder="Enddatum">
+                    <br>
+                    <input class="time" name="startTime" placeholder="Startzeit">
+                    <input class="time" name="endTime" placeholder="Endzeit">
                     <br>
                     <select class="status" title="Status" name="status">
                         <option value="" disabled selected>Status</option>

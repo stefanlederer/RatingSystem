@@ -14,6 +14,9 @@ $(document).ready(function () {
     $('.date').datepicker({
         dateFormat: "yy-mm-dd"
     });
+    
+    $('.time').timepicker();
+    
     $('.button').click(function () {
         clicked = true;
         elem = this;

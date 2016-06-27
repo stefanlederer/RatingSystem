@@ -1,5 +1,6 @@
 @charset "utf-8";
 /* CSS Document */
+@font-face { font-family: 'Roboto Mono'; src: url('./Roboto Mono/RobotoMono-Light.ttf') format('truetype'); }
 * {
     font-family: 'Roboto Mono', sans-serif;
 }

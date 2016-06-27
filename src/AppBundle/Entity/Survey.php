@@ -33,6 +33,16 @@ class Survey
     private $surveyEnd;
 
     /**
+     * @var \DateTime
+     */
+    private $timeStart;
+
+    /**
+     * @var \DateTime
+     */
+    private $timeEnd;
+
+    /**
      * @var int
      */
     private $userId;
@@ -152,6 +162,54 @@ class Survey
     public function getSurveyEnd()
     {
         return $this->surveyEnd;
+    }
+
+    /**
+     * Set timeStart
+     *
+     * @param \DateTime $timeStart
+     *
+     * @return Survey
+     */
+    public function setTimeStart($timeStart)
+    {
+        $this->timeStart = $timeStart;
+
+        return $this;
+    }
+
+    /**
+     * Get timeStart
+     *
+     * @return \DateTime
+     */
+    public function getTimeStart()
+    {
+        return $this->timeStart;
+    }
+
+    /**
+     * Set timeEnd
+     *
+     * @param \DateTime $timeEnd
+     *
+     * @return Survey
+     */
+    public function setTimeEnd($timeEnd)
+    {
+        $this->timeEnd = $timeEnd;
+
+        return $this;
+    }
+
+    /**
+     * Get timeEnd
+     *
+     * @return \DateTime
+     */
+    public function getTimeEnd()
+    {
+        return $this->timeEnd;
     }
 
     /**

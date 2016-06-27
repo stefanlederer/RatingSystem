@@ -21,6 +21,12 @@ AppBundle\Entity\Survey:
         surveyEnd:
             type: datetime
             column: survey_end
+        timeStart:
+            type: time
+            column: time_start
+        timeEnd:
+            type: time
+            column: time_end
         userId:
             type: integer
             column: user_id

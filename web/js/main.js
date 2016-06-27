@@ -201,6 +201,7 @@ $(document).ready(function () {
         $.get('/admin/statistic/csv/' + survey_id, function (data) {
         }).success(function (data) {
             $('.csv').attr('href', '/' + data.path);
+            $('.csv2').attr('href', '/' + data.path2);
         });
         $.get('/admin/survey/getAnswers/' + survey_id, {}, function (data) {
         }).success(function (data) {
@@ -211,6 +212,13 @@ $(document).ready(function () {
                 countActions.push(parseInt(value[1]));
                 answersOptions.push(value['answerOption']);
             });
+            // var allInformation = data.allContent;
+            // var aOptions = [];
+            // var devices = [];
+            // var time = [];
+            // allInformation.forEach(function(value) {
+            //    
+            // });
             var ctx = $('.chart');
             if (myChart !== null) {
                 myChart.destroy();

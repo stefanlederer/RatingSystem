@@ -14,6 +14,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpFoundation\StreamedResponse;
+use Symfony\Component\Validator\Constraints\DateTime;
 
 class SurveyController extends Controller {
     /**
@@ -350,7 +351,10 @@ class SurveyController extends Controller {
     public function getAnswers($id) {
         $survey = $this->getDoctrine()->getRepository('AppBundle:Survey')->find($id);
         $answers = $this->getDoctrine()->getRepository('AppBundle:Answers')->getStatisticsInformations($survey->getId());
-        return new JsonResponse(array('content' => $answers));
+
+        $allData = $this->getDoctrine()->getRepository('AppBundle:Answers')->getAllStatisticData($survey->getId());
+
+        return new JsonResponse(array('content' => $answers, 'allContent' => $allData));
     }
 
     /**
@@ -371,20 +375,39 @@ class SurveyController extends Controller {
         $answerOption = [];
         $countAnswer = [];
 
+        $allData = $this->getDoctrine()->getRepository('AppBundle:Answers')->getAllStatisticData($survey->getId());
+        $aOption = [];
+        $device = [];
+        $time = [];
+
         foreach ($answers as $value) {
             $answerOption[] = $value['answerOption'];
             $countAnswer[] = $value[1];
         }
+
+        foreach ($allData as $v) {
+            $aOption[] = $v['answerOption'];
+            $device[] = $v['connection'];
+            $time[] = $v['time'] = date('Y-m-d H:i:s');
+        }
+
         $list = [$answerOption, $countAnswer];
+        $listAllData = [$aOption, $device, $time];
 
         $filename = 'csv/' . $survey->getId() . '.csv';
+        $filename2 = 'csv/'. $survey->getId() . '-AllData.csv';
 
         $fp = fopen($filename, 'wr');
         foreach ($list as $fields) {
             fputcsv($fp, $fields);
         }
 
-        return new JsonResponse(array('path' => $filename));
+        $fp2 = fopen($filename2, 'wr');
+        foreach ($listAllData as $f) {
+            fputcsv($fp2, $f);
+        }
+
+        return new JsonResponse(array('path' => $filename, 'path2' => $filename2));
     }
     /**
      * generates a random string

@@ -48,4 +48,18 @@ class AnswersRepository extends \Doctrine\ORM\EntityRepository
 
         return $query->getQuery()->getResult();
     }
+
+    public function getAllStatisticData($id) {
+        $em = $this->getEntityManager();
+        $query = $em->createQueryBuilder()
+            ->select('a.answerOption as answerOption, d.connection as connection, ac.time as time')
+            ->from('AppBundle:Answers','a')
+            ->leftJoin('AppBundle:Action', 'ac', 'WITH', 'ac.answersId = a.id')
+            ->leftJoin('AppBundle:Devices', 'd', 'WITH', 'd.id = ac.devicesId')
+            ->where('a.surveyId = :surveyId')
+            ->setParameter('surveyId', $id);
+//            ->groupBy('a.id');
+
+        return $query->getQuery()->getResult();
+    }
 }

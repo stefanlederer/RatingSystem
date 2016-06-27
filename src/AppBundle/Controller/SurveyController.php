@@ -56,6 +56,8 @@ class SurveyController extends Controller {
         $question = $request->request->get('question');
         $date_start = $request->request->get('date_start');
         $date_end = $request->request->get('date_end');
+        $time_start = $request->request->get('time_start');
+        $time_end = $request->request->get('time_end');
         $count = $request->request->get('count');
         $activity = $request->request->get('activity');
 
@@ -66,6 +68,8 @@ class SurveyController extends Controller {
         $survey->setQuestion($question);
         $survey->setSurveyStart(new \DateTime($date_start));
         $survey->setSurveyEnd(new \DateTime($date_end));
+        $survey->setTimeStart(new \DateTime($time_start));
+        $survey->setTimeEnd(new \DateTime($time_end));
         $survey->setButtonQuantity($count);
         $survey->setStatus($activity);
 

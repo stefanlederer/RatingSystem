@@ -14,8 +14,18 @@ $(document).ready(function () {
     $('.date').datepicker({
         dateFormat: "yy-mm-dd"
     });
-    
-    $('.time').timepicker();
+
+    $('.time').timepicker({
+        timeFormat: 'H:mm:ss',
+        interval: 60,
+        minTime: '0',
+        maxTime: '23:00',
+        defaultTime: '11',
+        startTime: '0:00',
+        dynamic: false,
+        dropdown: true,
+        scrollbar: false
+    });
     
     $('.button').click(function () {
         clicked = true;
@@ -263,12 +273,16 @@ function bindPencilEvents() {
         var table_question = parentTR.children('td.table-question').find('input');
         var table_start = parentTR.children('td.table-start').find('input');
         var table_end = parentTR.children('td.table-end').find('input');
+        var table_timeStart = parentTR.children('td.table-timeStart').find('input');
+        var table_timeEnd = parentTR.children('td.table-timeEnd').find('input');
         var table_count = parentTR.children('td.table-count').find('input');
         var table_activity = parentTR.children('td.table-activity').find('input');
 
         var table_question_oldValue = table_question.val();
         var table_start_oldValue = table_start.val();
         var table_end_oldValue = table_end.val();
+        var table_timeStart_oldValue = table_timeStart.val();
+        var table_timeEnd_oldValue = table_timeEnd.val();
         var table_count_oldValue = table_count.val();
         var table_activity_oldValue = table_activity.val();
         $(parentTD).children('a').remove();
@@ -278,6 +292,8 @@ function bindPencilEvents() {
         $(table_question.parent()).html(table_question_oldValue);
         $(table_start.parent()).html(table_start_oldValue);
         $(table_end.parent()).html(table_end_oldValue);
+        $(table_timeStart.parent()).html(table_timeStart_oldValue);
+        $(table_timeEnd.parent()).html(table_timeEnd_oldValue);
         $(table_count.parent()).html(table_count_oldValue);
         $(table_activity.parent()).html(table_activity_oldValue);
         bindPencil();
@@ -289,6 +305,8 @@ function bindPencilEvents() {
         var table_question_newValue = $('.table-question').find('input').val();
         var table_start_newValue = $('.table-start').find('input').val();
         var table_end_newValue = $('.table-end').find('input').val();
+        var table_timeStart_newValue = $('.table-timeStart').find('input').val();
+        var table_timeEnd_newValue = $('.table-timeEnd').find('input').val();
         var table_count_newValue = $('.table-count').find('input').val();
         var table_activity_newValue = $('.table-activity').find('input').val();
         var elem = this;
@@ -301,6 +319,8 @@ function bindPencilEvents() {
                 question: table_question_newValue,
                 date_start: table_start_newValue,
                 date_end: table_end_newValue,
+                time_start: table_timeStart_newValue,
+                time_end: table_timeEnd_newValue,
                 count: table_count_newValue,
                 activity: table_activity_newValue
             },
@@ -310,6 +330,8 @@ function bindPencilEvents() {
                 var table_question = parentTR.children('td.table-question');
                 var table_start = parentTR.children('td.table-start');
                 var table_end = parentTR.children('td.table-end');
+                var table_timeStart = parentTR.children('td.table-timeStart');
+                var table_timeEnd = parentTR.children('td.table-timeEnd');
                 var table_count = parentTR.children('td.table-count');
                 var table_activity = parentTR.children('td.table-activity');
 
@@ -319,6 +341,8 @@ function bindPencilEvents() {
                 $(table_question).html(table_question_newValue);
                 $(table_start).html(table_start_newValue);
                 $(table_end).html(table_end_newValue);
+                $(table_timeStart).html(table_timeStart_newValue);
+                $(table_timeEnd).html(table_timeEnd_newValue);
                 $(table_count).html(table_count_newValue);
                 $(table_activity).html(table_activity_newValue);
                 bindPencil();
@@ -427,12 +451,16 @@ function bindPencil() {
         var table_question = parentTR.children('td.table-question');
         var table_start = parentTR.children('td.table-start');
         var table_end = parentTR.children('td.table-end');
+        var table_timeStart = parentTR.children('td.table-timeStart');
+        var table_timeEnd = parentTR.children('td.table-timeEnd');
         var table_count = parentTR.children('td.table-count');
         var table_activity = parentTR.children('td.table-activity');
 
         var table_question_oldValue = table_question.text();
         var table_start_oldValue = table_start.text();
         var table_end_oldValue = table_end.text();
+        var table_timeStart_oldValue = table_timeStart.text();
+        var table_timeEnd_oldValue = table_timeEnd.text();
         var table_count_oldValue = table_count.text();
         var table_activity_oldValue = table_activity.text();
         var NOT_table_activity_oldValue;
@@ -445,6 +473,8 @@ function bindPencil() {
         $(table_question).html('<input class="table-question" name="table-question" value="' + table_question_oldValue + '" />');
         $(table_start).html('<input class="table-start date" type="text" name="table-start" value="' + table_start_oldValue + '" />');
         $(table_end).html('<input class="table-end date" type="text" name="table-end" value="' + table_end_oldValue + '" />');
+        $(table_timeStart).html('<input class="time" type="text" name="table-timeStart" value="' + table_timeStart_oldValue + '" />');
+        $(table_timeEnd).html('<input class="time" type="text" name="table-timeEnd" value="' + table_timeEnd_oldValue + '" />');
         $(table_count).html('<input class="table-count" name="table-count" value="' + table_count_oldValue + '" />');
         // $(table_activity).html('<input class="table-activity" name="table-activity" value="' + table_activity_oldValue + '" />');
         $(table_activity).html('<select><option>'+ table_activity_oldValue +'</option><option>'+ NOT_table_activity_oldValue +'</option></select>');
@@ -452,6 +482,18 @@ function bindPencil() {
         $('.date').datepicker({
             dateFormat: "yy-mm-dd"
         });
+        $('.time').timepicker({
+            timeFormat: 'H:mm:ss',
+            interval: 60,
+            minTime: '0',
+            maxTime: '23:00',
+            defaultTime: '11',
+            startTime: '0:00',
+            dynamic: false,
+            dropdown: true,
+            scrollbar: false
+        });
+
         $('select').material_select();
 
         //remove pencil icon

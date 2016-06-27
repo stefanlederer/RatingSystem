@@ -16,7 +16,9 @@
                     <th></th>
                     <th>Frage</th>
                     <th>Start</th>
+                    <th></th>
                     <th>Ende</th>
+                    <th></th>
                     <th>Anzahl</th>
                     <th>Status</th>
                     <th></th>
@@ -31,7 +33,9 @@
                         </td>
                         <td class="table-question">{{ survey.question }}</td>
                         <td class="table-start">{{ survey.surveyStart|date('Y-m-d') }}</td>
+                        <td class="table-timeStart">{{ survey.timeStart|date('H:i:s') }}</td>
                         <td class="table-end">{{ survey.surveyEnd|date('Y-m-d') }}</td>
+                        <td class="table-timeEnd">{{ survey.timeEnd|date('H:i:s') }}</td>
                         <td class="table-count">{{ survey.buttonQuantity }}</td>
                         <td class="table-activity">{{ survey.status }}</td>
                         <td>

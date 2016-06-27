@@ -9,7 +9,9 @@
             <tr class="table-header">
                 <th>Frage</th>
                 <th>Start</th>
+                <th></th>
                 <th>Ende</th>
+                <th></th>
                 <th>Anzahl</th>
                 <th>Status</th>
             </tr>
@@ -17,7 +19,9 @@
                 <tr>
                     <td>{{ survey.question }}</td>
                     <td>{{ survey.surveyStart|date('Y-m-d') }}</td>
+                    <td>{{ survey.timeStart|date('H:i:s') }}</td>
                     <td>{{ survey.surveyEnd|date('Y-m-d') }}</td>
+                    <td>{{ survey.timeEnd|date('H:i:s') }}</td>
                     <td>{{ survey.buttonQuantity }}</td>
                     <td>{{ survey.status }}</td>
                 </tr>

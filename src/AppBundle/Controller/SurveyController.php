@@ -205,6 +205,8 @@ class SurveyController extends Controller {
         $question = $request->request->get('question');
         $date_start = $request->request->get('startDate');
         $date_end = $request->request->get('endDate');
+        $time_start = $request->request->get('startTime');
+        $time_end = $request->request->get('endTime');
         $status = $request->request->get('status');
         $device = $request->request->get('device');
         $count = $request->request->get('answerQuantity');
@@ -227,8 +229,9 @@ class SurveyController extends Controller {
         $newUserRole = $request->request->get('newUserRole');
 
 
-        if (strlen($question) > 0 && strlen($date_start) > 0 && strlen($date_end) > 0 && strlen($status) > 0 &&
-            strlen($device) > 0 && strlen($count) > 0 && $answerOptionTrue == true) {
+        if (strlen($question) > 0 && strlen($date_start) > 0 && strlen($date_end) > 0 && strlen($time_start) > 0 &&
+            strlen($time_end) > 0 && strlen($status) > 0 && strlen($device) > 0 && strlen($count) > 0 &&
+            $answerOptionTrue == true) {
 
             $em = $this->getDoctrine()->getManager();
 
@@ -239,6 +242,8 @@ class SurveyController extends Controller {
             $survey->setQuestion($question);
             $survey->setSurveyStart(new \DateTime($date_start));
             $survey->setSurveyEnd(new \DateTime($date_end));
+            $survey->setTimeStart(new \DateTime($time_start));
+            $survey->setTimeEnd(new \DateTime($time_end));
             $survey->setButtonQuantity($count);
             $survey->setUserId($userId);
             $survey->setStatus($status);

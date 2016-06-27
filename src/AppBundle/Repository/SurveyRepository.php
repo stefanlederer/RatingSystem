@@ -11,8 +11,10 @@ namespace AppBundle\Repository;
 class SurveyRepository extends \Doctrine\ORM\EntityRepository
 {
 
-    public function getQuestion($conn, $time)
+    public function getQuestion($conn, $date)
     {
+        $time = new \DateTime();
+        $time->format('H:i:s');
         $status = "Aktiv";
         $em = $this->getEntityManager();
 
@@ -21,11 +23,14 @@ class SurveyRepository extends \Doctrine\ORM\EntityRepository
             ->from('AppBundle:Survey', 's')
             ->leftJoin('AppBundle:Devices', 'd', 'WITH', 's.devicesId = d.id')
             ->where('d.connection = :connection OR s.devicesId = 0')
-            ->andWhere('s.surveyStart <= :time')
-            ->andWhere('s.surveyEnd > :time')
+            ->andWhere('s.surveyStart <= :date')
+            ->andWhere('s.surveyEnd > :date')
+            ->andWhere('s.timeStart <= :time')
+            ->andWhere('s.timeEnd > :time')
             ->andWhere('s.status = :status')
             ->setParameter('connection', $conn)
-            ->setParameter('time', $time)
+            ->setParameter('date', $date)
+            ->setParameter('time',$time)
             ->setParameter('status', $status)
             ->setMaxResults(1);
 

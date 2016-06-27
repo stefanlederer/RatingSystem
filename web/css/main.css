@@ -108,7 +108,6 @@ p.copyrightText {
 div.answerOption {
     width: 100%;
     position: relative;
-    margin-top: 25px;
 }
 div.answerOption-field {
     text-align: center;

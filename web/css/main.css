@@ -154,18 +154,14 @@ div.error-message {
     margin-bottom: 15px;
 }
 div.admin-content-header {
-    background-color: #99A7FF;
+    background-color: #FFFFFF;
     height: 80px;
+}
+div.admin-content-header-logo {
+    text-align: right;
 }
 img.login-logo {
-    height: 80px;
-}
-p.admin-content-headername {
-    font-family: 'Roboto Mono';
-    font-size: 70px;
-    text-align: center;
-    margin-top: -90px;
-    color: #FFFFFF;
+    height: 100px;
 }
 div.login-form {
     margin-top: 30px;
@@ -177,7 +173,7 @@ label.username {
     margin-left: 10px;
     font-size: 20px;
     transition: 1s;
-    color: #99A7FF;
+    color: rgb(58, 90, 130);
 }
 /*label.username:active {*/
     /*font-size: 10px;*/
@@ -196,7 +192,7 @@ label.password {
     margin-left: 10px;
     font-size: 20px;
     transition: 1s;
-    color: #99A7FF;
+    color: rgb(58, 90, 130);
 }
 /*label.password:active {*/
     /*font-size: 10px;*/
@@ -215,7 +211,7 @@ button.login-button {
     width: 260px;
     height: 40px;
     margin-bottom: 30px;
-    background-color: #99A7FF;
+    background-color: rgb(58, 90, 130);
     border-radius: 5px;
     border: none;
     box-shadow: 1px 1px 5px 0px rgba(115,111,113,1);
@@ -229,7 +225,8 @@ header {
     left: 0;
     right: 0;
     height: 200px;
-    background-color: #99A7FF;
+    /*background-color: #99A7FF;*/
+    background-color: rgb(58, 90, 130);
     z-index: 10000;
 }
 p.header-heading {
@@ -253,7 +250,7 @@ a {
     text-decoration: none;
 }
 a.active {
-    border-bottom: 2px solid #BCF5A9;
+    border-bottom: 2px solid rgb(169, 214, 128);
 }
 button.button-auswerten {
     position: fixed;
@@ -262,11 +259,11 @@ button.button-auswerten {
     height: 70px;
     width: 70px;
     border-radius: 100%;
-    background-color: #BCF5A9;
+    background-color: rgb(169, 214, 128);
     border: none;
     box-shadow: 1px 1px 5px 0px rgba(115,111,113,1);
     font-size: 25px;
-    color: #99A7FF;
+    color: rgb(58, 90, 130);
     cursor: pointer;
 }
 button.button-add {
@@ -276,11 +273,11 @@ button.button-add {
     height: 70px;
     width: 70px;
     border-radius: 100%;
-    background-color: #BCF5A9;
+    background-color: rgb(169, 214, 128);
     border: none;
     box-shadow: 1px 1px 5px 0px rgba(115,111,113,1);
     font-size: 25px;
-    color: #99A7FF;
+    color: rgb(58, 90, 130);
     cursor: pointer;
 }
 div.logout-button {
@@ -309,7 +306,7 @@ div.changeNavigation {
     position: relative;
     margin-top: 200px;
     height: 30px;
-    background-color: #99A7FF;
+    background-color: rgb(58, 90, 130);
 }
 a.changeNav {
     color: #FFFFFF;
@@ -387,7 +384,7 @@ div.add-user {
     box-sizing: border-box;
 }
 input {
-    border-bottom: 2px solid #99A7FF;
+    border-bottom: 2px solid rgb(58, 90, 130);
     border-top: medium none;
     border-left: medium none;
     border-right: medium none;
@@ -400,7 +397,7 @@ input {
 button.newInsert-button {
     width: 260px;
     height: 40px;
-    background-color: #99A7FF;
+    background-color: rgb(58, 90, 130);
     border-radius: 5px;
     border: none;
     box-shadow: 1px 1px 5px 0px rgba(115,111,113,1);

@@ -24,13 +24,12 @@ $(document).ready(function () {
         if (clicked) {
             console.log('clicked');
 
-            var elementVal = $(elem).val();
-            $('.button[value!=' + elementVal + ']').fadeTo("slow", 0.2);
+            $('.button').fadeTo("slow", 0.2);
             $('.button').prop("disabled", true);
             setTimeout(function () {
-                $('.button[value!=elementVal]').fadeTo("slow", 1);
+                $('.button').fadeTo("slow", 1);
                 $('.button').prop("disabled", false);
-            }, 3000);
+            }, 700);
 
             var buttontype = $(elem).val();
             console.log(buttontype);

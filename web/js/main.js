@@ -217,7 +217,7 @@ $(document).ready(function () {
             // var devices = [];
             // var time = [];
             // allInformation.forEach(function(value) {
-            //    
+            //
             // });
             var ctx = $('.chart');
             if (myChart !== null) {
@@ -435,16 +435,24 @@ function bindPencil() {
         var table_end_oldValue = table_end.text();
         var table_count_oldValue = table_count.text();
         var table_activity_oldValue = table_activity.text();
+        var NOT_table_activity_oldValue;
+        if(table_activity_oldValue == "Aktiv") {
+            NOT_table_activity_oldValue = "Inaktiv";
+        } else {
+            NOT_table_activity_oldValue = "Aktiv";
+        }
 
         $(table_question).html('<input class="table-question" name="table-question" value="' + table_question_oldValue + '" />');
         $(table_start).html('<input class="table-start date" type="text" name="table-start" value="' + table_start_oldValue + '" />');
         $(table_end).html('<input class="table-end date" type="text" name="table-end" value="' + table_end_oldValue + '" />');
         $(table_count).html('<input class="table-count" name="table-count" value="' + table_count_oldValue + '" />');
-        $(table_activity).html('<input class="table-activity" name="table-activity" value="' + table_activity_oldValue + '" />');
+        // $(table_activity).html('<input class="table-activity" name="table-activity" value="' + table_activity_oldValue + '" />');
+        $(table_activity).html('<select><option>'+ table_activity_oldValue +'</option><option>'+ NOT_table_activity_oldValue +'</option></select>');
 
         $('.date').datepicker({
             dateFormat: "yy-mm-dd"
         });
+        $('select').material_select();
 
         //remove pencil icon
         $(this).remove();
@@ -479,9 +487,18 @@ function bindPencil() {
 
         var table_username_oldValue = table_username.text();
         var table_role_oldValue = table_role.text();
+        var NOT_table_role_oldValue;
+        if(table_role_oldValue == "ROLE_ADMIN") {
+            NOT_table_role_oldValue = "ROLE_USER";
+        } else {
+            NOT_table_role_oldValue = "ROLE_ADMIN";
+        }
 
         $(table_username).html('<input class="table-username" name="table-username" value="' + table_username_oldValue + '" />');
-        $(table_role).html('<input class="table-role" name="table-role" value="' + table_role_oldValue + '" />');
+        // $(table_role).html('<input class="table-role" name="table-role" value="' + table_role_oldValue + '" />');
+        $(table_role).html('<select><option>'+ table_role_oldValue +'</option><option>'+ NOT_table_role_oldValue +'</option></select>');
+
+        $('select').material_select();
 
         $(this).remove();
         $(parentTD).html('<a class="save-icon-user"><i class="fa fa-check" aria-hidden="true"></i></a>' +

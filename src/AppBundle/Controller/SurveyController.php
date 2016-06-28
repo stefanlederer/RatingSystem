@@ -380,6 +380,7 @@ class SurveyController extends Controller {
         $countAnswer = [];
 
         $allData = $this->getDoctrine()->getRepository('AppBundle:Answers')->getAllStatisticData($survey->getId());
+        $question = [];
         $aOption = [];
         $device = [];
         $time = [];
@@ -389,14 +390,16 @@ class SurveyController extends Controller {
             $countAnswer[] = $value[1];
         }
 
+
         foreach ($allData as $v) {
+            $question[] = $v['question'];
             $aOption[] = $v['answerOption'];
             $device[] = $v['connection'];
             $time[] = $v['time'] = date('Y-m-d H:i:s');
         }
 
         $list = [$answerOption, $countAnswer];
-        $listAllData = [$aOption, $device, $time];
+//        $listAllData = [$question, $aOption, $device, $time];
 
         $filename = 'csv/' . $survey->getId() . '.csv';
         $filename2 = 'csv/'. $survey->getId() . '-AllData.csv';
@@ -407,9 +410,13 @@ class SurveyController extends Controller {
         }
 
         $fp2 = fopen($filename2, 'wr');
-        foreach ($listAllData as $f) {
-            fputcsv($fp2, $f);
+        fputcsv($fp2, array("Frage", "Antwortoption", "Gerätename", "Zeitpunkt"));
+        for($i = 0; $i < count($question); $i++) {
+            fputcsv($fp2, array($question[$i], $aOption[$i], $device[$i], $time[$i]));
         }
+//        foreach ($listAllData as $f) {
+//            fputcsv($fp2, $f);
+//        }
 
         return new JsonResponse(array('path' => $filename, 'path2' => $filename2));
     }

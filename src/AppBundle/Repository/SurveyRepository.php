@@ -14,7 +14,6 @@ class SurveyRepository extends \Doctrine\ORM\EntityRepository
     public function getQuestion($conn, $date)
     {
         $time = new \DateTime();
-        $time->format('H:i:s');
         $status = "Aktiv";
         $em = $this->getEntityManager();
 
@@ -30,7 +29,7 @@ class SurveyRepository extends \Doctrine\ORM\EntityRepository
             ->andWhere('s.status = :status')
             ->setParameter('connection', $conn)
             ->setParameter('date', $date)
-            ->setParameter('time',$time)
+            ->setParameter('time',$time->format('H:i:s'))
             ->setParameter('status', $status)
             ->setMaxResults(1);
 

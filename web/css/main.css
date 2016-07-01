@@ -300,14 +300,14 @@ main.all-change-survey {
     margin-left: 30px;
     margin-right: 30px;
 }
-div.changeNavigation {
+div.add-changeNavigation {
     text-align: center;
     position: relative;
     margin-top: 200px;
     height: 30px;
     background-color: rgb(58, 90, 130);
 }
-a.changeNav {
+a.add-changeNav {
     color: #FFFFFF;
     height: 30px;
     vertical-align: bottom;
@@ -357,14 +357,15 @@ main.insert-main {
 }
 div.container {
     margin: auto;
-    margin-top: 270px;
+    margin-top: 90px;
+    margin-bottom: 30px;
 }
 div.add-statistic-survey {
     padding: 40px;
     box-shadow: 1px 1px 5px 0px rgba(115,111,113,1);
     float: left;
-    margin-bottom: 30px;
     box-sizing: border-box;
+    /*text-align: center;*/
 }
 div.add-addition {
     box-sizing: border-box;

@@ -1,0 +1,28 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}Umfrage erstellen{% endblock %}
+
+{% block body %}
+    {% include'AppBundle:Templates:header.html.twig' %}
+
+    <div class="add-changeNavigation">
+        <a class="add-changeNav" href="{{ path('addSurvey') }}">Umfrage erstellen</a>
+        <a class="add-changeNav" href="{{ path('addDevice') }}">Geräte erstellen</a>
+        <a class="add-changeNav active" href="{{ path('addUser') }}">Nutzer erstellen</a>
+    </div>
+
+    <div class="container row">
+        <div class="add-user add col s6 push-s3">
+            <form action="{{ path('addUser') }}" method="post">
+                <input name="newUser" placeholder="neuer Nutzer">
+                <input name="userPW" type="password" placeholder="Passwort">
+                <select class="userRole" name="newUserRole" title="Nutzerrolle">
+                    <option value="" disabled selected>Nutzerrolle</option>
+                    <option>Administrator</option>
+                    <option>Benutzer</option>
+                </select>
+                <button class="newInsert-button">Erstellen</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}

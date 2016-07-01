@@ -225,14 +225,6 @@ class SurveyController extends Controller {
             }
         }
 
-        //add devices
-        $newDevice = $request->request->get('newdevice');
-
-        //add user
-        $newUsername = $request->request->get('newUser');
-        $newUserPW = $request->request->get('userPW');
-        $newUserRole = $request->request->get('newUserRole');
-
 
         if (strlen($question) > 0 && strlen($date_start) > 0 && strlen($date_end) > 0 && strlen($time_start) > 0 &&
             strlen($time_end) > 0 && strlen($status) > 0 && strlen($device) > 0 && strlen($count) > 0 &&
@@ -273,6 +265,26 @@ class SurveyController extends Controller {
 
         }
 
+        $em = $this->getDoctrine()->getManager();
+        $allDevices = $em
+            ->getRepository('AppBundle:Devices')
+            ->findBy(array(), array('id' => 'ASC'));
+
+        return $this->render('AppBundle:Survey:add_survey.html.twig', array(
+            'allDevices' => $allDevices
+        ));
+    }
+
+    /**
+     * @Route("/admin/addDevice", name="addDevice")
+     */
+    public function addDeviceAction() {
+
+        $request = Request::createFromGlobals();
+
+        //add devices
+        $newDevice = $request->request->get('newdevice');
+
         if(strlen($newDevice) > 0) {
             $addNewDevice = new Devices();
 
@@ -283,6 +295,22 @@ class SurveyController extends Controller {
             $em->flush();
 
         }
+
+        return $this->render('AppBundle:Survey:add_device.html.twig', array(
+        ));
+    }
+
+    /**
+     * @Route("/admin/addUser", name="addUser")
+     */
+    public function addUserAction() {
+
+        $request = Request::createFromGlobals();
+
+        //add user
+        $newUsername = $request->request->get('newUser');
+        $newUserPW = $request->request->get('userPW');
+        $newUserRole = $request->request->get('newUserRole');
 
         if(strlen($newUsername) > 0 && strlen($newUserPW) > 0 && strlen($newUserRole) > 0) {
             $user = new Users();
@@ -296,7 +324,7 @@ class SurveyController extends Controller {
 
             $options = array('cost' => 12);
             $newpw = password_hash($newUserPW, PASSWORD_BCRYPT, $options);
-            
+
             $user->setUsername($newUsername);
             $user->setPassword($newpw);
             $user->setRoles(array($newUserRole));
@@ -307,14 +335,7 @@ class SurveyController extends Controller {
 
         }
 
-
-        $em = $this->getDoctrine()->getManager();
-        $allDevices = $em
-            ->getRepository('AppBundle:Devices')
-            ->findBy(array(), array('id' => 'ASC'));
-
-        return $this->render('AppBundle:Survey:add_survey.html.twig', array(
-            'allDevices' => $allDevices
+        return $this->render('AppBundle:Survey:add_user.html.twig', array(
         ));
     }
 
@@ -395,7 +416,7 @@ class SurveyController extends Controller {
             $question[] = $v['question'];
             $aOption[] = $v['answerOption'];
             $device[] = $v['connection'];
-            $time[] = $v['time'] = date('Y-m-d H:i:s');
+            $time[] = $v['time']->format('Y-m-d H:i:s');
         }
 
         $list = [$answerOption, $countAnswer];

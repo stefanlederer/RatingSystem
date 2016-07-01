@@ -4,10 +4,10 @@
 
 {% block body %}
     {% include'AppBundle:Templates:header.html.twig' %}
-    <div class="changeNavigation">
-        <a class="changeNav" href="{{ path('changeSurvey') }}">Umfrage ändern</a>
-        <a class="changeNav active" href="{{ path('changeDevice') }}">Geräte ändern</a>
-        <a class="changeNav" href="{{ path('changeUser') }}">Nutzer ändern</a>
+    <div class="add-changeNavigation">
+        <a class="add-changeNav" href="{{ path('changeSurvey') }}">Umfrage ändern</a>
+        <a class="add-changeNav active" href="{{ path('changeDevice') }}">Geräte ändern</a>
+        <a class="add-changeNav" href="{{ path('changeUser') }}">Nutzer ändern</a>
     </div>
     <main class="all-change-survey">
         <form class="change-survey-form" method="post">

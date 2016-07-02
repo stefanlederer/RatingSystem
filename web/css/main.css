@@ -52,6 +52,10 @@ div.frage {
     font-weight:bold;
     position: relative;
     margin-top: 20px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 #footer {
@@ -125,12 +129,20 @@ p.error-message {
     color: #FF0000;
     position: relative;
     margin-top: 150px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 p.detail-error-message {
     font-size: 15px;
     text-align: center;
     font-family: Helvetica;
     color: #000000;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 /*

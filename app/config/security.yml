@@ -24,9 +24,9 @@ security:
                 target: login_route
 
     access_control:
-#        - { path: ^/admin, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/admin/allSurvey, roles: [ROLE_USER, ROLE_ADMIN] }
+        - { path: ^/admin/statistic/*, roles: [ROLE_USER, ROLE_ADMIN] }
+        - { path: ^/admin/survey/*, roles: [ROLE_USER, ROLE_ADMIN] }
+        - { path: ^/admin/addSurvey, roles: [ROLE_USER, ROLE_ADMIN] }
+        - { path: ^/admin/changeSurvey, roles: [ROLE_USER, ROLE_ADMIN] }
         - { path: ^/admin/, roles: ROLE_ADMIN }
-        - { path: ^/admin/allSurvey, roles: ROLE_USER }
-#        - { path: ^/admin/statistic/, roles: ROLE_USER }
-#        - { path: ^/admin/addSurvey, roles: ROLE_USER}
-#        - { path: ^/admin/changeSurvey, roles: ROLE_USER}

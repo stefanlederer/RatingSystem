@@ -357,6 +357,9 @@ table input {
 #changeDevice-modal {
     z-index: 20000 !important;
 }
+#changeUser-modal {
+    z-index: 20000 !important;
+}
 div.modal-content {
     margin-left: 80px;
     margin-right: 80px;

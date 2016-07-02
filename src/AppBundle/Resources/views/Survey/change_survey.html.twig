@@ -26,6 +26,7 @@
                 {% for survey in allSurvey %}
                     <tr>
                         <td class="survey-id">{{ survey.id }}</td>
+                        <td class="survey-devicesId">{{ survey.devicesId }}</td>
                         <td class="icon-row">
                             <a class="info-icon">
                                 <i class="fa fa-pencil" aria-hidden="true"></i>
@@ -48,4 +49,30 @@
             </table>
         </form>
     </main>
+    <div id="changeSurvey-modal" class="modal">
+        <div class="modal-content">
+            <input class="modal-question" title="table-question" placeholder="Frage" />
+            <br>
+            <input class="modal-start date" title="table-start" placeholder="Startdatum" />
+            <input class="modal-end date" title="table-end" placeholder="Enddatum" />
+            <br>
+            <input class="modal-timeStart time" title="table-timeStart" placeholder="Startzeit" />
+            <input class="modal-timeEnd time" title="table-timeEnd" placeholder="Endzeit" />
+            <br>
+            <select class="modal-status">
+                <option disabled selected>Status</option>
+            </select>
+            <select class="modal-device" title="devices">
+                <option disabled selected>Geräte</option>
+            </select>
+            <select class="modal-buttonCount" title="buttons">
+                <option disabled selected>Buttonanzahl</option>
+            </select>
+            <div class="modal-answerOption">
+
+            </div>
+            <a class="save-icon"><i class="fa fa-check" aria-hidden="true"></i></a>
+            <a class=" modal-action modal-close" id="noChange-icon"><i class="fa fa-times" aria-hidden="true"></i></a>
+        </div>
+    </div>
 {% endblock %}

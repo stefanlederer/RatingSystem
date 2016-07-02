@@ -63,4 +63,28 @@ class AnswersRepository extends \Doctrine\ORM\EntityRepository
 
         return $query->getQuery()->getResult();
     }
+
+    public function getAnswers($surveyId) {
+        $em = $this->getEntityManager();
+        $query = $em->createQueryBuilder()
+            ->select('a')
+            ->from('AppBundle:Answers', 'a')
+            ->where('a.surveyId = :surveyId')
+            ->setParameter('surveyId', $surveyId)
+            ->getQuery();
+
+        return $query->getArrayResult();
+    }
+
+    public function getAnswerIds($surveyId) {
+        $em = $this->getEntityManager();
+        $query = $em->createQueryBuilder()
+            ->select('a.id')
+            ->from('AppBundle:Answers', 'a')
+            ->where('a.surveyId = :surveyId')
+            ->setParameter('surveyId', $surveyId)
+            ->getQuery();
+
+        return $query->getArrayResult();
+    }
 }

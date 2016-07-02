@@ -21,4 +21,15 @@ class DevicesRepository extends \Doctrine\ORM\EntityRepository
 
         return $query->getArrayResult();
     }
+
+    public function getDevices($actDevice) {
+        $em = $this->getEntityManager();
+        $query = $em->createQueryBuilder()
+            ->select('d')
+            ->from('AppBundle:Devices', 'd')
+            ->orderBy('d.id', $actDevice)
+            ->getQuery();
+
+        return $query->getArrayResult();
+    }
 }

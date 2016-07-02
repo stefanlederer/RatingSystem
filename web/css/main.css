@@ -333,23 +333,38 @@ td {
 td.icon-row {
     width: 100px;
 }
-td.survey-id, td.device-id, td.user-id {
+td.survey-id, td.survey-devicesId, td.device-id, td.user-id {
     display: none;
 }
-a.info-icon, a.delete-icon, a.noChange-icon, a.save-icon, a.info-icon-device, a.delete-icon-device,
-a.noChange-icon-device, a.save-icon-device, a.info-icon-user, a.delete-icon-user, a.noChange-icon-user,
+a.info-icon, a.delete-icon, #noChange-icon, a.save-icon, a.info-icon-device, a.delete-icon-device,
+#noChange-icon-device, a.save-icon-device, a.info-icon-user, a.delete-icon-user, #noChange-icon-user,
 a.save-icon-user {
     color: #4A4A4A;
     font-size: 20px;
     cursor: pointer;
 }
-a.save-icon :hover, a.noChange-icon :hover, a.delete-icon :hover, a.info-icon :hover, a.save-icon :hover,
-a.info-icon-device :hover, a.delete-icon-device :hover, a.save-icon-device :hover, a.noChange-icon-device :hover, a.info-icon-user :hover,
-a.delete-icon-user :hover, a.noChange-icon-user :hover, a.save-icon-user :hover {
+a.save-icon :hover, #noChange-icon :hover, a.delete-icon :hover, a.info-icon :hover, a.save-icon :hover,
+a.info-icon-device :hover, a.delete-icon-device :hover, a.save-icon-device :hover, #noChange-icon-device :hover, a.info-icon-user :hover,
+a.delete-icon-user :hover, #noChange-icon-user :hover, a.save-icon-user :hover {
     color: #000000;
 }
 table input {
     width: 100px;
+}
+#changeSurvey-modal {
+    z-index: 20000 !important;
+}
+div.modal-content {
+    margin-left: 80px;
+    margin-right: 80px;
+}
+/*input.modal-question, input.modal-activity, input.modal-device, select.modal-buttoncount, input.modal-answerOption {*/
+    /*margin-left: 80px;*/
+    /*width: 350px;*/
+/*}*/
+input.modal-start, input.modal-end, input.modal-timeStart, input.modal-timeEnd {
+    margin-left: 80px;
+    width: 150px;
 }
 /*add survey*/
 main.insert-main {

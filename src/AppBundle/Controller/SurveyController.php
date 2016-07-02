@@ -16,11 +16,13 @@ use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 use Symfony\Component\Validator\Constraints\DateTime;
 
-class SurveyController extends Controller {
+class SurveyController extends Controller
+{
     /**
      * @Route("/admin/allSurvey", name="allSurvey")
      */
-    public function allSurveyAction() {
+    public function allSurveyAction()
+    {
         $em = $this->getDoctrine()->getManager();
         $allSurvey = $em
             ->getRepository('AppBundle:Survey')
@@ -34,12 +36,12 @@ class SurveyController extends Controller {
     /**
      * @Route("/admin/changeSurvey", name="changeSurvey")
      */
-    public function changeSurveyAction() {
+    public function changeSurveyAction()
+    {
         $em = $this->getDoctrine()->getManager();
         $allSurvey = $em
             ->getRepository('AppBundle:Survey')
             ->findBy(array(), array('id' => 'DESC'));
-
 
         return $this->render('AppBundle:Survey:change_survey.html.twig', array(
             'allSurvey' => $allSurvey
@@ -47,9 +49,46 @@ class SurveyController extends Controller {
     }
 
     /**
+     * @Route("/admin/change/getDevices")
+     */
+    public function getDevicesAction()
+    {
+
+        $request = Request::createFromGlobals();
+        $actDeviceId = $request->request->get('deviceId');
+
+        $em = $this->getDoctrine()->getManager();
+
+        $devices = $em
+            ->getRepository('AppBundle:Devices')
+            ->getDevices($actDeviceId);
+
+        return new JsonResponse(array('devices' => $devices));
+    }
+
+    /**
+     * @Route("/admin/change/getAnswerOptions")
+     */
+    public function getAnswerOptionAction()
+    {
+
+        $request = Request::createFromGlobals();
+        $surveyId = $request->request->get('answerOption_surveyId');
+
+        $em = $this->getDoctrine()->getManager();
+
+        $answerOptions = $em
+            ->getRepository('AppBundle:Answers')
+            ->getAnswers($surveyId);
+
+        return new JsonResponse(array('answerOptions' => $answerOptions));
+    }
+
+    /**
      * @Route("/admin/changeSurvey/change")
      */
-    public function changeSurveyRowAction() {
+    public function changeSurveyRowAction()
+    {
 
         $request = Request::createFromGlobals();
         $id = $request->request->get('id');
@@ -58,23 +97,79 @@ class SurveyController extends Controller {
         $date_end = $request->request->get('date_end');
         $time_start = $request->request->get('time_start');
         $time_end = $request->request->get('time_end');
+        $status = $request->request->get('status');
+        $device = $request->request->get('device');
         $count = $request->request->get('count');
-        $activity = $request->request->get('activity');
+        $answerOption = $request->request->get('answerOptions');
 
-        $em = $this->getDoctrine()->getManager();
+        $answerOptionTrue = true;
+        for ($i = 0; $i < count($answerOption); $i++) {
+            if (strlen($answerOption[$i]['value']) <= 0) {
+                $answerOptionTrue = false;
+            }
+        }
 
-        $survey = $this->getDoctrine()->getRepository('AppBundle:Survey')->find($id);
 
-        $survey->setQuestion($question);
-        $survey->setSurveyStart(new \DateTime($date_start));
-        $survey->setSurveyEnd(new \DateTime($date_end));
-        $survey->setTimeStart(new \DateTime($time_start));
-        $survey->setTimeEnd(new \DateTime($time_end));
-        $survey->setButtonQuantity($count);
-        $survey->setStatus($activity);
+        if (strlen($question) > 0 && strlen($date_start) > 0 && strlen($date_end) > 0 && strlen($time_start) > 0 &&
+            strlen($time_end) > 0 && strlen($status) > 0 && strlen($device) > 0 && strlen($count) > 0 &&
+            $answerOptionTrue == true
+        ) {
 
-        $em->persist($survey);
-        $em->flush();
+            $em = $this->getDoctrine()->getManager();
+
+            if ($device == "Alle Geräte") {
+                $deviceId = 0;
+            } else {
+                $deviceId = $em
+                    ->getRepository('AppBundle:Devices')
+                    ->getDevicesId($device);
+            }
+            $survey = $this->getDoctrine()->getRepository('AppBundle:Survey')->find($id);
+
+            $survey->setQuestion($question);
+            $survey->setSurveyStart(new \DateTime($date_start));
+            $survey->setSurveyEnd(new \DateTime($date_end));
+            $survey->setTimeStart(new \DateTime($time_start));
+            $survey->setTimeEnd(new \DateTime($time_end));
+            $survey->setButtonQuantity($count);
+            $survey->setStatus($status);
+            $survey->setDevicesId($deviceId);
+
+
+            $em->persist($survey);
+            $em->flush();
+
+            $survey_id = $id;
+
+            $answerIds = $em
+                ->getRepository('AppBundle:Answers')
+                ->getAnswerIds($survey_id);
+
+            for ($i = 0; $i < count($answerIds); $i++) {
+                $answer = $this->getDoctrine()->getRepository('AppBundle:Answers')->find($answerIds[$i]['id']);
+                $answer->setAnswerOption($answerOption[$i]['value']);
+                $em->persist($answer);
+                $em->flush();
+            }
+
+
+        }
+
+
+//        $em = $this->getDoctrine()->getManager();
+//
+//        $survey = $this->getDoctrine()->getRepository('AppBundle:Survey')->find($id);
+//
+//        $survey->setQuestion($question);
+//        $survey->setSurveyStart(new \DateTime($date_start));
+//        $survey->setSurveyEnd(new \DateTime($date_end));
+//        $survey->setTimeStart(new \DateTime($time_start));
+//        $survey->setTimeEnd(new \DateTime($time_end));
+//        $survey->setButtonQuantity($count);
+//        $survey->setStatus($activity);
+//
+//        $em->persist($survey);
+//        $em->flush();
 
 
         return new JsonResponse(array('message' => 'erfolgreich geändert'));
@@ -83,7 +178,8 @@ class SurveyController extends Controller {
     /**
      * @Route("/admin/changeSurvey/delete")
      */
-    public function deleteSurveyRowAction() {
+    public function deleteSurveyRowAction()
+    {
         $request = Request::createFromGlobals();
         $id = $request->request->get('id');
 
@@ -99,7 +195,8 @@ class SurveyController extends Controller {
     /**
      * @Route("/admin/changeDevice", name="changeDevice")
      */
-    public function changeDeviceAction() {
+    public function changeDeviceAction()
+    {
         $em = $this->getDoctrine()->getManager();
         $allDevices = $em
             ->getRepository('AppBundle:Devices')
@@ -113,7 +210,8 @@ class SurveyController extends Controller {
     /**
      * @Route("/admin/changeDevice/change")
      */
-    public function changeDeviceRowAction() {
+    public function changeDeviceRowAction()
+    {
         $request = Request::createFromGlobals();
         $id = $request->request->get('id');
         $connection = $request->request->get('device');
@@ -134,7 +232,8 @@ class SurveyController extends Controller {
     /**
      * @Route("/admin/changeDevice/delete")
      */
-    public function deleteDeviceRowAction() {
+    public function deleteDeviceRowAction()
+    {
         $request = Request::createFromGlobals();
         $id = $request->request->get('id');
 
@@ -150,7 +249,8 @@ class SurveyController extends Controller {
     /**
      * @Route("/admin/changeUser", name="changeUser")
      */
-    public function changeUserAction() {
+    public function changeUserAction()
+    {
         $em = $this->getDoctrine()->getManager();
         $allUsers = $em
             ->getRepository('AppBundle:Users')
@@ -164,7 +264,8 @@ class SurveyController extends Controller {
     /**
      * @Route("/admin/changeUser/change")
      */
-    public function changeUserRowAction() {
+    public function changeUserRowAction()
+    {
         $request = Request::createFromGlobals();
         $id = $request->request->get('id');
         $username = $request->request->get('username');
@@ -187,7 +288,8 @@ class SurveyController extends Controller {
     /**
      * @Route("/admin/changeUser/delete")
      */
-    public function deleteUserRowAction() {
+    public function deleteUserRowAction()
+    {
         $request = Request::createFromGlobals();
         $id = $request->request->get('id');
 
@@ -203,7 +305,8 @@ class SurveyController extends Controller {
     /**
      * @Route("/admin/addSurvey", name="addSurvey")
      */
-    public function addSurveyAction() {
+    public function addSurveyAction()
+    {
 
         $request = Request::createFromGlobals();
         //add survey
@@ -219,8 +322,8 @@ class SurveyController extends Controller {
 
         //proof if strlen answeroptions are true
         $answerOptionTrue = true;
-        for($i = 0; $i < count($answerOptions[0]); $i++) {
-            if( strlen($answerOptions[0][$i]) <= 0) {
+        for ($i = 0; $i < count($answerOptions[0]); $i++) {
+            if (strlen($answerOptions[0][$i]) <= 0) {
                 $answerOptionTrue = false;
             }
         }
@@ -228,7 +331,8 @@ class SurveyController extends Controller {
 
         if (strlen($question) > 0 && strlen($date_start) > 0 && strlen($date_end) > 0 && strlen($time_start) > 0 &&
             strlen($time_end) > 0 && strlen($status) > 0 && strlen($device) > 0 && strlen($count) > 0 &&
-            $answerOptionTrue == true) {
+            $answerOptionTrue == true
+        ) {
 
             $em = $this->getDoctrine()->getManager();
 
@@ -278,14 +382,15 @@ class SurveyController extends Controller {
     /**
      * @Route("/admin/addDevice", name="addDevice")
      */
-    public function addDeviceAction() {
+    public function addDeviceAction()
+    {
 
         $request = Request::createFromGlobals();
 
         //add devices
         $newDevice = $request->request->get('newdevice');
 
-        if(strlen($newDevice) > 0) {
+        if (strlen($newDevice) > 0) {
             $addNewDevice = new Devices();
 
             $addNewDevice->setConnection($newDevice);
@@ -296,14 +401,14 @@ class SurveyController extends Controller {
 
         }
 
-        return $this->render('AppBundle:Survey:add_device.html.twig', array(
-        ));
+        return $this->render('AppBundle:Survey:add_device.html.twig', array());
     }
 
     /**
      * @Route("/admin/addUser", name="addUser")
      */
-    public function addUserAction() {
+    public function addUserAction()
+    {
 
         $request = Request::createFromGlobals();
 
@@ -312,13 +417,13 @@ class SurveyController extends Controller {
         $newUserPW = $request->request->get('userPW');
         $newUserRole = $request->request->get('newUserRole');
 
-        if(strlen($newUsername) > 0 && strlen($newUserPW) > 0 && strlen($newUserRole) > 0) {
+        if (strlen($newUsername) > 0 && strlen($newUserPW) > 0 && strlen($newUserRole) > 0) {
             $user = new Users();
 
-            if($newUserRole == "Benutzer") {
+            if ($newUserRole == "Benutzer") {
                 $newUserRole = "ROLE_USER";
             }
-            if($newUserRole == "Administrator") {
+            if ($newUserRole == "Administrator") {
                 $newUserRole = "ROLE_ADMIN";
             }
 
@@ -335,14 +440,14 @@ class SurveyController extends Controller {
 
         }
 
-        return $this->render('AppBundle:Survey:add_user.html.twig', array(
-        ));
+        return $this->render('AppBundle:Survey:add_user.html.twig', array());
     }
 
     /**
      * @Route("/admin/statistic", name="statisticSelection")
      */
-    public function statisticSelectionAction() {
+    public function statisticSelectionAction()
+    {
         $em = $this->getDoctrine()->getManager();
         $allSurvey = $em
             ->getRepository('AppBundle:Survey')
@@ -373,7 +478,8 @@ class SurveyController extends Controller {
     /**
      * @Route("/admin/survey/getAnswers/{id}")
      */
-    public function getAnswers($id) {
+    public function getAnswers($id)
+    {
         $survey = $this->getDoctrine()->getRepository('AppBundle:Survey')->find($id);
         $answers = $this->getDoctrine()->getRepository('AppBundle:Answers')->getStatisticsInformations($survey->getId());
 
@@ -385,7 +491,8 @@ class SurveyController extends Controller {
     /**
      * @Route("/admin/statistic/chart")
      */
-    public function statisticChartAction() {
+    public function statisticChartAction()
+    {
 
         return $this->render('AppBundle:Survey:statisticChart.html.twig', array());
 
@@ -394,7 +501,8 @@ class SurveyController extends Controller {
     /**
      * @Route("/admin/statistic/csv/{id}")
      */
-    public function csvAction($id) {
+    public function csvAction($id)
+    {
         $survey = $this->getDoctrine()->getRepository('AppBundle:Survey')->find($id);
         $answers = $this->getDoctrine()->getRepository('AppBundle:Answers')->getStatisticsInformations($survey->getId());
         $answerOption = [];
@@ -423,7 +531,7 @@ class SurveyController extends Controller {
 //        $listAllData = [$question, $aOption, $device, $time];
 
         $filename = 'csv/' . $survey->getId() . '.csv';
-        $filename2 = 'csv/'. $survey->getId() . '-AllData.csv';
+        $filename2 = 'csv/' . $survey->getId() . '-AllData.csv';
 
         $fp = fopen($filename, 'wr');
         foreach ($list as $fields) {
@@ -432,7 +540,7 @@ class SurveyController extends Controller {
 
         $fp2 = fopen($filename2, 'wr');
         fputcsv($fp2, array("Frage", "Antwortoption", "Gerätename", "Zeitpunkt"));
-        for($i = 0; $i < count($question); $i++) {
+        for ($i = 0; $i < count($question); $i++) {
             fputcsv($fp2, array($question[$i], $aOption[$i], $device[$i], $time[$i]));
         }
 //        foreach ($listAllData as $f) {
@@ -441,12 +549,14 @@ class SurveyController extends Controller {
 
         return new JsonResponse(array('path' => $filename, 'path2' => $filename2));
     }
+
     /**
      * generates a random string
      * @param int $length
      * @return string
      */
-    private function generateRandomString($length = null) {
+    private function generateRandomString($length = null)
+    {
         $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
         $charactersLength = strlen($characters);
         $randomString = '';

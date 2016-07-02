@@ -25,7 +25,7 @@ $(document).ready(function () {
         dropdown: true,
         scrollbar: false
     });
-    
+
     $('.button').click(function () {
         clicked = true;
         elem = this;
@@ -87,7 +87,7 @@ $(document).ready(function () {
     });
 
     //delete button clicked in change devices
-    $('.delete-icon-device').click(function() {
+    $('.delete-icon-device').click(function () {
         var table_id = $(this).parents('TR').find('.device-id').text();
         var deleteIcon = this;
         $.ajax({
@@ -103,7 +103,7 @@ $(document).ready(function () {
     });
 
     //delete button clicked in change user
-    $('.delete-icon-user').click(function() {
+    $('.delete-icon-user').click(function () {
         var table_id = $(this).parents('TR').find('.user-id').text();
         var deleteIcon = this;
         $.ajax({
@@ -138,7 +138,7 @@ $(document).ready(function () {
     });
     bindPencil();
     $('.chart-controls .pie-chart').click(function () {
-        if(!$(this).hasClass('active')){
+        if (!$(this).hasClass('active')) {
             $(this).parents('.chart-controls').find('i').removeClass('active');
             $(this).addClass('active');
             myChart.destroy();
@@ -171,7 +171,7 @@ $(document).ready(function () {
         }
     });
     $('.chart-controls .bar-chart').click(function () {
-        if(!$(this).hasClass('active')){
+        if (!$(this).hasClass('active')) {
             $(this).parents('.chart-controls').find('i').removeClass('active');
             $(this).addClass('active');
             myChart.destroy();
@@ -266,91 +266,91 @@ $(document).ready(function () {
 
 function bindPencilEvents() {
     //noChange button clicked in change survey
-    $('.noChange-icon').click(function () {
-        var parentTR = $(this).parents("tr");
-        var parentTD = $(this).parent();
-        var table_question = parentTR.children('td.table-question').find('input');
-        var table_start = parentTR.children('td.table-start').find('input');
-        var table_end = parentTR.children('td.table-end').find('input');
-        var table_timeStart = parentTR.children('td.table-timeStart').find('input');
-        var table_timeEnd = parentTR.children('td.table-timeEnd').find('input');
-        var table_count = parentTR.children('td.table-count').find('input');
-        var table_activity = parentTR.children('td.table-activity').find('input');
-
-        var table_question_oldValue = table_question.val();
-        var table_start_oldValue = table_start.val();
-        var table_end_oldValue = table_end.val();
-        var table_timeStart_oldValue = table_timeStart.val();
-        var table_timeEnd_oldValue = table_timeEnd.val();
-        var table_count_oldValue = table_count.val();
-        var table_activity_oldValue = table_activity.val();
-        $(parentTD).children('a').remove();
-        $(parentTD).html('<a class="info-icon"><i class="fa fa-pencil" aria-hidden="true"></i></a>');
-
-
-        $(table_question.parent()).html(table_question_oldValue);
-        $(table_start.parent()).html(table_start_oldValue);
-        $(table_end.parent()).html(table_end_oldValue);
-        $(table_timeStart.parent()).html(table_timeStart_oldValue);
-        $(table_timeEnd.parent()).html(table_timeEnd_oldValue);
-        $(table_count.parent()).html(table_count_oldValue);
-        $(table_activity.parent()).html(table_activity_oldValue);
-        bindPencil();
-    });
+    // $('.noChange-icon').click(function () {
+    //     var parentTR = $(this).parents("tr");
+    //     var parentTD = $(this).parent();
+    //     var table_question = parentTR.children('td.table-question').find('input');
+    //     var table_start = parentTR.children('td.table-start').find('input');
+    //     var table_end = parentTR.children('td.table-end').find('input');
+    //     var table_timeStart = parentTR.children('td.table-timeStart').find('input');
+    //     var table_timeEnd = parentTR.children('td.table-timeEnd').find('input');
+    //     var table_count = parentTR.children('td.table-count').find('input');
+    //     var table_activity = parentTR.children('td.table-activity').find('input');
+    //
+    //     var table_question_oldValue = table_question.val();
+    //     var table_start_oldValue = table_start.val();
+    //     var table_end_oldValue = table_end.val();
+    //     var table_timeStart_oldValue = table_timeStart.val();
+    //     var table_timeEnd_oldValue = table_timeEnd.val();
+    //     var table_count_oldValue = table_count.val();
+    //     var table_activity_oldValue = table_activity.val();
+    //     $(parentTD).children('a').remove();
+    //     $(parentTD).html('<a class="info-icon"><i class="fa fa-pencil" aria-hidden="true"></i></a>');
+    //
+    //
+    //     $(table_question.parent()).html(table_question_oldValue);
+    //     $(table_start.parent()).html(table_start_oldValue);
+    //     $(table_end.parent()).html(table_end_oldValue);
+    //     $(table_timeStart.parent()).html(table_timeStart_oldValue);
+    //     $(table_timeEnd.parent()).html(table_timeEnd_oldValue);
+    //     $(table_count.parent()).html(table_count_oldValue);
+    //     $(table_activity.parent()).html(table_activity_oldValue);
+    //     bindPencil();
+    // });
 
     //save button clicked in change survey
-    $('.save-icon').click(function () {
-        var table_id = $(this).parents("TR").find('.survey-id').text();
-        var table_question_newValue = $('.table-question').find('input').val();
-        var table_start_newValue = $('.table-start').find('input').val();
-        var table_end_newValue = $('.table-end').find('input').val();
-        var table_timeStart_newValue = $('.table-timeStart').find('input').val();
-        var table_timeEnd_newValue = $('.table-timeEnd').find('input').val();
-        var table_count_newValue = $('.table-count').find('input').val();
-        var table_activity_newValue = $('.table-activity').find('input').val();
-        var elem = this;
-
-        $.ajax({
-            type: "POST",
-            url: "/admin/changeSurvey/change",
-            data: {
-                id: table_id,
-                question: table_question_newValue,
-                date_start: table_start_newValue,
-                date_end: table_end_newValue,
-                time_start: table_timeStart_newValue,
-                time_end: table_timeEnd_newValue,
-                count: table_count_newValue,
-                activity: table_activity_newValue
-            },
-            success: function () {
-                var parentTR = $(elem).parents("tr");
-                var parentTD = $(elem).parent();
-                var table_question = parentTR.children('td.table-question');
-                var table_start = parentTR.children('td.table-start');
-                var table_end = parentTR.children('td.table-end');
-                var table_timeStart = parentTR.children('td.table-timeStart');
-                var table_timeEnd = parentTR.children('td.table-timeEnd');
-                var table_count = parentTR.children('td.table-count');
-                var table_activity = parentTR.children('td.table-activity');
-
-                $(parentTD).children('a').remove();
-                $(parentTD).html('<a class="info-icon"><i class="fa fa-pencil" aria-hidden="true"></i></a>');
-
-                $(table_question).html(table_question_newValue);
-                $(table_start).html(table_start_newValue);
-                $(table_end).html(table_end_newValue);
-                $(table_timeStart).html(table_timeStart_newValue);
-                $(table_timeEnd).html(table_timeEnd_newValue);
-                $(table_count).html(table_count_newValue);
-                $(table_activity).html(table_activity_newValue);
-                bindPencil();
-            }
-        });
-    });
+    // $('.save-icon').click(function () {
+    //     var table_id = $(this).parents("TR").find('.survey-id').text();
+    //     var table_question_newValue = $('.table-question').find('input').val();
+    //     var table_start_newValue = $('.table-start').find('input').val();
+    //     var table_end_newValue = $('.table-end').find('input').val();
+    //     var table_timeStart_newValue = $('.table-timeStart').find('input').val();
+    //     var table_timeEnd_newValue = $('.table-timeEnd').find('input').val();
+    //     var table_count_newValue = $('.table-count').find('input').val();
+    //     var table_activity_newValue = $('.table-activity').find('input').val();
+    //     var elem = this;
+    //
+    //     $.ajax({
+    //         type: "POST",
+    //         url: "/admin/changeSurvey/change",
+    //         data: {
+    //             id: table_id,
+    //             question: table_question_newValue,
+    //             date_start: table_start_newValue,
+    //             date_end: table_end_newValue,
+    //             time_start: table_timeStart_newValue,
+    //             time_end: table_timeEnd_newValue,
+    //             count: table_count_newValue,
+    //             activity: table_activity_newValue
+    //         },
+    //         success: function () {
+    //             var parentTR = $(elem).parents("tr");
+    //             var parentTD = $(elem).parent();
+    //             var table_question = parentTR.children('td.table-question');
+    //             var table_start = parentTR.children('td.table-start');
+    //             var table_end = parentTR.children('td.table-end');
+    //             var table_timeStart = parentTR.children('td.table-timeStart');
+    //             var table_timeEnd = parentTR.children('td.table-timeEnd');
+    //             var table_count = parentTR.children('td.table-count');
+    //             var table_activity = parentTR.children('td.table-activity');
+    //
+    //             $(parentTD).children('a').remove();
+    //             $(parentTD).html('<a class="info-icon"><i class="fa fa-pencil" aria-hidden="true"></i></a>');
+    //
+    //             $(table_question).html(table_question_newValue);
+    //             $(table_start).html(table_start_newValue);
+    //             $(table_end).html(table_end_newValue);
+    //             $(table_timeStart).html(table_timeStart_newValue);
+    //             $(table_timeEnd).html(table_timeEnd_newValue);
+    //             $(table_count).html(table_count_newValue);
+    //             $(table_activity).html(table_activity_newValue);
+    //             bindPencil();
+    //         }
+    //     });
+    // });
 
     //noChange button clicked in change devices
-    $('.noChange-icon-device').click(function() {
+    $('.noChange-icon-device').click(function () {
         var parentTR = $(this).parents("tr");
         var parentTD = $(this).parent();
 
@@ -366,7 +366,7 @@ function bindPencilEvents() {
     });
 
     //save button clicked in change devices
-    $('.save-icon-device').click(function() {
+    $('.save-icon-device').click(function () {
         var table_id = $(this).parents('TR').find('.device-id').text();
         var table_device_newValue = $('.table-device').find('input').val();
         var elem = this;
@@ -393,7 +393,7 @@ function bindPencilEvents() {
     });
 
     //noChange button clicked in change user
-    $('.noChange-icon-user').click(function() {
+    $('.noChange-icon-user').click(function () {
         var parentTR = $(this).parents("tr");
         var parentTD = $(this).parent();
 
@@ -412,7 +412,7 @@ function bindPencilEvents() {
     });
 
     //save button clicked in change users
-    $('.save-icon-user').click(function() {
+    $('.save-icon-user').click(function () {
         var table_id = $(this).parents('TR').find('.user-id').text();
         var table_username_newValue = $('.table-username').find('input').val();
         var table_role_newValue = $('.table-role').find('input').val();
@@ -442,41 +442,178 @@ function bindPencilEvents() {
         });
     });
 }
-function bindPencil() {
-    //change survey
-    $('.info-icon').click(function () {
-        var parentTR = $(this).parents("tr");
-        var parentTD = $(this).parent();
-        var table_question = parentTR.children('td.table-question');
-        var table_start = parentTR.children('td.table-start');
-        var table_end = parentTR.children('td.table-end');
-        var table_timeStart = parentTR.children('td.table-timeStart');
-        var table_timeEnd = parentTR.children('td.table-timeEnd');
-        var table_count = parentTR.children('td.table-count');
-        var table_activity = parentTR.children('td.table-activity');
+//change survey
+$('.info-icon').click(function () {
 
-        var table_question_oldValue = table_question.text();
-        var table_start_oldValue = table_start.text();
-        var table_end_oldValue = table_end.text();
-        var table_timeStart_oldValue = table_timeStart.text();
-        var table_timeEnd_oldValue = table_timeEnd.text();
-        var table_count_oldValue = table_count.text();
-        var table_activity_oldValue = table_activity.text();
-        var NOT_table_activity_oldValue;
-        if(table_activity_oldValue == "Aktiv") {
-            NOT_table_activity_oldValue = "Inaktiv";
-        } else {
-            NOT_table_activity_oldValue = "Aktiv";
+    $('#changeSurvey-modal').openModal();
+
+    var parentTR = $(this).parents("tr");
+    var parentTD = $(this).parent();
+    var table_question = parentTR.children('td.table-question');
+    var table_start = parentTR.children('td.table-start');
+    var table_end = parentTR.children('td.table-end');
+    var table_timeStart = parentTR.children('td.table-timeStart');
+    var table_timeEnd = parentTR.children('td.table-timeEnd');
+    var table_count = parentTR.children('td.table-count');
+    var table_activity = parentTR.children('td.table-activity');
+    var table_devicesId = parentTR.children('td.survey-devicesId')
+
+    var table_question_oldValue = table_question.text();
+    var table_start_oldValue = table_start.text();
+    var table_end_oldValue = table_end.text();
+    var table_timeStart_oldValue = table_timeStart.text();
+    var table_timeEnd_oldValue = table_timeEnd.text();
+    var table_count_oldValue = table_count.text();
+    var table_activity_oldValue = table_activity.text();
+    var NOT_table_activity_oldValue;
+    if (table_activity_oldValue == "Aktiv") {
+        NOT_table_activity_oldValue = "Inaktiv";
+    } else {
+        NOT_table_activity_oldValue = "Aktiv";
+    }
+    var buttonCount = [];
+    switch (table_count_oldValue) {
+        case "2":
+            buttonCount[0] = "2";
+            buttonCount[1] = "3";
+            buttonCount[2] = "4";
+            buttonCount[3] = "5";
+            break;
+        case "3":
+            buttonCount[0] = "3";
+            buttonCount[1] = "2";
+            buttonCount[2] = "4";
+            buttonCount[3] = "5";
+            break;
+        case "4":
+            buttonCount[0] = "4";
+            buttonCount[1] = "2";
+            buttonCount[2] = "3";
+            buttonCount[3] = "5";
+            break;
+        case "5":
+            buttonCount[0] = "5";
+            buttonCount[1] = "2";
+            buttonCount[2] = "3";
+            buttonCount[3] = "4";
+            break;
+    }
+
+    $('.modal-question').val(table_question_oldValue);
+    $('.modal-start').val(table_start_oldValue);
+    $('.modal-end').val(table_end_oldValue);
+    $('.modal-timeStart').val(table_timeStart_oldValue);
+    $('.modal-timeEnd').val(table_timeEnd_oldValue);
+    $('.modal-status').html('<select><option>' + table_activity_oldValue + '</option><option>' + NOT_table_activity_oldValue + '</option></select>');
+    $('.modal-buttonCount').html('<select><option>' + buttonCount[0] + '</option><option>' + buttonCount[1] + '</option><option>' + buttonCount[2] + '</option><option>' + buttonCount[3] + '</option></select>');
+    $("input[class=options]").remove();
+    var quantity = $(".modal-buttonCount option:selected").text();
+    for (var i = 1; i <= quantity; i++) {
+        $('.modal-answerOption').append('<input type="text" name="answerOptions[]" class="options" placeholder="Antwortmöglichkeiten"/>');
+    }
+    $('.modal-buttonCount').change(function () {
+        $("input[class=options]").remove();
+        var quantity = $(".modal-buttonCount option:selected").text();
+        for (var i = 1; i <= quantity; i++) {
+            $('.modal-answerOption').append('<input type="text" name="answerOptions[]" class="options" placeholder="Antwortmöglichkeiten"/>');
         }
+    });
 
-        $(table_question).html('<input class="table-question" name="table-question" value="' + table_question_oldValue + '" />');
-        $(table_start).html('<input class="table-start date" type="text" name="table-start" value="' + table_start_oldValue + '" />');
-        $(table_end).html('<input class="table-end date" type="text" name="table-end" value="' + table_end_oldValue + '" />');
-        $(table_timeStart).html('<input class="time" type="text" name="table-timeStart" value="' + table_timeStart_oldValue + '" />');
-        $(table_timeEnd).html('<input class="time" type="text" name="table-timeEnd" value="' + table_timeEnd_oldValue + '" />');
-        $(table_count).html('<input class="table-count" name="table-count" value="' + table_count_oldValue + '" />');
-        // $(table_activity).html('<input class="table-activity" name="table-activity" value="' + table_activity_oldValue + '" />');
-        $(table_activity).html('<select><option>'+ table_activity_oldValue +'</option><option>'+ NOT_table_activity_oldValue +'</option></select>');
+    //get devices
+    var devicesId_oldValue = table_devicesId.text();
+    $.ajax({
+        type: "POST",
+        url: "/admin/change/getDevices",
+        data: {
+            deviceId: devicesId_oldValue
+        },
+        success: function (data) {
+            var device = data.devices;
+            var htmlOutputDevices;
+            htmlOutputDevices = "<select><option>Alle Geräte</option>";
+            for (i = 0; i < device.length; i++) {
+                htmlOutputDevices = htmlOutputDevices + "<option>" + device[i]['connection'] + "</option>";
+            }
+            htmlOutputDevices = htmlOutputDevices + "</select>";
+            $('.modal-device').html(htmlOutputDevices);
+            // $('.modal-device').html('<select><option>Testgerät</option></select>')
+            // console.log(htmlOutputDevices);
+            $('select').material_select();
+        }
+    });
+
+    //get answerOptions
+    var surveyId = $(this).parents("TR").find('.survey-id').text();
+    $.ajax({
+        type: "POST",
+        url: "/admin/change/getAnswerOptions",
+        data: {
+            answerOption_surveyId: surveyId
+        },
+        success: function (data) {
+            var answerOptions = data.answerOptions;
+            // console.log(answerOptions);
+
+            $('.options').each(function (i) {
+                $(this).val(answerOptions[i]['answerOption']);
+            });
+        }
+    });
+
+
+    //if save button is clicked
+    $('.save-icon').click(function () {
+        var table_id = surveyId;
+        var table_question_newValue = $('.modal-question').val();
+        var table_start_newValue = $('.modal-start').val();
+        var table_end_newValue = $('.modal-end').val();
+        var table_timeStart_newValue = $('.modal-timeStart').val();
+        var table_timeEnd_newValue = $('.modal-timeEnd').val();
+        var table_status_newValue = $('.modal-status option:selected').val();
+        var table_device_newValue = $('.modal-device option:selected').val();
+        var table_count_newValue = $('.modal-buttonCount option:selected').val();
+        var table_answerOptions_newValue = $('.options').serializeArray();
+        // table_answerOptions_newValue = table_answerOptions_newValue.value;
+        // console.log(table_id);
+        // console.log(table_answerOptions_newValue);
+        // console.log(table_question_newValue);
+        var elem = this;
+
+        $.ajax({
+            type: "POST",
+            url: "/admin/changeSurvey/change",
+            data: {
+                id: table_id,
+                question: table_question_newValue,
+                date_start: table_start_newValue,
+                date_end: table_end_newValue,
+                time_start: table_timeStart_newValue,
+                time_end: table_timeEnd_newValue,
+                status: table_status_newValue,
+                device: table_device_newValue,
+                count: table_count_newValue,
+                answerOptions: table_answerOptions_newValue
+            },
+            success: function () {
+                $(table_question).html(table_question_newValue);
+                $(table_start).html(table_start_newValue);
+                $(table_end).html(table_end_newValue);
+                $(table_timeStart).html(table_timeStart_newValue);
+                $(table_timeEnd).html(table_timeEnd_newValue);
+                $(table_count).html(table_count_newValue);
+                $(table_activity).html(table_status_newValue);
+                $('#changeSurvey-modal').closeModal();
+            }
+        });
+
+        // $(table_question).html('<input class="table-question" name="table-question" value="' + table_question_oldValue + '" />');
+        // $(table_start).html('<input class="table-start date" type="text" name="table-start" value="' + table_start_oldValue + '" />');
+        // $(table_end).html('<input class="table-end date" type="text" name="table-end" value="' + table_end_oldValue + '" />');
+        // $(table_timeStart).html('<input class="time" type="text" name="table-timeStart" value="' + table_timeStart_oldValue + '" />');
+        // $(table_timeEnd).html('<input class="time" type="text" name="table-timeEnd" value="' + table_timeEnd_oldValue + '" />');
+        // $(table_count).html('<input class="table-count" name="table-count" value="' + table_count_oldValue + '" />');
+        // // $(table_activity).html('<input class="table-activity" name="table-activity" value="' + table_activity_oldValue + '" />');
+        // $(table_activity).html('<select><option>'+ table_activity_oldValue +'</option><option>'+ NOT_table_activity_oldValue +'</option></select>');
 
         $('.date').datepicker({
             dateFormat: "yy-mm-dd"
@@ -495,14 +632,14 @@ function bindPencil() {
         $('select').material_select();
 
         //remove pencil icon
-        $(this).remove();
-        $(parentTD).html('<a class="save-icon"><i class="fa fa-check" aria-hidden="true"></i></a>' +
-            '<a class="noChange-icon"><i class="fa fa-times" aria-hidden="true"></i></a>');
-        bindPencilEvents();
+        // $(this).remove();
+        // $(parentTD).html('<a class="save-icon"><i class="fa fa-check" aria-hidden="true"></i></a>' +
+        //     '<a class="noChange-icon"><i class="fa fa-times" aria-hidden="true"></i></a>');
+        // bindPencilEvents();
     });
 
     //change device
-    $('.info-icon-device').click(function() {
+    $('.info-icon-device').click(function () {
         console.log('info icon device clicked');
         var parentTR = $(this).parents("tr");
         var parentTD = $(this).parent();
@@ -519,7 +656,7 @@ function bindPencil() {
     });
 
     //change user
-    $('.info-icon-user').click(function() {
+    $('.info-icon-user').click(function () {
         var parentTR = $(this).parents("tr");
         var parentTD = $(this).parent();
         var table_username = parentTR.children('td.table-username');
@@ -528,7 +665,7 @@ function bindPencil() {
         var table_username_oldValue = table_username.text();
         var table_role_oldValue = table_role.text();
         var NOT_table_role_oldValue;
-        if(table_role_oldValue == "ROLE_ADMIN") {
+        if (table_role_oldValue == "ROLE_ADMIN") {
             NOT_table_role_oldValue = "ROLE_USER";
         } else {
             NOT_table_role_oldValue = "ROLE_ADMIN";
@@ -536,7 +673,7 @@ function bindPencil() {
 
         $(table_username).html('<input class="table-username" name="table-username" value="' + table_username_oldValue + '" />');
         // $(table_role).html('<input class="table-role" name="table-role" value="' + table_role_oldValue + '" />');
-        $(table_role).html('<select><option>'+ table_role_oldValue +'</option><option>'+ NOT_table_role_oldValue +'</option></select>');
+        $(table_role).html('<select><option>' + table_role_oldValue + '</option><option>' + NOT_table_role_oldValue + '</option></select>');
 
         $('select').material_select();
 
@@ -545,4 +682,4 @@ function bindPencil() {
             '<a class="noChange-icon-user"><i class="fa fa-times" aria-hidden="true"></i></a>');
         bindPencilEvents();
     });
-}
+});

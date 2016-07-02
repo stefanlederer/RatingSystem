@@ -646,49 +646,76 @@ $('.info-icon').click(function () {
         //     '<a class="noChange-icon"><i class="fa fa-times" aria-hidden="true"></i></a>');
         // bindPencilEvents();
     });
+});
+//change device
+$('.info-icon-device').click(function () {
+    $('#changeDevice-modal').openModal();
+    var parentTR = $(this).parents("tr");
+    var elem = $(this).parent();
+    var table_device = parentTR.children('td.table-device');
+    var table_deviceId = parentTR.children('td.device-id');
 
-    //change device
-    $('.info-icon-device').click(function () {
-        console.log('info icon device clicked');
-        var parentTR = $(this).parents("tr");
-        var parentTD = $(this).parent();
-        var table_device = parentTR.children('td.table-device');
+    var table_deviceId_oldValue = table_deviceId.text();
+    var table_device_oldValue = table_device.text();
 
-        var table_device_oldValue = table_device.text();
+    // $(table_device).html('<input class="table-device" name="table-device" value="' + table_device_oldValue + '" />');
+    $('.modal-deviceId').val(table_deviceId_oldValue);
+    $('.modal-device').val(table_device_oldValue);
+    // $(this).remove();
+    // $(parentTD).html('<a class="save-icon-device"><i class="fa fa-check" aria-hidden="true"></i></a>' +
+    //     '<a class="noChange-icon-device"><i class="fa fa-times" aria-hidden="true"></i></a>');
+    // bindPencilEvents();
+    $('.save-icon-device').click(function () {
+        var table_id = $('.modal-deviceId').val();
+        var table_device_newValue = $('.modal-device').val();
 
-        $(table_device).html('<input class="table-device" name="table-device" value="' + table_device_oldValue + '" />');
+        $.ajax({
+            type: "POST",
+            url: "/admin/changeDevice/change",
+            data: {
+                id: table_id,
+                device: table_device_newValue
+            },
+            success: function () {
+                var parentTR = $(elem).parents("tr");
+                var parentTD = elem;
+                var table_device = parentTR.children('td.table-device');
 
-        $(this).remove();
-        $(parentTD).html('<a class="save-icon-device"><i class="fa fa-check" aria-hidden="true"></i></a>' +
-            '<a class="noChange-icon-device"><i class="fa fa-times" aria-hidden="true"></i></a>');
-        bindPencilEvents();
+                // $(parentTD).children('a').remove();
+                // $(parentTD).html('<a class="info-icon-device"><i class="fa fa-pencil" aria-hidden="true"></i></a>');
+
+                $(table_device).html(table_device_newValue);
+                $('#changeDevice-modal').closeModal();
+                // bindPencil();
+            }
+        });
     });
+});
 
-    //change user
-    $('.info-icon-user').click(function () {
-        var parentTR = $(this).parents("tr");
-        var parentTD = $(this).parent();
-        var table_username = parentTR.children('td.table-username');
-        var table_role = parentTR.children('td.table-role');
+//change user
+$('.info-icon-user').click(function () {
+    var parentTR = $(this).parents("tr");
+    var parentTD = $(this).parent();
+    var table_username = parentTR.children('td.table-username');
+    var table_role = parentTR.children('td.table-role');
 
-        var table_username_oldValue = table_username.text();
-        var table_role_oldValue = table_role.text();
-        var NOT_table_role_oldValue;
-        if (table_role_oldValue == "ROLE_ADMIN") {
-            NOT_table_role_oldValue = "ROLE_USER";
-        } else {
-            NOT_table_role_oldValue = "ROLE_ADMIN";
-        }
+    var table_username_oldValue = table_username.text();
+    var table_role_oldValue = table_role.text();
+    var NOT_table_role_oldValue;
+    if (table_role_oldValue == "ROLE_ADMIN") {
+        NOT_table_role_oldValue = "ROLE_USER";
+    } else {
+        NOT_table_role_oldValue = "ROLE_ADMIN";
+    }
 
-        $(table_username).html('<input class="table-username" name="table-username" value="' + table_username_oldValue + '" />');
-        // $(table_role).html('<input class="table-role" name="table-role" value="' + table_role_oldValue + '" />');
-        $(table_role).html('<select><option>' + table_role_oldValue + '</option><option>' + NOT_table_role_oldValue + '</option></select>');
+    $(table_username).html('<input class="table-username" name="table-username" value="' + table_username_oldValue + '" />');
+    // $(table_role).html('<input class="table-role" name="table-role" value="' + table_role_oldValue + '" />');
+    $(table_role).html('<select><option>' + table_role_oldValue + '</option><option>' + NOT_table_role_oldValue + '</option></select>');
 
-        $('select').material_select();
+    $('select').material_select();
 
-        $(this).remove();
-        $(parentTD).html('<a class="save-icon-user"><i class="fa fa-check" aria-hidden="true"></i></a>' +
-            '<a class="noChange-icon-user"><i class="fa fa-times" aria-hidden="true"></i></a>');
-        bindPencilEvents();
-    });
+    $(this).remove();
+    $(parentTD).html('<a class="save-icon-user"><i class="fa fa-check" aria-hidden="true"></i></a>' +
+        '<a class="noChange-icon-user"><i class="fa fa-times" aria-hidden="true"></i></a>');
+    bindPencilEvents();
 });

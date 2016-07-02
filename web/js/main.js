@@ -447,8 +447,10 @@ $('.info-icon').click(function () {
 
     $('#changeSurvey-modal').openModal();
 
+    var surveyId = $(this).parents("TR").find('.survey-id').text();
+
     var parentTR = $(this).parents("tr");
-    var parentTD = $(this).parent();
+    var elem = $(this).parent();
     var table_question = parentTR.children('td.table-question');
     var table_start = parentTR.children('td.table-start');
     var table_end = parentTR.children('td.table-end');
@@ -498,7 +500,7 @@ $('.info-icon').click(function () {
             buttonCount[3] = "4";
             break;
     }
-
+    $('.modal-surveyId').val(surveyId);
     $('.modal-question').val(table_question_oldValue);
     $('.modal-start').val(table_start_oldValue);
     $('.modal-end').val(table_end_oldValue);
@@ -543,7 +545,7 @@ $('.info-icon').click(function () {
     });
 
     //get answerOptions
-    var surveyId = $(this).parents("TR").find('.survey-id').text();
+    // var surveyId = $(this).parents("TR").find('.survey-id').text();
     $.ajax({
         type: "POST",
         url: "/admin/change/getAnswerOptions",
@@ -563,7 +565,7 @@ $('.info-icon').click(function () {
 
     //if save button is clicked
     $('.save-icon').click(function () {
-        var table_id = surveyId;
+        var table_id = $('.modal-surveyId').val();
         var table_question_newValue = $('.modal-question').val();
         var table_start_newValue = $('.modal-start').val();
         var table_end_newValue = $('.modal-end').val();
@@ -577,7 +579,6 @@ $('.info-icon').click(function () {
         // console.log(table_id);
         // console.log(table_answerOptions_newValue);
         // console.log(table_question_newValue);
-        var elem = this;
 
         $.ajax({
             type: "POST",

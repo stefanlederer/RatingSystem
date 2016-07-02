@@ -72,17 +72,20 @@ $(document).ready(function () {
 
     //delete button clicked in change survey
     $('.delete-icon').click(function () {
+        $('#deleteSurvey-modal').openModal();
         var table_id = $(this).parents('TR').find('.survey-id').text();
         var deleteIcon = this;
-        $.ajax({
-            type: "POST",
-            url: "/admin/changeSurvey/delete",
-            data: {
-                id: table_id
-            },
-            success: function () {
-                $(deleteIcon).parents('tr').remove();
-            }
+        $('#absoluteDeleteButton').click(function () {
+            $.ajax({
+                type: "POST",
+                url: "/admin/changeSurvey/delete",
+                data: {
+                    id: table_id
+                },
+                success: function () {
+                    $(deleteIcon).parents('tr').remove();
+                }
+            });
         });
     });
 
@@ -265,89 +268,89 @@ $(document).ready(function () {
 });
 
 // function bindPencilEvents() {
-    //noChange button clicked in change survey
-    // $('.noChange-icon').click(function () {
-    //     var parentTR = $(this).parents("tr");
-    //     var parentTD = $(this).parent();
-    //     var table_question = parentTR.children('td.table-question').find('input');
-    //     var table_start = parentTR.children('td.table-start').find('input');
-    //     var table_end = parentTR.children('td.table-end').find('input');
-    //     var table_timeStart = parentTR.children('td.table-timeStart').find('input');
-    //     var table_timeEnd = parentTR.children('td.table-timeEnd').find('input');
-    //     var table_count = parentTR.children('td.table-count').find('input');
-    //     var table_activity = parentTR.children('td.table-activity').find('input');
-    //
-    //     var table_question_oldValue = table_question.val();
-    //     var table_start_oldValue = table_start.val();
-    //     var table_end_oldValue = table_end.val();
-    //     var table_timeStart_oldValue = table_timeStart.val();
-    //     var table_timeEnd_oldValue = table_timeEnd.val();
-    //     var table_count_oldValue = table_count.val();
-    //     var table_activity_oldValue = table_activity.val();
-    //     $(parentTD).children('a').remove();
-    //     $(parentTD).html('<a class="info-icon"><i class="fa fa-pencil" aria-hidden="true"></i></a>');
-    //
-    //
-    //     $(table_question.parent()).html(table_question_oldValue);
-    //     $(table_start.parent()).html(table_start_oldValue);
-    //     $(table_end.parent()).html(table_end_oldValue);
-    //     $(table_timeStart.parent()).html(table_timeStart_oldValue);
-    //     $(table_timeEnd.parent()).html(table_timeEnd_oldValue);
-    //     $(table_count.parent()).html(table_count_oldValue);
-    //     $(table_activity.parent()).html(table_activity_oldValue);
-    //     bindPencil();
-    // });
+//noChange button clicked in change survey
+// $('.noChange-icon').click(function () {
+//     var parentTR = $(this).parents("tr");
+//     var parentTD = $(this).parent();
+//     var table_question = parentTR.children('td.table-question').find('input');
+//     var table_start = parentTR.children('td.table-start').find('input');
+//     var table_end = parentTR.children('td.table-end').find('input');
+//     var table_timeStart = parentTR.children('td.table-timeStart').find('input');
+//     var table_timeEnd = parentTR.children('td.table-timeEnd').find('input');
+//     var table_count = parentTR.children('td.table-count').find('input');
+//     var table_activity = parentTR.children('td.table-activity').find('input');
+//
+//     var table_question_oldValue = table_question.val();
+//     var table_start_oldValue = table_start.val();
+//     var table_end_oldValue = table_end.val();
+//     var table_timeStart_oldValue = table_timeStart.val();
+//     var table_timeEnd_oldValue = table_timeEnd.val();
+//     var table_count_oldValue = table_count.val();
+//     var table_activity_oldValue = table_activity.val();
+//     $(parentTD).children('a').remove();
+//     $(parentTD).html('<a class="info-icon"><i class="fa fa-pencil" aria-hidden="true"></i></a>');
+//
+//
+//     $(table_question.parent()).html(table_question_oldValue);
+//     $(table_start.parent()).html(table_start_oldValue);
+//     $(table_end.parent()).html(table_end_oldValue);
+//     $(table_timeStart.parent()).html(table_timeStart_oldValue);
+//     $(table_timeEnd.parent()).html(table_timeEnd_oldValue);
+//     $(table_count.parent()).html(table_count_oldValue);
+//     $(table_activity.parent()).html(table_activity_oldValue);
+//     bindPencil();
+// });
 
-    //save button clicked in change survey
-    // $('.save-icon').click(function () {
-    //     var table_id = $(this).parents("TR").find('.survey-id').text();
-    //     var table_question_newValue = $('.table-question').find('input').val();
-    //     var table_start_newValue = $('.table-start').find('input').val();
-    //     var table_end_newValue = $('.table-end').find('input').val();
-    //     var table_timeStart_newValue = $('.table-timeStart').find('input').val();
-    //     var table_timeEnd_newValue = $('.table-timeEnd').find('input').val();
-    //     var table_count_newValue = $('.table-count').find('input').val();
-    //     var table_activity_newValue = $('.table-activity').find('input').val();
-    //     var elem = this;
-    //
-    //     $.ajax({
-    //         type: "POST",
-    //         url: "/admin/changeSurvey/change",
-    //         data: {
-    //             id: table_id,
-    //             question: table_question_newValue,
-    //             date_start: table_start_newValue,
-    //             date_end: table_end_newValue,
-    //             time_start: table_timeStart_newValue,
-    //             time_end: table_timeEnd_newValue,
-    //             count: table_count_newValue,
-    //             activity: table_activity_newValue
-    //         },
-    //         success: function () {
-    //             var parentTR = $(elem).parents("tr");
-    //             var parentTD = $(elem).parent();
-    //             var table_question = parentTR.children('td.table-question');
-    //             var table_start = parentTR.children('td.table-start');
-    //             var table_end = parentTR.children('td.table-end');
-    //             var table_timeStart = parentTR.children('td.table-timeStart');
-    //             var table_timeEnd = parentTR.children('td.table-timeEnd');
-    //             var table_count = parentTR.children('td.table-count');
-    //             var table_activity = parentTR.children('td.table-activity');
-    //
-    //             $(parentTD).children('a').remove();
-    //             $(parentTD).html('<a class="info-icon"><i class="fa fa-pencil" aria-hidden="true"></i></a>');
-    //
-    //             $(table_question).html(table_question_newValue);
-    //             $(table_start).html(table_start_newValue);
-    //             $(table_end).html(table_end_newValue);
-    //             $(table_timeStart).html(table_timeStart_newValue);
-    //             $(table_timeEnd).html(table_timeEnd_newValue);
-    //             $(table_count).html(table_count_newValue);
-    //             $(table_activity).html(table_activity_newValue);
-    //             bindPencil();
-    //         }
-    //     });
-    // });
+//save button clicked in change survey
+// $('.save-icon').click(function () {
+//     var table_id = $(this).parents("TR").find('.survey-id').text();
+//     var table_question_newValue = $('.table-question').find('input').val();
+//     var table_start_newValue = $('.table-start').find('input').val();
+//     var table_end_newValue = $('.table-end').find('input').val();
+//     var table_timeStart_newValue = $('.table-timeStart').find('input').val();
+//     var table_timeEnd_newValue = $('.table-timeEnd').find('input').val();
+//     var table_count_newValue = $('.table-count').find('input').val();
+//     var table_activity_newValue = $('.table-activity').find('input').val();
+//     var elem = this;
+//
+//     $.ajax({
+//         type: "POST",
+//         url: "/admin/changeSurvey/change",
+//         data: {
+//             id: table_id,
+//             question: table_question_newValue,
+//             date_start: table_start_newValue,
+//             date_end: table_end_newValue,
+//             time_start: table_timeStart_newValue,
+//             time_end: table_timeEnd_newValue,
+//             count: table_count_newValue,
+//             activity: table_activity_newValue
+//         },
+//         success: function () {
+//             var parentTR = $(elem).parents("tr");
+//             var parentTD = $(elem).parent();
+//             var table_question = parentTR.children('td.table-question');
+//             var table_start = parentTR.children('td.table-start');
+//             var table_end = parentTR.children('td.table-end');
+//             var table_timeStart = parentTR.children('td.table-timeStart');
+//             var table_timeEnd = parentTR.children('td.table-timeEnd');
+//             var table_count = parentTR.children('td.table-count');
+//             var table_activity = parentTR.children('td.table-activity');
+//
+//             $(parentTD).children('a').remove();
+//             $(parentTD).html('<a class="info-icon"><i class="fa fa-pencil" aria-hidden="true"></i></a>');
+//
+//             $(table_question).html(table_question_newValue);
+//             $(table_start).html(table_start_newValue);
+//             $(table_end).html(table_end_newValue);
+//             $(table_timeStart).html(table_timeStart_newValue);
+//             $(table_timeEnd).html(table_timeEnd_newValue);
+//             $(table_count).html(table_count_newValue);
+//             $(table_activity).html(table_activity_newValue);
+//             bindPencil();
+//         }
+//     });
+// });
 
 //     //noChange button clicked in change devices
 //     $('.noChange-icon-device').click(function () {

@@ -354,6 +354,14 @@ table input {
 #changeSurvey-modal {
     z-index: 20000 !important;
 }
+#deleteSurvey-modal {
+    z-index: 20000 !important;
+}
+p.absolutDelete {
+    font-size: 30px;
+    text-align: center;
+    font-weight: bold;
+}
 #changeDevice-modal {
     z-index: 20000 !important;
 }

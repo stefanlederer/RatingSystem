@@ -595,12 +595,20 @@ $('.info-icon').click(function () {
                 answerOptions: table_answerOptions_newValue
             },
             success: function () {
+                var parentTR = $(elem).parents("tr");
+                var table_question = parentTR.children('td.table-question');
                 $(table_question).html(table_question_newValue);
+                var table_start = parentTR.children('td.table-start');
                 $(table_start).html(table_start_newValue);
+                var table_end = parentTR.children('td.table-end');
                 $(table_end).html(table_end_newValue);
+                var table_timeStart = parentTR.children('td.table-timeStart');
                 $(table_timeStart).html(table_timeStart_newValue);
+                var table_timeEnd = parentTR.children('td.table-timeEnd');
                 $(table_timeEnd).html(table_timeEnd_newValue);
+                var table_count = parentTR.children('td.table-count');
                 $(table_count).html(table_count_newValue);
+                var table_activity = parentTR.children('td.table-activity');
                 $(table_activity).html(table_status_newValue);
                 $('#changeSurvey-modal').closeModal();
             }

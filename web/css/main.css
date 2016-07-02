@@ -354,6 +354,9 @@ table input {
 #changeSurvey-modal {
     z-index: 20000 !important;
 }
+#changeDevice-modal {
+    z-index: 20000 !important;
+}
 div.modal-content {
     margin-left: 80px;
     margin-right: 80px;

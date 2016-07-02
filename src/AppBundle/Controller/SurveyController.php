@@ -145,10 +145,21 @@ class SurveyController extends Controller
                 ->getRepository('AppBundle:Answers')
                 ->getAnswerIds($survey_id);
 
-            for ($i = 0; $i < count($answerIds); $i++) {
+            $answerIds = $this->getDoctrine()->getRepository('AppBundle:Answers')->getAnswerIds($survey_id);
+
+            for($i = 0; $i < count($answerIds); $i++) {
+
                 $answer = $this->getDoctrine()->getRepository('AppBundle:Answers')->find($answerIds[$i]['id']);
-                $answer->setAnswerOption($answerOption[$i]['value']);
-                $em->persist($answer);
+
+                $em->remove($answer);
+                $em->flush();
+            }
+
+            for ($i = 0; $i < count($answerOption); $i++) {
+                $answers = new Answers();
+                $answers->setSurveyId($survey_id);
+                $answers->setAnswerOption($answerOption[$i]['value']);
+                $em->persist($answers);
                 $em->flush();
             }
 

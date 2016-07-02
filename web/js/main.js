@@ -91,18 +91,21 @@ $(document).ready(function () {
 
     //delete button clicked in change devices
     $('.delete-icon-device').click(function () {
+        $('#deleteDevice-modal').openModal();
         var table_id = $(this).parents('TR').find('.device-id').text();
         var deleteIcon = this;
-        $.ajax({
-            type: "POST",
-            url: "/admin/changeDevice/delete",
-            data: {
-                id: table_id
-            },
-            success: function () {
-                $(deleteIcon).parents('tr').remove();
-            }
-        })
+        $('#absoluteDeleteButton').click(function () {
+            $.ajax({
+                type: "POST",
+                url: "/admin/changeDevice/delete",
+                data: {
+                    id: table_id
+                },
+                success: function () {
+                    $(deleteIcon).parents('tr').remove();
+                }
+            });
+        });
     });
 
     //delete button clicked in change user

@@ -365,6 +365,9 @@ p.absolutDelete {
 #changeDevice-modal {
     z-index: 20000 !important;
 }
+#deleteDevice-modal {
+    z-index: 20000 !important;
+}
 #changeUser-modal {
     z-index: 20000 !important;
 }

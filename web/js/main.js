@@ -41,7 +41,7 @@ $(document).ready(function () {
             setTimeout(function () {
                 $('.button').fadeTo("slow", 1);
                 $('.button').prop("disabled", false);
-            }, 700);
+            }, 400);
 
             var buttontype = $(elem).val();
             console.log(buttontype);

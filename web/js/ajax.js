@@ -17,7 +17,7 @@ $(document).ready(function () {
     // }
     setTimeout(function(){
         location = '/'
-    },10000);
+    },900000);
 });
 // $.post("/");
 //     type: "GET",

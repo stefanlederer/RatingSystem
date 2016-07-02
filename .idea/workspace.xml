@@ -3,10 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="84777d70-628d-40b0-8c42-874255ae0ad0" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Resources/views/Survey/change_user.html.twig" afterPath="$PROJECT_DIR$/src/AppBundle/Resources/views/Survey/change_user.html.twig" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/css/Roboto Mono/LICENSE.txt" afterPath="$PROJECT_DIR$/web/css/Roboto Mono/LICENSE.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/css/main.css" afterPath="$PROJECT_DIR$/web/css/main.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/main.js" afterPath="$PROJECT_DIR$/web/js/main.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/ajax.js" afterPath="$PROJECT_DIR$/web/js/ajax.js" />
     </list>
     <ignored path="Bosch.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -54,11 +52,21 @@
       </split-first>
       <split-second>
         <leaf>
-          <file leaf-file-name="main.css" pinned="false" current-in-tab="true">
+          <file leaf-file-name="main.css" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/web/css/main.css">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="420">
                   <caret line="374" column="30" selection-start-line="374" selection-start-column="30" selection-end-line="374" selection-end-column="30" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="ajax.js" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/web/js/ajax.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="342">
+                  <caret line="19" column="8" selection-start-line="19" selection-start-column="8" selection-end-line="19" selection-end-column="8" />
                   <folding />
                 </state>
               </provider>
@@ -131,7 +139,6 @@
         <option value="$PROJECT_DIR$/src/AppBundle/Resources/views/Survey/add_survey.html.twig" />
         <option value="$PROJECT_DIR$/src/AppBundle/Resources/views/Survey/add_user.html.twig" />
         <option value="$PROJECT_DIR$/src/AppBundle/Resources/views/Survey/add_device.html.twig" />
-        <option value="$PROJECT_DIR$/web/js/ajax.js" />
         <option value="$PROJECT_DIR$/app/Resources/views/base.html.twig" />
         <option value="$PROJECT_DIR$/src/AppBundle/Resources/views/Bewertung/bewertung.html.twig" />
         <option value="$PROJECT_DIR$/app/config/security.yml" />
@@ -143,6 +150,7 @@
         <option value="$PROJECT_DIR$/src/AppBundle/Resources/views/Survey/change_user.html.twig" />
         <option value="$PROJECT_DIR$/web/js/main.js" />
         <option value="$PROJECT_DIR$/web/css/main.css" />
+        <option value="$PROJECT_DIR$/web/js/ajax.js" />
       </list>
     </option>
   </component>
@@ -723,14 +731,7 @@
       <workItem from="1467110746577" duration="3817000" />
       <workItem from="1467179863605" duration="12089000" />
       <workItem from="1467401446366" duration="6359000" />
-      <workItem from="1467450521436" duration="24575000" />
-    </task>
-    <task id="LOCAL-00028" summary="[FE] added button fadeIn / Out (buttonClick.js)">
-      <created>1458645467223</created>
-      <option name="number" value="00028" />
-      <option name="presentableId" value="LOCAL-00028" />
-      <option name="project" value="LOCAL" />
-      <updated>1458645467223</updated>
+      <workItem from="1467450521436" duration="24700000" />
     </task>
     <task id="LOCAL-00029" summary="[BE] created function get host name to proof the devices">
       <created>1458645832831</created>
@@ -1068,11 +1069,18 @@
       <option name="project" value="LOCAL" />
       <updated>1467478931669</updated>
     </task>
-    <option name="localTasksCounter" value="77" />
+    <task id="LOCAL-00077" summary="[FE]added safe delete in change user (with modal)">
+      <created>1467479139072</created>
+      <option name="number" value="00077" />
+      <option name="presentableId" value="LOCAL-00077" />
+      <option name="project" value="LOCAL" />
+      <updated>1467479139072</updated>
+    </task>
+    <option name="localTasksCounter" value="78" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="201946000" />
+    <option name="totallyTimeSpent" value="202071000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="65" y="24" width="1375" height="876" extended-state="6" />
@@ -1110,7 +1118,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="[BE][FE] added panel all devices in new survey and get survey" />
     <MESSAGE value="[BE][FE] added change device and change user in change survey navigation" />
     <MESSAGE value="[FE] added titles, fixed change user" />
     <MESSAGE value="[FE] [BE] fixed error message for rating" />
@@ -1135,7 +1142,8 @@
     <MESSAGE value="[FE][BE]updated new form in change user" />
     <MESSAGE value="[FE]added safe delete in change survey (with modal)" />
     <MESSAGE value="[FE]added safe delete in change device (with modal)" />
-    <option name="LAST_COMMIT_MESSAGE" value="[FE]added safe delete in change device (with modal)" />
+    <MESSAGE value="[FE]added safe delete in change user (with modal)" />
+    <option name="LAST_COMMIT_MESSAGE" value="[FE]added safe delete in change user (with modal)" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1354,20 +1362,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/base.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="19" column="60" selection-start-line="19" selection-start-column="60" selection-end-line="19" selection-end-column="60" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/js/ajax.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="522">
-          <caret line="29" column="13" selection-start-line="28" selection-start-column="25" selection-end-line="29" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/config/security.yml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="486">
@@ -1483,6 +1477,22 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="420">
           <caret line="374" column="30" selection-start-line="374" selection-start-column="30" selection-end-line="374" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/base.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="342">
+          <caret line="19" column="60" selection-start-line="19" selection-start-column="60" selection-end-line="19" selection-end-column="60" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/js/ajax.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="342">
+          <caret line="19" column="8" selection-start-line="19" selection-start-column="8" selection-end-line="19" selection-end-column="8" />
           <folding />
         </state>
       </provider>

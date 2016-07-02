@@ -57,6 +57,10 @@ $(document).ready(function () {
         }
     });
 
+    $('.logo').click(function () {
+        location.reload();
+    });
+
     //Admin Area
 
     $('select').material_select();

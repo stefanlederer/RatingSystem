@@ -371,6 +371,9 @@ p.absolutDelete {
 #changeUser-modal {
     z-index: 20000 !important;
 }
+#deleteUser-modal {
+    z-index: 20000 !important;
+}
 div.modal-content {
     margin-left: 80px;
     margin-right: 80px;

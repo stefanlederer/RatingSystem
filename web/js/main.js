@@ -110,18 +110,21 @@ $(document).ready(function () {
 
     //delete button clicked in change user
     $('.delete-icon-user').click(function () {
+        $('#deleteUser-modal').openModal();
         var table_id = $(this).parents('TR').find('.user-id').text();
         var deleteIcon = this;
-        $.ajax({
-            type: "POST",
-            url: "/admin/changeUser/delete",
-            data: {
-                id: table_id
-            },
-            success: function () {
-                $(deleteIcon).parents('tr').remove();
-            }
-        })
+        $('#absoluteDeleteButton').click(function () {
+            $.ajax({
+                type: "POST",
+                url: "/admin/changeUser/delete",
+                data: {
+                    id: table_id
+                },
+                success: function () {
+                    $(deleteIcon).parents('tr').remove();
+                }
+            });
+        });
     });
 
     //statistics

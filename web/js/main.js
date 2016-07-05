@@ -11,6 +11,7 @@ $(document).ready(function () {
 
     var countActions = [];
     var answersOptions = [];
+    var colorCodes = [];
     $('.date').datepicker({
         dateFormat: "yy-mm-dd"
     });
@@ -163,13 +164,7 @@ $(document).ready(function () {
                     datasets: [{
                         label: '# of Votes',
                         data: countActions,
-                        backgroundColor: [
-                            'rgba(113,225,13,0.8)',
-                            'rgba(232,160,12, 0.8)',
-                            'rgba(255,0,0,0.8)',
-                            'rgba(57,13,232, 0.8)',
-                            'rgba(0,255,230,0.8)'
-                        ],
+                        backgroundColor: colorCodes,
                         borderColor: [
                             '#ffffff',
                             '#ffffff',
@@ -196,13 +191,7 @@ $(document).ready(function () {
                     datasets: [{
                         label: '# of Votes',
                         data: countActions,
-                        backgroundColor: [
-                            'rgba(113,225,13,0.8)',
-                            'rgba(232,160,12, 0.8)',
-                            'rgba(255,0,0,0.8)',
-                            'rgba(57,13,232, 0.8)',
-                            'rgba(0,255,230,0.8)'
-                        ],
+                        backgroundColor: colorCodes,
                         borderColor: [
                             '#ffffff',
                             '#ffffff',
@@ -230,10 +219,25 @@ $(document).ready(function () {
             var surveyInformation = data.content;
             countActions = [];
             answersOptions = [];
+            colorCodes = [];
             data.content.forEach(function (value) {
                 countActions.push(parseInt(value[1]));
                 answersOptions.push(value['answerOption']);
             });
+            switch (countActions.length) {
+                case 2:
+                    colorCodes = ['rgba(0,96,0,0.8)', 'rgba(226,0,21,0.8)'];
+                    break;
+                case 3:
+                    colorCodes = ['rgba(0,96,0,0.8)', 'rgba(192,172,0,0.8)', 'rgba(226,0,21,0.8)'];
+                    break;
+                case 4:
+                    colorCodes = ['rgba(0,96,0,0.8)', 'rgba(84,158,52,0.8)', 'rgba(192,172,0,0.8)', 'rgba(226,0,21,0.8)'];
+                    break;
+                case 5:
+                    colorCodes = ['rgba(0,96,0,0.8)', 'rgba(84,158,52,0.8)', 'rgba(192,172,0,0.8)', 'rgba(189,60,60,0.8)', 'rgba(226,0,21,0.8)']
+            }
+            console.log(colorCodes);
             // var allInformation = data.allContent;
             // var aOptions = [];
             // var devices = [];
@@ -252,13 +256,7 @@ $(document).ready(function () {
                     datasets: [{
                         label: '# of Votes',
                         data: countActions,
-                        backgroundColor: [
-                            'rgba(113,225,13,0.8)',
-                            'rgba(232,160,12, 0.8)',
-                            'rgba(255,0,0,0.8)',
-                            'rgba(57,13,232, 0.8)',
-                            'rgba(0,255,230,0.8)'
-                        ],
+                        backgroundColor: colorCodes,
                         borderColor: [
                             '#ffffff',
                             '#ffffff',

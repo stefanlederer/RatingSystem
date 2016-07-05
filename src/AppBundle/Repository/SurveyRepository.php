@@ -23,7 +23,7 @@ class SurveyRepository extends \Doctrine\ORM\EntityRepository
             ->leftJoin('AppBundle:Devices', 'd', 'WITH', 's.devicesId = d.id')
             ->where('d.connection = :connection OR s.devicesId = 0')
             ->andWhere('s.surveyStart <= :date')
-            ->andWhere('s.surveyEnd > :date')
+            ->andWhere('s.surveyEnd >= :date')
             ->andWhere('s.timeStart <= :time')
             ->andWhere('s.timeEnd > :time')
             ->andWhere('s.status = :status')

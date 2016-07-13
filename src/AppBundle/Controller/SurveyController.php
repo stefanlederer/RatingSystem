@@ -49,7 +49,7 @@ class SurveyController extends Controller
     }
 
     /**
-     * @Route("/admin/change/getDevices")
+     * @Route("/admin/changeSurvey/getDevices")
      */
     public function getDevicesAction()
     {
@@ -67,7 +67,7 @@ class SurveyController extends Controller
     }
 
     /**
-     * @Route("/admin/change/getAnswerOptions")
+     * @Route("/admin/changeSurvey/getAnswerOptions")
      */
     public function getAnswerOptionAction()
     {

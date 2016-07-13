@@ -456,11 +456,12 @@ $(document).ready(function () {
     $('.info-icon').click(function () {
 
         $('#changeSurvey-modal').openModal();
+        var elem = "";
 
         var surveyId = $(this).parents("TR").find('.survey-id').text();
 
         var parentTR = $(this).parents("tr");
-        var elem = $(this).parent();
+        elem = $(this).parent();
         var table_question = parentTR.children('td.table-question');
         var table_start = parentTR.children('td.table-start');
         var table_end = parentTR.children('td.table-end');
@@ -535,7 +536,7 @@ $(document).ready(function () {
         var devicesId_oldValue = table_devicesId.text();
         $.ajax({
             type: "POST",
-            url: "/admin/change/getDevices",
+            url: "/admin/changeSurvey/getDevices",
             data: {
                 deviceId: devicesId_oldValue
             },
@@ -558,7 +559,7 @@ $(document).ready(function () {
         // var surveyId = $(this).parents("TR").find('.survey-id').text();
         $.ajax({
             type: "POST",
-            url: "/admin/change/getAnswerOptions",
+            url: "/admin/changeSurvey/getAnswerOptions",
             data: {
                 answerOption_surveyId: surveyId
             },

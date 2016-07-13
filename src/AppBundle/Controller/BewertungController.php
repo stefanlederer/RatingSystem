@@ -117,7 +117,8 @@ class BewertungController extends Controller
 
     public function getConn()
     {
-        $hostname = php_uname('n');
+//        $hostname = php_uname('n');
+        $hostname = gethostname();
         return $hostname;
     }
 

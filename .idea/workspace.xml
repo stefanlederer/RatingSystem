@@ -3,7 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="84777d70-628d-40b0-8c42-874255ae0ad0" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Repository/SurveyRepository.php" afterPath="$PROJECT_DIR$/src/AppBundle/Repository/SurveyRepository.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Controller/BewertungController.php" afterPath="$PROJECT_DIR$/src/AppBundle/Controller/BewertungController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Controller/SurveyController.php" afterPath="$PROJECT_DIR$/src/AppBundle/Controller/SurveyController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Repository/DevicesRepository.php" afterPath="$PROJECT_DIR$/src/AppBundle/Repository/DevicesRepository.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/css/Roboto Mono/LICENSE.txt" afterPath="$PROJECT_DIR$/web/css/Roboto Mono/LICENSE.txt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/main.js" afterPath="$PROJECT_DIR$/web/js/main.js" />
     </list>
@@ -26,12 +28,22 @@
     <favorites_list name="Bosch" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="main.js" pinned="false" current-in-tab="true">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="main.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/web/js/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="162">
-              <caret line="258" column="51" selection-start-line="258" selection-start-column="51" selection-end-line="258" selection-end-column="51" />
+            <state relative-caret-position="10098">
+              <caret line="561" column="37" selection-start-line="561" selection-start-column="37" selection-end-line="561" selection-end-column="37" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SurveyController.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/SurveyController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-1026">
+              <caret line="69" column="34" selection-start-line="69" selection-start-column="34" selection-end-line="69" selection-end-column="34" />
               <folding />
             </state>
           </provider>
@@ -86,15 +98,12 @@
         <option value="$PROJECT_DIR$/src/AppBundle/Entity/Survey.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Resources/views/Survey/statistic_selection.html.twig" />
         <option value="$PROJECT_DIR$/src/AppBundle/Resources/views/Survey/all_survey.html.twig" />
-        <option value="$PROJECT_DIR$/src/AppBundle/Controller/BewertungController.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Resources/views/Bewertung/error.html.twig" />
         <option value="$PROJECT_DIR$/src/AppBundle/Resources/views/Survey/add_survey.html.twig" />
         <option value="$PROJECT_DIR$/src/AppBundle/Resources/views/Survey/add_user.html.twig" />
         <option value="$PROJECT_DIR$/src/AppBundle/Resources/views/Survey/add_device.html.twig" />
         <option value="$PROJECT_DIR$/app/Resources/views/base.html.twig" />
-        <option value="$PROJECT_DIR$/src/AppBundle/Repository/DevicesRepository.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Repository/AnswersRepository.php" />
-        <option value="$PROJECT_DIR$/src/AppBundle/Controller/SurveyController.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Resources/views/Survey/change_survey.html.twig" />
         <option value="$PROJECT_DIR$/src/AppBundle/Resources/views/Survey/change_device.html.twig" />
         <option value="$PROJECT_DIR$/src/AppBundle/Resources/views/Survey/change_user.html.twig" />
@@ -103,7 +112,10 @@
         <option value="$PROJECT_DIR$/src/AppBundle/Resources/views/Bewertung/bewertung.html.twig" />
         <option value="$PROJECT_DIR$/app/config/security.yml" />
         <option value="$PROJECT_DIR$/src/AppBundle/Repository/SurveyRepository.php" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Repository/DevicesRepository.php" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Controller/BewertungController.php" />
         <option value="$PROJECT_DIR$/web/js/main.js" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Controller/SurveyController.php" />
       </list>
     </option>
   </component>
@@ -119,8 +131,8 @@
   <component name="ProjectFrameBounds">
     <option name="x" value="65" />
     <option name="y" value="24" />
-    <option name="width" value="1301" />
-    <option name="height" value="744" />
+    <option name="width" value="1375" />
+    <option name="height" value="876" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -148,6 +160,7 @@
     </navigator>
     <panes>
       <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -582,7 +595,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -685,14 +697,10 @@
       <workItem from="1467179863605" duration="12089000" />
       <workItem from="1467401446366" duration="6359000" />
       <workItem from="1467450521436" duration="27174000" />
-      <workItem from="1467729591378" duration="1626000" />
-    </task>
-    <task id="LOCAL-00035" summary="[FE] fixed bug when there is no connection">
-      <created>1461689593697</created>
-      <option name="number" value="00035" />
-      <option name="presentableId" value="LOCAL-00035" />
-      <option name="project" value="LOCAL" />
-      <updated>1461689593697</updated>
+      <workItem from="1467729591378" duration="1727000" />
+      <workItem from="1467749591676" duration="193000" />
+      <workItem from="1467784199914" duration="3934000" />
+      <workItem from="1468415993458" duration="121000" />
     </task>
     <task id="LOCAL-00036" summary="[FE] created admin area; login, header, all surveys, change surveys">
       <created>1465681082509</created>
@@ -1030,17 +1038,24 @@
       <option name="project" value="LOCAL" />
       <updated>1467481436598</updated>
     </task>
-    <option name="localTasksCounter" value="84" />
+    <task id="LOCAL-00084" summary="[FE] created dynamical color in charts">
+      <created>1467731295427</created>
+      <option name="number" value="00084" />
+      <option name="presentableId" value="LOCAL-00084" />
+      <option name="project" value="LOCAL" />
+      <updated>1467731295427</updated>
+    </task>
+    <option name="localTasksCounter" value="85" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="206171000" />
+    <option name="totallyTimeSpent" value="210520000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="65" y="24" width="1301" height="744" extended-state="6" />
+    <frame x="65" y="24" width="1375" height="876" extended-state="6" />
     <editor active="false" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21445042" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21381818" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1072,7 +1087,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="[FE] fixed design requirements" />
     <MESSAGE value="[BE] added columns timeStart, timeEnd in survey" />
     <MESSAGE value="[FE] added time picker to add survey" />
     <MESSAGE value="[BE] added time picker to add survey and rating" />
@@ -1097,7 +1111,8 @@
     <MESSAGE value="[FE] added manually update function when logo button is clicked in rating" />
     <MESSAGE value="[FE] fixed js problem" />
     <MESSAGE value="[FE][BE] added access control for user and admin" />
-    <option name="LAST_COMMIT_MESSAGE" value="[FE][BE] added access control for user and admin" />
+    <MESSAGE value="[FE] created dynamical color in charts" />
+    <option name="LAST_COMMIT_MESSAGE" value="[FE] created dynamical color in charts" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1279,13 +1294,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/Answers.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="218">
-          <caret line="59" column="0" selection-start-line="59" selection-start-column="0" selection-end-line="59" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/web/csv/115-AllData.csv">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="18">
@@ -1384,20 +1392,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Repository/DevicesRepository.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="324">
-          <caret line="18" column="43" selection-start-line="18" selection-start-column="43" selection-end-line="18" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/SurveyController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="498">
-          <caret line="512" column="42" selection-start-line="512" selection-start-column="42" selection-end-line="512" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/config/security.yml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="504">
@@ -1405,34 +1399,53 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Repository/AnswersRepository.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="972">
-          <caret line="54" column="100" selection-start-line="54" selection-start-column="100" selection-end-line="54" selection-end-column="100" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Repository/SurveyRepository.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
           <caret line="25" column="38" selection-start-line="25" selection-start-column="38" selection-end-line="25" selection-end-column="38" />
-          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/Answers.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="488">
+          <caret line="59" column="0" selection-start-line="59" selection-start-column="0" selection-end-line="59" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Repository/AnswersRepository.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="972">
+          <caret line="54" column="62" selection-start-line="54" selection-start-column="62" selection-end-line="54" selection-end-column="62" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Repository/DevicesRepository.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="378">
+          <caret line="21" column="40" selection-start-line="21" selection-start-column="40" selection-end-line="21" selection-end-column="40" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/BewertungController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="570">
-          <caret line="56" column="35" selection-start-line="56" selection-start-column="35" selection-end-line="56" selection-end-column="35" />
-          <folding />
+        <state relative-caret-position="1710">
+          <caret line="121" column="25" selection-start-line="121" selection-start-column="25" selection-end-line="121" selection-end-column="25" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/web/js/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="258" column="51" selection-start-line="258" selection-start-column="51" selection-end-line="258" selection-end-column="51" />
+        <state relative-caret-position="10098">
+          <caret line="561" column="37" selection-start-line="561" selection-start-column="37" selection-end-line="561" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/SurveyController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1026">
+          <caret line="69" column="34" selection-start-line="69" selection-start-column="34" selection-end-line="69" selection-end-column="34" />
           <folding />
         </state>
       </provider>

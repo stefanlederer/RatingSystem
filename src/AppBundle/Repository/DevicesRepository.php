@@ -13,7 +13,7 @@ class DevicesRepository extends \Doctrine\ORM\EntityRepository
     public function getDevicesId($conn) {
         $em = $this->getEntityManager();
         $query = $em->createQueryBuilder()
-            ->select("d.id")
+            ->select('d.id')
             ->from('AppBundle:Devices', 'd')
             ->where('d.connection = :connection')
             ->setParameter('connection', $conn)

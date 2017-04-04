@@ -29,7 +29,7 @@ class BewertungController extends Controller
             $question = $em->getRepository('AppBundle:Survey')
                 ->getQuestion($conn, $time);
 
-            if (strlen($question[0]['id']) > 0) {
+            if (strlen(@$question[0]['id']) > 0) {
 
 
                 //get buttonnames (answerOptions)
@@ -51,7 +51,7 @@ class BewertungController extends Controller
                 $answerOption = $request->request->get('button');
                 $surveyID = $question[0]["id"];
 
-                if(strlen($answerOption) > 0) {
+                if(strlen(@$answerOption) > 0) {
                     $dID = $em->getRepository('AppBundle:Devices')
                         ->getDevicesId($conn);
                     $devicesID = $dID[0]['id'];
